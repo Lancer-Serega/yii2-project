@@ -1,0 +1,32 @@
+// --------------------------------------------------------------------------
+// Settings
+// --------------------------------------------------------------------------
+
+// Fonts
+
+$fontBase: 'Segoe UI', Helvetica, Arial, sans-serif
+
+// Bg
+
+$baseBg: #fff
+$baseColor: #4F4F4F
+$baseMaxWidth: 1180px
+
+// Grid
+
+$xs: 420px
+$sm: 576px
+$md: 768px
+$lg: 992px
+$xl: 1200px
+$hd: 1400px
+
+// Mixins
+
+=rmax($width)
+	@media only screen and (max-width: $width - 1px)
+		@content
+
+=rmin($width)
+	@media only screen and (min-width: $width)
+		@content

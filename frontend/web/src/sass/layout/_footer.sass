@@ -1,0 +1,89 @@
+// --------------------------------------------------------------------------
+// Footer
+// --------------------------------------------------------------------------
+
+.footer
+	background: #F7FAFE
+	// padding: 52rem 0
+	padding: 38rem 0
+	.logo
+		margin: 0 0 8rem
+		width: auto
+
+
+// -----
+
+.copyright
+	font-size: 14rem
+	line-height: 18rem
+	font-weight: 400
+	color: #979797
+	margin: 0 0 20rem
+	+rmin($lg)
+		margin: 0 0 0 58rem
+
+// -----
+
+
+.nav-info
+	font-size: 12rem
+	line-height: 17rem
+	font-weight: 600
+	text-transform: uppercase
+	padding: 18rem 0
+	+rmin($lg)
+		.row
+			margin: 0 -25rem
+			& > [class^="col-"]
+				padding: 0 25rem
+
+.nav-info__menu
+	margin: 0
+	padding: 0
+	list-style: none
+	& > li
+		margin: 0 0 14rem
+
+
+.nav-info__link
+	color: #4F4F4F
+	text-decoration: none
+	&:hover
+		color: #639DCB
+		text-decoration: none
+
+
+
+// -----
+
+
+.payments
+	border: 1px solid #E0E0E0
+	border-radius: 4rem
+	padding: 20rem 32rem
+	color: #828282
+	width: 100%
+	max-width: 266rem
+	margin: 20rem 0
+	float: right
+	+rmax($lg)
+		display: none
+		
+
+.payments__text
+	font-size: 12rem
+	line-height: 23rem
+	font-weight: 600
+	text-transform: uppercase
+	margin: 0 0 12rem
+
+.payments__list
+	margin: 0 -10rem
+	padding: 0
+	list-style: none
+	display: flex
+	align-items: center
+	justify-content: space-between
+	color: #828282
+	& > li
+		padding: 0 10rem

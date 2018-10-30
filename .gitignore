@@ -7,9 +7,14 @@
 .idea
 log/
 frontend/runtime/
+backend/runtime/
+console/runtime/
 docks/
 frontend/web/assets/
 frontend/web/frontend/
+frontend/web/css/
+frontend/web/js/
+frontend/web/sprites/
 
 # netbeans project files
 nbproject
@@ -34,7 +39,16 @@ composer.phar
 # phpunit itself is not needed
 phpunit.phar
 # local phpunit config
-/phpunit.xml
+/phpunit.xm
+* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
+* @property string $login [varchar(255)]  User login
+
+* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
+* @property string $login [varchar(255)]  User login
+
+* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
+* @property string $login [varchar(255)]  User login
+l
 
 # vagrant runtime
 /.vagrant

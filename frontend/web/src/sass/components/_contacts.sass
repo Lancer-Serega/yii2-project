@@ -1,0 +1,175 @@
+//- --------------------------------------------------------------------------
+//- Contacts
+//- --------------------------------------------------------------------------
+
+.contacts
+	padding: 10rem 0 50rem
+	margin: 0 0 -40rem
+	+rmin($md)
+		background: #fff url(../images/bg-contacts.png) 98% bottom no-repeat
+
+.contacts__heading
+	@extend .heading--28
+	@extend .heading--center
+
+
+
+.contacts__info
+	padding: 30rem 0 25rem 46rem
+	+rmax($lg)
+		padding-left: 0
+	+rmax($md)
+		max-width: 560rem
+		margin: 0 auto
+
+
+.contacts__form
+	+rmax($md)
+		max-width: 560rem
+		margin: 0 auto
+
+.contacts__caption
+	font-size: 16rem
+	line-height: 20rem
+	font-weight: 400
+	color: #000
+	margin: 0 0 36rem
+	display: block
+	max-width: 450rem
+	&:last-of-type
+		margin: 0
+	a
+        font-weight: 600
+        text-decoration: none
+        color: #6fcf97
+        &:hover
+            text-decoration: none
+            color: #7edaa4
+
+
+
+.contacts__menu
+	margin: 0
+	padding: 0
+	list-style: none
+	font-size: 14rem
+	line-height: 20rem
+	font-weight: 400
+	& > li
+		margin: 0 0 12rem
+		&:last-child
+			margin: 0
+
+.contacts__link
+	display: inline-block
+	vertical-align: top
+	position: relative
+	text-decoration: none
+	padding: 0 0 0 30rem
+	color: #000
+	[class^="icon-"]
+		position: absolute
+		top: 0
+		left: 0
+	&:hover
+		color: #639dcb
+		text-decoration: none
+
+.contacts__btn
+	display: block
+	width: 29rem
+	height: 29rem
+	position: relative
+	border-radius: 50%
+	background: #E0E0E0
+	transition: 0.25s
+	overflow: hidden
+	img
+		display: block
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		object-fit: cover
+	&:hover
+		box-shadow: 0 8rem 15rem rgba(35, 81, 54, 0.4)
+
+.contacts__group
+	padding: 10rem 0 10rem 40rem
+	margin: 0 0 20rem
+	+rmax($md)
+		padding-left: 0
+		text-align: center
+
+.contacts__group-title
+	display: block
+	font-size: 12rem
+	line-height: 14rem
+	font-weight: 600
+	text-transform: uppercase
+	margin: 0 0 10rem
+
+
+.contacts__group-buttons
+	display: flex
+	flex-wrap: wrap
+	margin: 0 0 -15rem
+	.contacts__btn
+		margin: 0 15rem 15rem 0
+		&:last-child
+			margin-right: 0
+	+rmax($md)
+		justify-content: center
+
+.contacts__group-menu
+	margin: 0
+	padding: 12rem 0 0
+	list-style: none
+	font-size: 14rem
+	line-height: 20rem
+	font-weight: 400
+	display: inline-block
+	vertical-align: top
+	text-align: left
+	& > li
+		margin: 0 0 12rem
+		&:last-child
+			margin: 0
+
+
+.contacts__writeus
+	position: relative
+	border: 1px solid #E0E0E0
+	border-radius: 10rem
+	padding: 29rem 20rem 24rem 33rem
+	margin: 0 0 30rem
+	font-size: 14rem
+	line-height: 16rem
+	max-width: 401rem
+	+rmax($md)
+		max-width: none
+
+
+.contacts__writeus-icon
+	position: absolute
+	top: 0
+	left: 0
+	width: 52rem
+	height: 52rem
+	border-radius: 50%
+	background: #fff
+	top: -23rem
+	left: 23rem
+	display: flex
+	align-items: center
+	justify-content: center
+	color: #E0E0E0
+
+.contacts__writeus-text
+	display: block
+	font-size: 14rem
+	line-height: 18rem
+	font-weight: 400
+	color: #000
+	margin: 0 0 18rem

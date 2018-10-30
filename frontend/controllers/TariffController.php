@@ -2,13 +2,12 @@
 
 namespace frontend\controllers;
 
-use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
 use frontend\models\LoginForm;
-use frontend\models\ContactForm;
+use yii\web\ErrorAction;
+use yii\captcha\CaptchaAction;
 
 class TariffController extends Controller
 {
@@ -19,7 +18,7 @@ class TariffController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -30,7 +29,7 @@ class TariffController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'index' => ['get'],
                     'logout' => ['post'],
@@ -46,10 +45,10 @@ class TariffController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];

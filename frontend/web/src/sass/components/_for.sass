@@ -1,0 +1,102 @@
+//- --------------------------------------------------------------------------
+//- For
+//- --------------------------------------------------------------------------
+
+
+.for
+	padding: 48rem 0 58rem
+	background: #F7FAFE
+
+.for__heading
+	@extend .heading--28
+	@extend .heading--center
+
+.for__grid
+	padding: 24rem 0
+	.row
+		margin: 0 0 -42rem
+		& > [class^="col-"]
+			padding: 0 0 42rem
+	+rmax($xl)
+		max-width: 768px
+		margin: 0 auto
+
+.for__item
+	display: block
+	height: 80rem
+	text-decoration: none
+	text-align: center
+	// overflow: hidden
+	position: relative
+	z-index: 1
+	width: 100%
+	// max-width: 278rem
+	padding: 0 20rem
+	margin: 0 auto
+	.btn
+		transition: 0.5s
+		min-width: 190rem
+		opacity: 0
+		visibility: hidden
+	&:hover
+		overflow: visible
+		z-index: 2
+		.for__item-in
+			&:after
+				opacity: 1
+		.btn
+			transition: 0.25s
+			opacity: 1
+			visibility: visible
+			&:active
+				transition: none
+	
+	+rmax($sm)
+		.btn
+			opacity: 1
+			min-width: auto
+			width: 100%
+			font-size: 12rem
+			padding: 8rem 12rem
+
+
+.for__item-in
+	position: relative
+	z-index: 1
+	min-height: 100%
+	&:after
+		content: ''
+		display: block
+		position: absolute
+		top: -20rem
+		left: -20rem
+		right: -20rem
+		bottom: -35rem
+		box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15)
+		border-radius: 10rem
+		background: #fff
+		transition: 0.5s
+		opacity: 0
+		z-index: -1
+
+.for__item-image
+	margin: 0 0 10rem
+	height: 80rem
+	line-height: 80rem
+	text-align: center
+	img
+		display: inline-block
+		vertical-align: middle
+		max-height: 100%
+		max-width: 100%
+
+.for__control
+	text-align: center
+	padding: 32rem 0 0
+	position: relative
+	z-index: 1
+	.btn
+		min-width: 190rem
+	+rmax($sm)
+		.btn
+			min-width: auto

@@ -1,0 +1,68 @@
+// --------------------------------------------------------------------------
+// Faq
+// --------------------------------------------------------------------------
+
+.faq
+
+
+.faq__heading
+	@extend .heading--36
+
+
+.faq__group
+	background: #F7FAFE
+	box-shadow: 0px 4px 8px rgba(35, 81, 54, 0.1)
+	padding: 38rem 44rem 46rem 65rem
+	margin: 0 0 24rem
+	+rmax($lg)
+		padding: 38rem 30rem 46rem
+
+.faq__group-title
+	display: block
+	font-size: 26rem
+	line-height: 30rem
+	font-weight: 600
+	margin: 0 0 36rem
+
+.faq__group-dl
+	margin: 0 0 -28rem
+	padding: 0
+	dt
+		position: relative
+		cursor: pointer
+		display: block
+		font-size: 18rem
+		line-height: 21rem
+		font-weight: 400
+		border-bottom: 1rem solid #E0E0E0
+		padding: 0 30rem 9rem 0
+		margin: 0 0 28rem
+		color: #000
+		transition: 0.25s
+		[class^="icon-"]
+			position: absolute
+			top: 4rem
+			right: 0
+			color: #000
+			transition: inherit
+		&:hover
+			color: #639DCB
+		&::selection
+        	background: transparent
+		&.is-active
+			color: #639DCB
+			[class^="icon-"]
+				transform: rotate(180deg)
+		+rmax($md)
+			margin: 0 0 18rem
+			padding: 0 30rem 18rem 0
+	dd
+		display: none
+		margin: 0
+		position: relative
+		top: -14rem
+		padding: 0 36rem 26rem 36rem
+		+rmax($lg)
+			padding: 18rem 36rem
+		+rmax($md)
+			padding: 18rem

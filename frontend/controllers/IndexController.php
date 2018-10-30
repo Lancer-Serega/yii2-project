@@ -12,6 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SigninForm;
 use frontend\models\ContactForm;
+use yii\web\ErrorAction;
+use yii\captcha\CaptchaAction;
 
 /**
  * Index controller
@@ -19,17 +21,29 @@ use frontend\models\ContactForm;
 class IndexController extends Controller
 {
     /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signin'],
+                'class' => AccessControl::class,
+                'only' => ['login', 'logout', 'signin'],
+                'denyCallback' => function ($rule, $action) {
+                    throw new \RuntimeException(Yii::t('error', 'You do not have access to this page.'));
+                },
                 'rules' => [
                     [
-                        'actions' => ['signin'],
+                        'actions' => ['login', 'signin'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -41,9 +55,10 @@ class IndexController extends Controller
                 ],
             ],
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
-                    'logout' => ['post'],
+                    'login' => ['get', 'post'],
+                    'logout' => ['get', 'post'],
                 ],
             ],
         ];
@@ -56,10 +71,10 @@ class IndexController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
@@ -126,11 +141,11 @@ class IndexController extends Controller
             }
 
             return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
         }
+
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -177,9 +192,9 @@ class IndexController extends Controller
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
 
                 return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
             }
+
+            Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
         }
 
         return $this->render('requestPasswordResetToken', [

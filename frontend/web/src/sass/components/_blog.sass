@@ -1,0 +1,76 @@
+//- --------------------------------------------------------------------------
+//- Blog
+//- --------------------------------------------------------------------------
+
+.blog
+	margin: 0 0 -15rem
+	
+
+.blog__heading
+	@extend .heading--36
+
+.blog__list
+	margin: 0
+	padding: 0
+	list-style: none
+	& > li
+		padding: 0 0 40rem
+		margin: 0 0 32rem
+		border-bottom: 1px solid #C4C4C4
+		&:last-child
+			border: none
+			margin: 0 0 3rem
+			padding: 0 0 40rem
+
+.blog__item
+	font-size: 14rem
+	line-height: 22rem
+	font-weight: 400
+	color: #4F4F4F
+
+.blog__item-title
+	display: block
+	font-size: 24rem
+	line-height: 28rem
+	font-weight: 600
+	color: #000
+	margin: 0 0 8rem
+	a
+		color: #000
+		text-decoration: none
+		&:hover
+			color: #639dcb
+			text-decoration: none
+
+.blog__item-info
+	margin: 0 0 20rem
+	padding: 0
+	list-style: none
+	font-size: 12rem
+	line-height: 14rem
+	color: #BDBDBD
+	display: flex
+	flex-wrap: wrap
+	& > li
+		margin: 0 30rem 0 0
+	a
+		color: #6fcf97
+		text-decoration: none
+		&:hover
+			color: #7edaa4
+			text-decoration: none
+
+
+.blog__item-content
+	padding: 0 10rem 0 0
+	margin: 0 0 20rem
+	display: inline-block
+	vertical-align: top
+	width: 100%
+	img
+		float: left
+		margin: 0 39rem 10rem 0
+	p
+		margin: 0 0 20rem
+		&:last-child
+			margin: 0

@@ -29,7 +29,7 @@ class SignIn extends Widget
                                 <div class="auth__login">
                                     <span class="auth__heading">' 
                                         . Yii::t('app', 'Already have an account?') . '?<br>
-                                        <a href="#">' . Yii::t('app', 'Log In') . '</a>
+                                        <a href="#" data-fancybox="" data-src="#popup-login">' . Yii::t('app', 'Log In') . '</a>
                                     </span>
                                     <div class="auth__social">
                                         <p class="auth__social-text">' . Yii::t('app', 'Log In via') . '</p>
@@ -67,17 +67,6 @@ class SignIn extends Widget
                                             </div>
                                             <div class="ui-field">
                                                 <input class="ui-input" type="password" name="password" placeholder="' . Yii::t('app', 'Password'). '">
-                                            </div>
-                                            <div class="ui-field">
-                                                <input class="ui-input" type="text" placeholder="Optional input">
-                                            </div>
-                                            <div class="ui-field">
-                                                <select class="ui-select">
-                                                    <option>Optional Select</option>
-                                                    <option>Optional Select 1</option>
-                                                    <option>Optional Select 2</option>
-                                                    <option>Optional Select 3</option>
-                                                </select>
                                             </div>
                                             <div class="ui-field">
                                                 <label class="ui-check">

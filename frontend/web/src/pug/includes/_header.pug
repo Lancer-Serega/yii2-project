@@ -1,0 +1,74 @@
+//- --------------------------------------------------------------------------
+//- Header
+//- --------------------------------------------------------------------------
+
+.container-fluid
+
+	.logo
+		a(href="#")
+			img(src="images/logo.png" alt="ProxyServers")
+
+	nav.nav
+
+		button.nav__btn
+			span
+			span
+			span
+
+		.nav__dropdown
+
+			ul.nav__menu
+				li
+					a(href="#").nav__link.is-active Главная
+				li
+					a(href="#").nav__link Тарифы
+				li
+					a(href="#").nav__link Отзывы
+				li
+					a(href="#").nav__link Блог
+				li
+					a(href="#").nav__link FAQ
+				li
+					a(href="#").nav__link О нас
+
+	.language
+		button.language__btn
+			span.icon-language-en
+			| Eng
+			+sprite('icon-arrow-down')
+		.language__select
+			a(href="#").language__option
+				span.icon-language-ru
+				| Rus
+			a(href="#").language__option.is-active
+				span.icon-language-en
+				| Eng
+			a(href="#").language__option
+				span.icon-language-de
+				| Ger
+
+
+	.signin
+		.signin__btn
+			+sprite('icon-signin')
+			+sprite('icon-arrow-down')
+		.signin__dropdown
+			a(href="#" data-fancybox data-src="#popup-login").btn.btn--36.btn--green-empty Войти
+			a(href="#" data-fancybox data-src="#popup-reg").btn.btn--36.btn--green-link Регистрация
+
+	
+		
+
+
+	
+	
+					
+						
+						
+
+						
+			
+			
+			
+
+

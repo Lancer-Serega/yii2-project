@@ -1,0 +1,198 @@
+//- --------------------------------------------------------------------------
+//- Tariff
+//- --------------------------------------------------------------------------
+
+
+
+.tariff
+	padding: 46rem 0
+
+.tariff__heading
+	@extend .heading--28
+	@extend .heading--center
+
+
+.tariff__grid
+	.row
+		margin: 0 -15rem -30rem
+		& > [class^="col-"]
+			padding: 0 15rem 30rem
+	+rmax($xl)
+		max-width: 768px
+		margin: 0 auto
+
+.tariff__item
+	overflow: hidden
+	background: #fff
+	box-shadow: 0 20rem 50rem rgba(0, 0, 0, 0.07);
+	border-radius: 10rem
+	padding: 25rem 20rem 35rem
+	text-align: center
+	min-height: 100%
+	position: relative
+	color: #4F4F4F
+	font-size: 12rem
+	line-height: 21rem
+	min-height: 100%
+	display: flex
+	flex-direction: column
+	transition: 0.25s
+	&:hover
+		transform: translate(0,-5rem)
+		box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15)
+	&--highlighted
+		box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15), inset 0 0 0 4rem #639DCB
+		&:hover
+			box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15), inset 0 0 0 4rem #639DCB
+		.tariff__item-title
+			background: #639DCB
+			color: #fff
+		+rmin($xl)
+			margin: -20rem 0
+			.tariff__item-title
+				padding: 30rem 20rem 26rem
+				margin: -25rem -20rem 10rem
+			.tariff__item-price
+				margin: 0 0 8rem
+			.tariff__item-control
+				padding: 26rem 0 8rem
+
+
+
+.tariff__item-discount
+	display: block
+	position: absolute
+	top: -68rem
+	right: -68rem
+	background: #639DCB
+	color: #fff
+	width: 116rem
+	height: 116rem
+	padding: 68rem 0 0 0
+	font-size: 16rem
+	line-height: 68rem
+	font-weight: 700
+	text-align: center
+	transform: rotate(45deg)
+	white-space: nowrap
+
+.tariff__item-title
+	display: block
+	background: #E5EBF3
+	margin: -25rem -20rem 18rem
+	padding: 28rem 20rem 23rem
+	font-size: 22rem
+	line-height: 26rem
+	font-weight: 400
+	text-indent: 5rem
+
+.tariff__item-price
+	display: block
+	margin: 0 0 15rem
+	color: #000
+	white-space: nowrap
+	display: flex
+	flex-wrap: wrap
+	align-items: center
+	height: 56rem
+
+	small, b, mark
+		display: block
+		width: 100%
+
+	small
+		position: relative
+		top: -4rem
+		font-size: 18rem
+		line-height: 21rem
+		font-weight: 600
+		color: #BDBDBD
+		margin: 0 0 2rem
+		sub
+			font-size: 12rem
+			line-height: 14rem
+	b, mark
+		font-size: 30rem
+		line-height: 35rem
+		font-weight: 600
+
+	mark
+		color: #4C78A5
+
+	sub
+		font-size: 13rem
+		line-height: 15rem
+		font-weight: 400
+		color: #828282
+		position: relative
+		top: 0
+		left: 6rem
+
+.tariff__item-info
+	position: relative
+	margin: 0
+	padding: 18rem 0 15rem
+	list-style: none
+	&:after, &:before
+		content: ''
+		display: block
+		position: absolute
+		left: 50%
+		margin: 0 0 0 -74rem
+		width: 148rem
+		height: 1rem
+		background: #E0E0E0
+	&:after
+		top: 0
+	&:before
+		bottom: 0
+	& > li
+		margin: 0 0 4rem
+
+
+.tariff__item-code
+	position: relative
+	padding: 20rem 0 14rem
+	margin: 0 auto 2rem
+	max-width: 172rem
+	width: 100%
+	&:after, &:before
+		content: ''
+		display: block
+		position: absolute
+		left: 50%
+		margin: 0 0 0 -74rem
+		width: 148rem
+		height: 1rem
+		background: #E0E0E0
+	&:after
+		top: 0
+	&:before
+		bottom: 0
+	.ui-label
+		margin: 0 0 17rem
+	.ui-input
+		margin: 0 0 8rem
+		text-align: center
+	.ui-link
+		font-size: 11rem
+		line-height: 19rem
+
+.tariff__item-subsc
+	padding: 16rem 0 0
+	.ui-check
+		margin: 0 0 10rem
+
+.tariff__item-control
+	margin: auto 0 0
+	padding: 14rem 0 0
+
+
+.tariff__item-line
+	margin: 0 auto
+	display: block
+	border: none
+	border-top: 1rem solid #E0E0E0
+	height: 1rem
+	width: 148rem
+

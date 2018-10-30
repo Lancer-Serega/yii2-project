@@ -1,0 +1,110 @@
+include includes/_mixins
+doctype html
+html(lang="ru")
+	head
+		meta(charset="utf-8")
+
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="theme-color" content="#000")
+		meta(name="format-detection" content="telephone=no")
+		meta(http-equiv="X-UA-Compatible" content="IE=Edge")
+
+		title Critical - Proxy
+
+		link(rel="shortcut icon" href="images/favicon.ico")
+
+		include includes/_loadCss
+
+
+	body
+
+	.app
+
+		// Header :: Start
+		header.header
+			block header
+				include includes/_header
+		// Header :: End
+
+		// Main :: Start
+		main.main
+
+			// Hero :: Start
+			.hero
+				.hero__slides.js-slick-hero
+
+					.hero__item.hero__item--01
+						.container-fluid
+							.row
+								.col-md-6.push-md-6
+									figure.hero__item-image
+										img(src="images/img-hero-01.svg" alt="")
+
+								.col-md-6.pull-md-6
+
+									.hero__item-desc
+										h2.hero__item-title Живые прокси-сервера <br>под любые цели
+										p.hero__item-text Идеально подходят для SEO инструментов, парсинга поисковых систем, email рассылок и не только
+										a(href="#").btn.btn--57.btn--green Начать сейчас
+
+
+					.hero__item.hero__item--02
+						.container-fluid
+							.row
+								.col-md-6.push-md-6
+									figure.hero__item-image
+										img(src="images/img-hero-02.svg" alt="")
+
+								.col-md-6.pull-md-6
+
+									.hero__item-desc
+										h2.hero__item-title Работаем со всеми <br>популярными программами
+										p.hero__item-text Специально для вас мы подготовили материалы, в которых описываются настройки каждого приложения
+										a(href="#").btn.btn--57.btn--green Читать
+
+					.hero__item.hero__item--03
+						.container-fluid
+							.row
+								.col-md-6.push-md-6
+									figure.hero__item-image
+										img(src="images/img-hero-03.svg" alt="")
+
+								.col-md-6.pull-md-6
+
+									.hero__item-desc
+										h2.hero__item-title Профессионально <br>занимаетесь email рассылками?
+										.hero__item-inbox
+										p С нами у вас будет лучшая доставка в inbox
+										.row
+										.col-auto
+										img(src="images/img-inbox-01.png", alt="")
+										.col-auto
+										img(src="images/img-inbox-02.png", alt="")
+										.col-auto
+										img(src="images/img-inbox-03.png", alt="")
+										.col-auto
+										img(src="images/img-inbox-04.png", alt="")
+
+										a(href="#").btn.btn--57.btn--green Начать сейчас
+
+					.hero__item.hero__item--04
+						.container-fluid
+							.row
+								.col-md-6.push-md-6
+									figure.hero__item-image
+										img(src="images/img-hero-04.svg" alt="")
+
+								.col-md-6.pull-md-6
+
+									.hero__item-desc
+										h2.hero__item-title Протестируйте наши <br>сервера бесплатно
+										p.hero__item-text Мы предоставляем возможность проверить наши сервера, чтобы вы могли убедиться в их качестве
+										a(href="#").btn.btn--57.btn--green Начать сейчас
+
+		// Hero :: End
+
+		// Main :: End
+
+		// Scripts :: Start
+		include includes/_loadScripts
+		// Scripts :: End

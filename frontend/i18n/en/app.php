@@ -21,7 +21,4 @@ return [
     'Blog' => 'Blog',
     'FAQ' => 'FAQ',
     'About Us' => 'About Us',
-
-    // Error messages
-    'You do not have access to this page.' => 'You do not have access to this page.',
 ];

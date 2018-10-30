@@ -1,0 +1,185 @@
+// --------------------------------------------------------------------------
+// Feedback
+// --------------------------------------------------------------------------
+
+.feedback
+
+
+.feedback__heading
+	@extend .heading--36
+	margin: 0 0 60rem
+
+
+// ------
+
+.feedback__sidebar
+	.row
+		margin: 0 -15rem
+		& > [class^="col-"]
+			padding: 0 15rem 25rem
+
+.feedback__info
+	background: #F7FAFE
+	box-shadow: 0 4rem 8rem rgba(35, 81, 54, 0.1)
+	margin: 0
+	padding: 30rem 43rem 22rem
+	min-height: 100%
+	+rmax($lg)
+		padding: 30rem 30rem 22rem
+
+.feedback__info-title
+	display: block
+	font-size: 24rem
+	line-height: 28rem
+	font-weight: 600
+	color: #000
+	margin: 0 0 12rem
+
+.feedback__info-list
+	margin: 0
+	padding: 20rem 0
+	list-style: none
+	font-size: 14rem
+	line-height: 23rem
+	b
+		font-weight: 600
+
+.feedback__info-counter
+	display: block
+	text-align: center
+	font-size: 36rem
+	line-height: 56rem
+	font-weight: 300
+	color: #000
+	margin: 0 0 24rem
+	small
+		display: block
+		font-size: 14rem
+		line-height: 18rem
+		font-weight: 400
+		padding: 2rem 0 0
+
+
+.feedback__forums
+	margin: 0
+	padding: 30rem 0 0
+	list-style: none
+	& > li
+		margin: 0 0 18rem
+	+rmax($lg)
+		display: flex
+		flex-wrap: wrap
+		& > li
+			max-width: 100%
+			margin: 0 38rem 18rem 0
+
+.feedback__forums-link
+	display: block
+	position: relative
+	font-size: 13rem
+	line-height: 15rem
+	color: #4C87B7
+	padding: 0 0 0 23rem
+	transition: 0.25s
+	word-wrap: break-word
+	img
+		display: block
+		position: absolute
+		top: 0
+		left: 0
+	[class^="icon-"]
+		color: #BDBDBD
+		display: inline-block
+		vertical-align: middle
+		position: relative
+		top: -1rem
+		left: 16rem
+		margin: 0 0 0 -11rem
+		transition: inherit
+	&:hover
+		color: #4C87B7
+		text-decoration: underline
+		[class^="icon-"]
+			color: #888
+
+// ------
+
+
+.feedback__panel
+	background: #F7FAFE
+	box-shadow: 0 4rem 8rem rgba(35, 81, 54, 0.1)
+	margin: 0 0 32rem
+	padding: 30rem 81rem 40rem 55rem
+	&--green
+		box-shadow: 0 4rem 8rem rgba(35, 81, 54, 0.1), inset 0 0 0 3rem #6FCF97
+	.pagination
+		margin: 42rem 0 -16rem
+	+rmax($lg)
+		padding: 30rem 30rem 40rem 30rem
+
+
+.feedback__panel-title
+	display: block
+	font-size: 24rem
+	line-height: 28rem
+	font-weight: 600
+	color: #000
+	margin: 0 0 34rem
+
+.feedback__panel-list
+	margin: 0
+	padding: 0
+	list-style: none
+	& > li
+		border-bottom: 1px solid #E0E0E0
+		padding: 0 0 22rem
+		margin: 0 0 20rem
+		&:last-child
+			border: none
+			margin: 0
+			padding: 0
+
+.feedback__item
+	display: inline-block
+	vertical-align: top
+	width: 100%
+	padding: 0 0 0 25rem
+
+.feedback__item-date
+	float: right
+	font-size: 11rem
+	line-height: 18rem
+	color: #B4B4B4
+
+.feedback__item-user
+	position: relative
+	font-size: 15rem
+	line-height: 18rem
+	font-weight: 400
+	color: #000
+	margin: 0 0 11rem
+	mark
+		background: none
+		color: #828282
+	[class^="icon-"]
+		position: absolute
+		top: 2rem
+		left: -21rem
+		color: #6FCF97
+
+
+.feedback__item-content
+	font-size: 13rem
+	line-height: 17rem
+	color: #333
+	word-wrap: break-word
+	p
+		margin: 0 0 7rem
+		&:last-child
+			margin: 0
+	a
+		font-size: 11rem
+		color: #639DCB
+		&:hover
+			color: #639DCB
+			text-decoration: underline
