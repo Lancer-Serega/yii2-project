@@ -1,5 +1,5 @@
 <?php
-namespace frontend\widgets;
+namespace frontend\widgets\Blocks;
 
 use Yii;
 use yii\bootstrap\Widget;

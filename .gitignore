@@ -11,9 +11,9 @@ backend/runtime/
 console/runtime/
 docks/
 frontend/web/assets/
-frontend/web/frontend/
 frontend/web/css/
 frontend/web/js/
+frontend/web/fonts/
 frontend/web/sprites/
 
 # netbeans project files
@@ -38,17 +38,9 @@ composer.phar
 
 # phpunit itself is not needed
 phpunit.phar
+
 # local phpunit config
 /phpunit.xm
-* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
-* @property string $login [varchar(255)]  User login
-
-* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
-* @property string $login [varchar(255)]  User login
-
-* @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
-* @property string $login [varchar(255)]  User login
-l
 
 # vagrant runtime
 /.vagrant

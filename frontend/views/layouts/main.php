@@ -7,8 +7,8 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\assets\AppAsset;
-use \frontend\widgets\{HeaderMenu, Lang};
-use \frontend\widgets\Blocks\{LogIn, SignIn};
+use \frontend\widgets\Lang;
+use \frontend\widgets\Blocks\{HeaderMenu, LogIn, SignIn};
 
 AppAsset::register($this);
 ?>
