@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // Auth
+    // Form
     'Log In' => 'Войти',
     'Log Out' => 'Выйти',
     'Sign In' => 'Зарегистрироваться',
@@ -13,7 +13,24 @@ return [
     'Password' => 'Пароль',
     'Already have an account?' => 'Уже зарегистрированы?',
     'Log In via' => 'Войти через',
-    'By signin up, you agree to License Agreement.' => 'Регистрируясь, вы соглашаетесь с Лицензионным соглашением.',
+    'By signin-form up, you agree to License Agreement.' => 'Регистрируясь, вы соглашаетесь с Лицензионным соглашением.',
+    'There is no user with this email address.' => 'Пользователь с текущем Email адресом не найден!',
+    'Password reset for {username}' => 'Сброс пароля для {username}',
+    'Hello {username}' => 'Привет {username}',
+    'Follow the link below to reset your password:' => 'Перейдите по ссылке ниже, чтобы сбросить пароль:',
+    'Check your email for further instructions.' => 'Проверьте свою электронную почту для получения дальнейших инструкций.',
+    'Sorry, we are unable to reset password for the provided email address.' => 'Извините, мы не можем сбросить пароль для указанного адреса электронной почты.',
+    'New password saved.' => 'Новый пароль успешно сохранен.',
+    'Please fill out your email.' => 'Пожалуйста, заполните свой адрес электронной почты.',
+    'Request password reset' => 'Сброс пароля',
+    'Send' => 'Отправить',
+    'If you forgot your password you can' => 'Если вы забыли свой пароль, вы можете',
+    'reset it' => 'сбросить его',
+    'Login account' => 'Войти',
+    'This email address has already been taken.' => 'Введенный адрес электронной почты уже зарегистрирован в системе.',
+    'Passwords don\'t match' => 'Пароли не совпадают',
+    'Password repeat' => 'Повторите пароль',
+    'Your name' => 'Ваше имя',
 
     // Menu
     'Homepage' => 'Главная',

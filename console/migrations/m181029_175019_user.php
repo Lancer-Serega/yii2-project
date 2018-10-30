@@ -1,6 +1,6 @@
 <?php
 
-use yii\db\Expression;
+use frontend\models\User;
 use yii\db\Migration;
 
 /**
@@ -40,8 +40,8 @@ class m181029_175019_user extends Migration
             'password_reset_token' => $this->string()->unique()->comment($comments['password_reset_token']),
             'email' => $this->string(255)->notNull()->unique()->comment($comments['email']),
             'status' => $this->tinyInteger(1)->notNull()->defaultValue(1)->comment($comments['status']),
-            'created_at' => $this->timestamp()->notNull()->defaultValue(new Expression('CURRENT_TIMESTAMP()'))->comment($comments['created_at']),
-            'updated_at' => $this->timestamp()->notNull()->defaultValue(new Expression('CURRENT_TIMESTAMP()'))->comment($comments['updated_at']),
+            'created_at' => "TIMESTAMP NOT NULL DEFAULT NOW() COMMENT '{$comments['created_at']}'",
+            'updated_at' => "TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW() COMMENT '{$comments['updated_at']}'",
         ], $tableOptions);
 
         $this->addCommentOnTable('lang', $comments['table']);
@@ -56,6 +56,19 @@ class m181029_175019_user extends Migration
         $this->createIndex('user_idx8', 'user', 'status');
         $this->createIndex('user_idx9', 'user', 'created_at');
         $this->createIndex('user_idx10', 'user', 'updated_at');
+
+        $user = new User();
+        $user->generateAuthKey();
+        $user->setPassword('admin');
+
+        $this->insert('user', [
+            'role' => '1',
+            'login' => 'admin',
+            'username' => 'admin_name',
+            'auth_key' => $user->getAuthKey(),
+            'password_hash' => $user->password_hash,
+            'email' => 'admin@admin.ru',
+        ]);
 
         return true;
     }

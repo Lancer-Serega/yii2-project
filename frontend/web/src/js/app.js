@@ -31,14 +31,14 @@ $(function () {
     $(document).on('click', '.signin__btn', function (event) {
         event.preventDefault();
         let htmlBlock = $('html');
-        if (htmlBlock.is('.is-signin-open')) {
-            htmlBlock.removeClass('is-signin-open');
+        if (htmlBlock.is('.is-signin-form-open')) {
+            htmlBlock.removeClass('is-signin-form-open');
         } else {
-            htmlBlock.addClass('is-signin-open');
+            htmlBlock.addClass('is-signin-form-open');
         }
     });
     $(document).on('click', function (event) {
-        if ($(event.target).closest('.signin').length === 0) {
+        if ($(event.target).closest('.signin-form').length === 0) {
             $('html').removeClass('is-signin-open');
         }
     });
@@ -246,16 +246,19 @@ $(function () {
             },
             errorPlacement: validateErrorPlacement,
             submitHandler: function (form) {
+                let data = $(form).serialize();//$(form).data('type') === 'JSON' ? $(form).serializeArray() : $(form).serialize();
+
                 $.ajax({
-                    type: 'post',
-                    url: '/login/',
-                    dataType: 'JSON',
-                    contentType:'application/json',
-                    data: $(form).serialize(),
+                    type: $(form).attr('method') || 'get',
+                    url: $(form).attr('action') || '#',
+                    // dataType: $(form).data('type') || 'JSON',
+                    // contentType: $(form).data('contentType') || 'application/json',
+                    data: data,
                     success: function (form) {
                         console.log(form.statusText);
+                        location.reload();
                     },
-                    error: function (form) {
+                    error: function (xhr, status, error) {
                         console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
                     },
                     fail: function (xhr, status, error) {

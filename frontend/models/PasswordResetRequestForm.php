@@ -2,8 +2,8 @@
 namespace frontend\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\base\Model;
-use common\models\User;
 
 /**
  * Password reset request form
@@ -23,9 +23,9 @@ class PasswordResetRequestForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\common\models\User',
+                'targetClass' => User::class,
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with this email address.'
+                'message' => Yii::t('app', 'There is no user with this email address.')
             ],
         ];
     }
@@ -34,6 +34,7 @@ class PasswordResetRequestForm extends Model
      * Sends an email with a link, for resetting the password.
      *
      * @return bool whether the email was send
+     * @throws Exception
      */
     public function sendEmail()
     {
@@ -62,7 +63,7 @@ class PasswordResetRequestForm extends Model
             )
             ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
             ->setTo($this->email)
-            ->setSubject('Password reset for ' . Yii::$app->name)
+            ->setSubject(Yii::t('app', 'Password reset for {username}', ['username' => Yii::$app->name]))
             ->send();
     }
 }

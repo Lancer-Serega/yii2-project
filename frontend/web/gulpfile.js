@@ -201,7 +201,7 @@ gulp.task('spriteSvg', function () {
             }
 
         }))
-        .pipe(gulp.dest('dist/sprites/'));
+        .pipe(gulp.dest('sprites/'));
 });
 
 

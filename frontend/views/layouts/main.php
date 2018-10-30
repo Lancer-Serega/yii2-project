@@ -1,14 +1,18 @@
 <?php
 
-/* @var $this \yii\web\View */
+/**
+ * @var $this View
+ * @var $content string
+ * @var $signinFormModel SigninForm
+ */
 
-/* @var $content string */
-
+use frontend\models\SigninForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\assets\AppAsset;
 use \frontend\widgets\Lang;
 use \frontend\widgets\Blocks\{HeaderMenu, LogIn, SignIn};
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -51,7 +55,7 @@ AppAsset::register($this);
                 </div>
                 <div class="signin__dropdown">
                     <a class="btn btn--36 btn--green-empty" href="#" data-fancybox data-src="#popup-login"><?= Yii::t('app', 'Log In'); ?></a>
-                    <a class="btn btn--36 btn--green-link" href="#" data-fancybox data-src="#popup-reg"><?= Yii::t('app', 'Sign In'); ?></a>
+                    <a class="btn btn--36 btn--green-link" href="#" data-fancybox data-src="#popup-signin"><?= Yii::t('app', 'Sign In'); ?></a>
                 </div>
             </div>
         </div>
@@ -122,9 +126,10 @@ AppAsset::register($this);
     </footer>
     <!-- Footer :: End-->
 
-    <?= LogIn::widget(); ?>
-
-    <?= SignIn::widget(); ?>
+    <!-- Popups widgets :: Start -->
+    <?= LogIn::widget(['formUrl' => Url::to('/login')]); ?>
+    <?= SignIn::widget(['formUrl' => Url::to('/signin')]); ?>
+    <!-- Popups widgets :: END -->
 
     <?php $this->endBody(); ?>
 </div>

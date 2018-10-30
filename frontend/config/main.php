@@ -1,6 +1,6 @@
 <?php
 
-use common\models\User;
+use frontend\models\User;
 use frontend\components\LangUrlManager;
 use frontend\components\LangRequest;
 use yii\i18n\PhpMessageSource;
@@ -102,20 +102,36 @@ return [
             ],
         ],
 
+//        'timestamp' => [
+//            'class' => TimestampBehavior::class,
+//            'attributes' => [
+//                ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+//                ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+//            ],
+//            'value' => new \yii\db\Expression('CURRENT_TIMESTAMP'),
+//        ],
+//
+//        'formatter' => [
+//            'dateFormat' => 'YYYY-MM-DD',
+//            'timeFormat' => 'HH:ii:ss',
+//            'datetimeFormat' => 'YYYY-MM-DD HH:ii:ss',
+//        ],
+
         'urlManager' => [
             'class'=> LangUrlManager::class,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'suffix' => '/',
-//            'normalizer' => [
-//                'class' => 'yii\web\UrlNormalizer',
-//                'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY, // Use a temporary redirect instead of permanent
-//            ],
+            'suffix' => '',
+            // 'normalizer' => [
+            //     'class' => UrlNormalizer::class,
+            //     'collapseSlashes' => true,
+            //     'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY, // Use a temporary redirect instead of permanent
+            // ],
             'rules' => [
                 'login' => 'index/login',
-//                '<action:(login|logout|signin|restore-password)>/' => 'index/<action>',
-//                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
-//                'robots.txt' => 'seo/manage/get-robots',
+                '<action:(login|logout|signin|restore-password)>/' => 'index/<action>',
+                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+                'robots.txt' => 'seo/manage/get-robots',
                 '/' => 'index/index',
             ],
         ],

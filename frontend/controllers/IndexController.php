@@ -2,12 +2,13 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SigninForm;
@@ -37,13 +38,13 @@ class IndexController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['login', 'logout', 'signin'],
+                'only' => ['login', 'logout', 'signin-form'],
                 'denyCallback' => function ($rule, $action) {
                     throw new \RuntimeException(Yii::t('error', 'You do not have access to this page.'));
                 },
                 'rules' => [
                     [
-                        'actions' => ['login', 'signin'],
+                        'actions' => ['login', 'signin-form'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -87,7 +88,61 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $signinFormModel = new SigninForm();
+        return $this->render('index', compact('signinFormModel'));
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionFeedback()
+    {
+        return $this->render('feedback');
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionFaq()
+    {
+        return $this->render('faq');
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return mixed
+     */
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+            } else {
+                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+            }
+
+            return $this->refresh();
+        }
+
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Displays about page.
+     *
+     * @return mixed
+     */
+    public function actionAbout()
+    {
+        return $this->render('about');
     }
 
     /**
@@ -126,51 +181,18 @@ class IndexController extends Controller
     }
 
     /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
-
-            return $this->refresh();
-        }
-
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    /**
      * Signs user up.
      *
      * @return mixed
+     * @throws Exception
      */
     public function actionSignin()
     {
         $model = new SigninForm();
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signin()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+            $user = $model->signin();
+            if ($user && Yii::$app->getUser()->login($user)) {
+                return $this->goHome();
             }
         }
 
@@ -181,20 +203,20 @@ class IndexController extends Controller
 
     /**
      * Requests password reset.
-     *
      * @return mixed
+     * @throws Exception
      */
     public function actionRequestPasswordReset()
     {
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', Yii::t('app', 'Check your email for further instructions.'));
 
                 return $this->goHome();
             }
 
-            Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+            Yii::$app->session->setFlash('error', Yii::t('app', 'Sorry, we are unable to reset password for the provided email address.'));
         }
 
         return $this->render('requestPasswordResetToken', [
@@ -208,6 +230,7 @@ class IndexController extends Controller
      * @param string $token
      * @return mixed
      * @throws BadRequestHttpException
+     * @throws Exception
      */
     public function actionResetPassword($token)
     {
@@ -218,7 +241,7 @@ class IndexController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password saved.');
+            Yii::$app->session->setFlash('success', Yii::t('app', 'New password saved.'));
 
             return $this->goHome();
         }

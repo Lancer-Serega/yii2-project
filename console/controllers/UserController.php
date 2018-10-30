@@ -31,8 +31,6 @@ class UserController extends Controller
         $user->login = 'admin';
         $user->username = 'admin';
         $user->email = 'admin@admin.com';
-        $user->created_at = 'CURRENT_TIMESTAMP()';
-        $user->updated_at = 'CURRENT_TIMESTAMP()';
         $user->setPassword('52662699');
         $user->generateAuthKey(32);
 

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signin']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'signin-form']); ?>
 
             <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput() ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Signin', ['class' => 'btn btn-primary', 'name' => 'signin-button']) ?>
+                <?= Html::submitButton('Signin', ['class' => 'btn btn-primary', 'name' => 'signin-form-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

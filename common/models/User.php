@@ -20,6 +20,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
+ * @property string $login [varchar(255)]  User login
  */
 class User extends ActiveRecord implements IdentityInterface
 {

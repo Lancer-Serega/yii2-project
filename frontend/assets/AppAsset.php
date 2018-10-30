@@ -3,6 +3,8 @@
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
+use yii\web\YiiAsset;
+use yii\bootstrap\BootstrapAsset;
 
 /**
  * Main frontend application asset bundle.
@@ -21,8 +23,8 @@ class AppAsset extends AssetBundle
         '/js/plugins/jquery.formstyler.js',
         '/js/app.min.js',
     ];
-//    public $depends = [
-//        'yii\web\YiiAsset',
-//        'yii\bootstrap\BootstrapAsset',
-//    ];
+    public $depends = [
+        YiiAsset::class,
+        BootstrapAsset::class,
+    ];
 }

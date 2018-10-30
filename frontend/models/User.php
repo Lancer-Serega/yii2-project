@@ -4,7 +4,6 @@ namespace frontend\models;
 use Yii;
 use yii\base\Exception;
 use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -43,7 +42,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::class,
+//            [
+//                'class' => TimestampBehavior::class,
+//                'createdAtAttribute' => 'created_at',
+//                'updatedAtAttribute' => 'updated_at',
+//                'value' => new Expression('CURRENT_TIMESTAMP'),
+//            ],
         ];
     }
 
@@ -61,9 +65,9 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    public static function findIdentity($id, $status = self::STATUS_ACTIVE)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status' => $status]);
     }
 
     /**
@@ -79,11 +83,24 @@ class User extends ActiveRecord implements IdentityInterface
      * Finds user by username
      *
      * @param string $username
+     * @param int $status
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByUsername($username, $status = self::STATUS_ACTIVE)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'status' => $status]);
+    }
+
+    /**
+     * Finds user by email
+     *
+     * @param $email
+     * @param int $status
+     * @return static|null
+     */
+    public static function findByEmail($email, $status = self::STATUS_ACTIVE)
+    {
+        return static::findOne(['email' => $email, 'status' => $status]);
     }
 
     /**
@@ -142,4 +159,55 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString($length);
     }
 
+    /**
+     * Find by password reset token and user status
+     * @param string $token
+     * @param int $status
+     * @return User|null
+     */
+    public static function findByPasswordResetToken($token, $status = self::STATUS_ACTIVE)
+    {
+        if (!static::isPasswordResetTokenValid($token)) {
+            return null;
+        }
+
+        return static::findOne([
+            'password_reset_token' => $token,
+            'status' => $status,
+        ]);
+    }
+
+    /**
+     * Check password reset token for validity
+     * @param string $token
+     * @return bool
+     */
+    public static function isPasswordResetTokenValid($token)
+    {
+
+        if (empty($token)) {
+            return false;
+        }
+
+        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+        return $timestamp + $expire >= time();
+    }
+
+    /**
+     * Generate password reset token
+     * @throws Exception
+     */
+    public function generatePasswordResetToken()
+    {
+        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+    }
+
+    /**
+     * Remove password reset token
+     */
+    public function removePasswordResetToken()
+    {
+        $this->password_reset_token = null;
+    }
 }
