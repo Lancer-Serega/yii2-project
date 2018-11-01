@@ -6,13 +6,14 @@
  * @var $signinFormModel SigninForm
  */
 
-use frontend\models\SigninForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use frontend\assets\AppAsset;
+use yii\web\View;
+use \frontend\models\SigninForm;
 use \frontend\widgets\Lang;
 use \frontend\widgets\Blocks\{HeaderMenu, LogIn, SignIn};
-use yii\web\View;
+use \frontend\assets\AppAsset;
+use \common\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -44,23 +45,36 @@ AppAsset::register($this);
             </div>
             <?= HeaderMenu::widget(['route' => $this->context->route]); ?>
             <?= Lang::widget(['app' => \Yii::$app]); ?>
-            <div class="signin">
-                <div class="signin__btn">
-                    <svg class="icon-signin">
-                        <use xlink:href="sprites/sprite.svg#icon-signin"></use>
-                    </svg>
-                    <svg class="icon-arrow-down">
-                        <use xlink:href="sprites/sprite.svg#icon-arrow-down"></use>
-                    </svg>
+
+            <?php if (Yii::$app->user->isGuest): ?>
+                <div class="signin">
+                    <div class="signin__dropdown">
+                        <a class="btn btn--36 btn--green-empty" href="#" data-fancybox data-src="#popup-login"><?= Yii::t('form', 'Log In'); ?></a>
+                        <a class="btn btn--36 btn--green-link" href="#" data-fancybox data-src="#popup-signin"><?= Yii::t('form', 'Sign In'); ?></a>
+                    </div>
                 </div>
-                <div class="signin__dropdown">
-                    <a class="btn btn--36 btn--green-empty" href="#" data-fancybox data-src="#popup-login"><?= Yii::t('app', 'Log In'); ?></a>
-                    <a class="btn btn--36 btn--green-link" href="#" data-fancybox data-src="#popup-signin"><?= Yii::t('app', 'Sign In'); ?></a>
+            <?php else: ?>
+                <div class="signin">
+                    <div class="signin__btn">
+                        <svg class="icon-signin">
+                            <use xlink:href="sprites/sprite.svg#icon-signin"></use>
+                        </svg>
+                        <svg class="icon-arrow-down">
+                            <use xlink:href="sprites/sprite.svg#icon-arrow-down"></use>
+                        </svg>
+                    </div>
+                    <div class="signin__dropdown">
+                        <a class="btn btn--25 btn--blue" href="<?= Url::to('/logout'); ?>"><?= Yii::t('form', 'Log Out'); ?></a>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </header>
     <!-- Header :: End-->
+
+    <?php if (count(Yii::$app->session->getAllFlashes())) {
+        echo Alert::widget() . '<br/>';
+    } ?>
 
     <!-- Main :: Start-->
     <main class="main">
@@ -73,8 +87,11 @@ AppAsset::register($this);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-5 col-lg-4 col-xl-4">
-                    <div class="logo"><a href="#"><img src="<?= Url::to('/images/logo-grey.png', true); ?>"
-                                                       alt="ProxyServers"></a></div>
+                    <div class="logo">
+                        <a href="#">
+                            <img src="<?= Url::to('/images/logo-grey.png', true); ?>" alt="ProxyServers">
+                        </a>
+                    </div>
                     <p class="copyright">2018 © ProxyServers<br>Допинформация копирайты</p>
                 </div>
                 <div class="col-sm-7 col-lg-4 col-xl-5">

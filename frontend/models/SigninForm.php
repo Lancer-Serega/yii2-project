@@ -1,7 +1,7 @@
 <?php
 namespace frontend\models;
 
-use yii\base\Exception;
+use Yii;
 use yii\base\Model;
 
 /**
@@ -13,56 +13,44 @@ class SigninForm extends Model
     public $email;
     public $password;
     public $password_repeat;
-    public $role = 1;
-    public $login;
-
 
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
-        $msgEmail = \Yii::t('app', 'This email address has already been taken.');
-        $msgPass = \Yii::t('app', 'Passwords don\'t match');
+        $msg = [
+            'required' => Yii::t('form', 'This field is required'),
+            'username' => [
+                'min' => Yii::t('form', 'The "Username" value must contain at least {min} characters.'),
+                'max' => Yii::t('form', 'The "Username" value must contain a maximum of {max} characters.'),
+            ],
+            'email' => [
+                'email' => Yii::t('form', ''),
+                'max' => Yii::t('form', 'The "Email" value must contain a maximum of {max} characters.'),
+                'unique' => Yii::t('form', 'This email address has already been taken.'),
+            ],
+            'password' => [
+                'min' => Yii::t('form', 'The "Password" value must contain at least {min} characters.'),
+            ],
+            'password_repeat' => [
+                'compare' => Yii::t('form', 'Passwords don\'t match'),
+            ],
+        ];
 
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            [['username', 'email'], 'trim'],
+            [['username', 'email', 'password', 'password_repeat'], 'required', 'message' => $msg['required']],
 
-            ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => User::class, 'message' => $msgEmail],
+            ['username', 'string', 'min' => 2, 'max' => 255, 'tooShort' => $msg['username']['min'], 'tooLong' => $msg['username']['max']],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 8],
+            ['email', 'email', 'message' => $msg['email']['email']],
+            ['email', 'string', 'max' => 255, 'tooLong' => $msg['email']['max']],
+            ['email', 'unique', 'targetClass' => User::class, 'message' => $msg['email']['unique']],
 
-            ['password_repeat', 'required'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => $msgPass],
+            ['password', 'string', 'min' => 8, 'tooShort' => $msg['password']['min']],
+
+            ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => $msg['password_repeat']['compare']],
         ];
-    }
-
-    /**
-     * Signs user up.
-     * @return User|null the saved model or null if saving fails
-     * @throws Exception
-     */
-    public function signin()
-    {
-        if (!$this->validate()) {
-            return null;
-        }
-        
-        $user = new User();
-        $user->username = $this->username;
-        $user->role = $this->role;
-        $user->email = $this->email;
-        $user->login = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
     }
 }

@@ -47,11 +47,11 @@ return '
                             ?>
 
                             <span class="ui-legend">
-                                <?= Yii::t('app', 'Authorization form'); ?>
+                                <?= Yii::t('form', 'Authorization form'); ?>
                             </span>
 
                             <div class="auth__social">
-                                <p class="auth__social-text"><?= Yii::t('app', 'Log In via'); ?></p>
+                                <p class="auth__social-text"><?= Yii::t('form', 'Log In via'); ?></p>
                                 <div class="auth__social-control">
                                     <a class="auth__social-btn" href="#">
                                         <span class="icon-social-fb"></span>
@@ -69,29 +69,28 @@ return '
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Email')]; ?>
-                                <?= $form->field($loginFormModel, 'email')->textInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email')]; ?>
+                                <?= $form->field($loginFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Password')]; ?>
-                                <?= $form->field($loginFormModel, 'password')->passwordInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password')]; ?>
+                                <?= $form->field($loginFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 
                             <div class="ui-field">
                                 <label class="ui-check">
                                     <?php $options = ['class' => 'ui-check__input']; ?>
-                                    <?= $form->field($loginFormModel, 'password')->checkbox($options); ?>
+                                    <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
                                     <span class="ui-check__checkbox">
                                         <svg class="icon-check">
                                             <use xlink:href="sprites/sprite.svg#icon-check"></use>
                                         </svg>
                                     </span>
-                                    <?= Yii::t('app', 'Remember me'); ?>
                                 </label>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('app', 'Login account'), ['class' => 'btn btn--block btn--green']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

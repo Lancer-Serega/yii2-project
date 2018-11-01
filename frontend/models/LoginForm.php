@@ -4,6 +4,8 @@ namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * LoginForm is the model behind the login form.
@@ -47,7 +49,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, Yii::t('form', 'Incorrect username or password.'));
             }
         }
     }
@@ -72,8 +74,25 @@ class LoginForm extends Model
      */
     public function login()
     {
+        if (!$this->validate()) {
+            return false;
+        }
+
+        $user = $this->getUser();
+        if (!$user) {
+            return false;
+        }
+
+        if ($user->email_status === User::EMAIL_NOT_CONFIRMED) {
+            $flashMsg = Yii::t('form', 'To complete the registration, confirm your email ({email}). Check your email.', ['email' => '<strong>' . $user->email . '</strong>']);
+            $urlResendToken = Url::toRoute(['/resend-email', 'token' => $user->email_confirm_token]);
+            $flashMsg .= Html::a(Yii::t('form', 'Resend email'), $urlResendToken);
+            Yii::$app->session->setFlash('warning', $flashMsg);
+            return true;
+        }
+
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->remember ? 3600 * 24 * 30 : 0);
+            return Yii::$app->user->login($user, $this->remember ? 3600 * 24 * 30 : 0);
         }
 
         return false;

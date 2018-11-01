@@ -1,36 +1,6 @@
 <?php
 
 return [
-    // Form
-    'Log In' => 'Log In',
-    'Log Out' => 'Log Out',
-    'Sign In' => 'Sign In',
-    'Remember me' => 'Remember me',
-    'Registration form' => 'Registration form',
-    'Create account' => 'Create account',
-    'Email' => 'Email',
-    'Password' => 'Password',
-    'Already have an account?' => 'Already have an account?',
-    'Log In via' => 'Log In via',
-    'By signin-form up, you agree to License Agreement.' => 'By signin-form up, you agree to License Agreement.',
-    'There is no user with this email address.' => 'There is no user with this email address.',
-    'Password reset for {username}' => 'Password reset for {username}',
-    'Hello {username}' => 'Hello {username}',
-    'Follow the link below to reset your password:' => 'Follow the link below to reset your password:',
-    'Check your email for further instructions.' => 'Check your email for further instructions.',
-    'Sorry, we are unable to reset password for the provided email address.' => 'Sorry, we are unable to reset password for the provided email address.',
-    'New password saved.' => 'New password saved.',
-    'Please fill out your email.' => 'Please fill out your email.',
-    'Request password reset' => 'Request password reset',
-    'Send' => 'Send',
-    'If you forgot your password you can' => 'If you forgot your password you can',
-    'reset it' => 'reset it',
-    'Login account' => 'Login account',
-    'This email address has already been taken.' => 'This email address has already been taken.',
-    'Passwords don\'t match' => 'Passwords don\'t match',
-    'Password repeat' => 'Password repeat',
-    'Your name' => 'Your name',
-
     // Menu
     'Homepage' => 'Homepage',
     'Tariffs' => 'Tariffs',

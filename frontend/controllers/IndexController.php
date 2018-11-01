@@ -1,17 +1,8 @@
 <?php
 namespace frontend\controllers;
 
-use Yii;
-use yii\base\Exception;
-use yii\base\InvalidArgumentException;
+use \Yii;
 use yii\web\BadRequestHttpException;
-use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use frontend\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SigninForm;
 use frontend\models\ContactForm;
 use yii\web\ErrorAction;
 use yii\captcha\CaptchaAction;
@@ -19,50 +10,16 @@ use yii\captcha\CaptchaAction;
 /**
  * Index controller
  */
-class IndexController extends Controller
+class IndexController extends BaseController
 {
     /**
      * @inheritdoc
+     * @throws BadRequestHttpException
      */
     public function beforeAction($action)
     {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['login', 'logout', 'signin-form'],
-                'denyCallback' => function ($rule, $action) {
-                    throw new \RuntimeException(Yii::t('error', 'You do not have access to this page.'));
-                },
-                'rules' => [
-                    [
-                        'actions' => ['login', 'signin-form'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::class,
-                'actions' => [
-                    'login' => ['get', 'post'],
-                    'logout' => ['get', 'post'],
-                ],
-            ],
-        ];
     }
 
     /**
@@ -88,8 +45,7 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-        $signinFormModel = new SigninForm();
-        return $this->render('index', compact('signinFormModel'));
+        return $this->render('index');
     }
 
     /**
@@ -122,9 +78,9 @@ class IndexController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                Yii::$app->session->setFlash('success', \Yii::t('form', 'Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                Yii::$app->session->setFlash('error', Yii::t('form', 'There was an error sending your message.'));
             }
 
             return $this->refresh();
@@ -143,111 +99,5 @@ class IndexController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
-    }
-
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     * @throws Exception
-     */
-    public function actionSignin()
-    {
-        $model = new SigninForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $user = $model->signin();
-            if ($user && Yii::$app->getUser()->login($user)) {
-                return $this->goHome();
-            }
-        }
-
-        return $this->render('signin', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Requests password reset.
-     * @return mixed
-     * @throws Exception
-     */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', Yii::t('app', 'Check your email for further instructions.'));
-
-                return $this->goHome();
-            }
-
-            Yii::$app->session->setFlash('error', Yii::t('app', 'Sorry, we are unable to reset password for the provided email address.'));
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     * @throws Exception
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidArgumentException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', Yii::t('app', 'New password saved.'));
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
     }
 }

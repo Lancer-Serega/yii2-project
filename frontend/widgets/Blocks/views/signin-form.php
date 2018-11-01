@@ -46,30 +46,30 @@ use \yii\helpers\Html;
                             ?>
 
                             <span class="ui-legend">
-                                <?= Yii::t('app', 'Registration form'); ?>
+                                <?= Yii::t('form', 'Registration form'); ?>
                             </span>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Your name')]; ?>
-                                <?= $form->field($signinFormModel, 'username')->textInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Your name')]; ?>
+                                <?= $form->field($signinFormModel, 'username')->textInput($options)->label(Yii::t('form', 'Your name')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Email')]; ?>
-                                <?= $form->field($signinFormModel, 'email')->textInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email')]; ?>
+                                <?= $form->field($signinFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Password')]; ?>
-                                <?= $form->field($signinFormModel, 'password')->passwordInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password')]; ?>
+                                <?= $form->field($signinFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('app', 'Password repeat')]; ?>
-                                <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options); ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password repeat')]; ?>
+                                <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options)->label(Yii::t('form', 'Password repeat')); ?>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('app', 'Create account'), ['class' => 'btn btn--block btn--green']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Create account'), ['class' => 'btn btn--block btn--green']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

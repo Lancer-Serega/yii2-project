@@ -3,13 +3,11 @@
 namespace frontend\controllers;
 
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
-use frontend\models\LoginForm;
 use yii\web\ErrorAction;
 use yii\captcha\CaptchaAction;
 
-class TariffController extends Controller
+class TariffController extends BaseController
 {
     /**
      * {@inheritdoc}

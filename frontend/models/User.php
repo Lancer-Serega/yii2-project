@@ -8,25 +8,28 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * This is the model class for table "user".
  *
- * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
+ * @property int $id
+ * @property string $login User login
+ * @property string $username User name
  * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
- * @property bool $role [tinyint(2) unsigned]  User role ID of table auth_rule
- * @property string $login [varchar(255)]  User login
+ * @property string $password_hash Hash user password
+ * @property string $password_reset_token Password reset token
+ * @property string $email User Email
+ * @property string $email_confirm_token User Email confirm token. Need to confirm user email
+ * @property int $email_status User Email status (0 => EMAIL_NOT_CONFIRMED, 1 => EMAIL_CONFIRMED). See the full list in the User model.
+ * @property int $status User status (active or deleted)
+ * @property string $created_at User register date
+ * @property string $updated_at User update date
  */
 class User extends ActiveRecord implements IdentityInterface
 {
     public const STATUS_DELETED = 0;
-    public const STATUS_ACTIVE = 10;
+    public const STATUS_ACTIVE = 1;
+
+    public const EMAIL_NOT_CONFIRMED = 0;
+    public const EMAIL_CONFIRMED = 1;
 
     /**
      * @inheritdoc
@@ -37,28 +40,45 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-//            [
-//                'class' => TimestampBehavior::class,
-//                'createdAtAttribute' => 'created_at',
-//                'updatedAtAttribute' => 'updated_at',
-//                'value' => new Expression('CURRENT_TIMESTAMP'),
-//            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
+            [['login', 'username', 'auth_key', 'password_hash', 'email'], 'required'],
+            [['email_status', 'status'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['login', 'username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key', 'email_confirm_token'], 'string', 'max' => 32],
+            [['login'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
+            [['email_confirm_token'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            ['email_status', 'default', 'value' => self::EMAIL_NOT_CONFIRMED],
+            ['email_status', 'in', 'range' => [self::EMAIL_NOT_CONFIRMED, self::EMAIL_CONFIRMED]],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'login' => 'Login',
+            'username' => 'Username',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'Password Hash',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'Email',
+            'email_confirm_token' => 'Email Confirm Token',
+            'email_status' => 'Email Status',
+            'status' => 'Status',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
         ];
     }
 
@@ -68,6 +88,14 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findIdentity($id, $status = self::STATUS_ACTIVE)
     {
         return static::findOne(['id' => $id, 'status' => $status]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByEmailConfirmToken($token, $status = self::STATUS_ACTIVE)
+    {
+        return static::findOne(['email_confirm_token' => $token, 'status' => $status]);
     }
 
     /**

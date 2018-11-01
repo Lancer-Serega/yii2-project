@@ -27,7 +27,6 @@ class UserController extends Controller
 
         $user = new User();
         $user->id = '';
-        $user->role = 1;
         $user->login = 'admin';
         $user->username = 'admin';
         $user->email = 'admin@admin.com';

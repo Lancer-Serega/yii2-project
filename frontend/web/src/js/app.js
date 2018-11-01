@@ -251,18 +251,20 @@ $(function () {
                 $.ajax({
                     type: $(form).attr('method') || 'get',
                     url: $(form).attr('action') || '#',
-                    // dataType: $(form).data('type') || 'JSON',
-                    // contentType: $(form).data('contentType') || 'application/json',
                     data: data,
                     success: function (form) {
                         console.log(form.statusText);
                         location.reload();
                     },
                     error: function (xhr, status, error) {
-                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                        console.log("Response text: " + xhr.responseText);
+                        location.reload();
                     },
                     fail: function (xhr, status, error) {
-                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                        console.log("Response text: " + xhr.responseText);
+                        location.reload();
                     }
                 });
                 event.preventDefault();

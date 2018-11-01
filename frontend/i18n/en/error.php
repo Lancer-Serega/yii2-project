@@ -5,4 +5,5 @@ return [
     'Access denied' => 'Access denied',
     'Password reset token cannot be blank.' => 'Password reset token cannot be blank.',
     'Wrong password reset token.' => 'Wrong password reset token.',
+    'Sending error.' => 'Sending error.',
 ];

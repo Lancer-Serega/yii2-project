@@ -2,15 +2,10 @@
 
 namespace frontend\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use frontend\models\LoginForm;
-use frontend\models\ContactForm;
+use yii\web\ErrorAction;
+use yii\captcha\CaptchaAction;
 
-class BlogController extends Controller
+class BlogController extends BaseController
 {
 
 
@@ -21,10 +16,10 @@ class BlogController extends Controller
     {
         return [
             'error' => [
-                'class' => 'yii\web\ErrorAction',
+                'class' => ErrorAction::class,
             ],
             'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
+                'class' => CaptchaAction::class,
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];

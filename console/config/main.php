@@ -2,6 +2,7 @@
 
 use yii\log\FileTarget;
 use yii\console\controllers\FixtureController;
+use yii\rbac\DbManager;
 
 $db = require __DIR__ . '/db.php';
 $params = array_merge(
@@ -36,6 +37,14 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'authManager' => [
+            'class'           => DbManager::class,
+            'itemTable'       => 'auth_item',
+            'itemChildTable'  => 'auth_item_child',
+            'assignmentTable' => 'auth_assignment',
+            'ruleTable'       => 'auth_rule',
+            'defaultRoles'    => ['guest'],
         ],
     ],
     'params' => $params,
