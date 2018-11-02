@@ -7,13 +7,13 @@
  */
 
 namespace frontend\widgets;
-use frontend\models\Lang as LangModel;
 
-class Lang extends \yii\bootstrap\Widget
+use frontend\models\Lang as LangModel;
+use yii\bootstrap\Widget;
+
+class LanguageCheck extends Widget
 {
     public $app;
-
-    public function init(){}
 
     public function run() {
         return $this->render('lang/view', [

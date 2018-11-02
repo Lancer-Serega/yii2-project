@@ -35,12 +35,12 @@ class HeaderMenu extends Widget
         ];
 
         $text = [
-            'index'    => Yii::t('app', 'Homepage'),
-            'tariff'   => Yii::t('app', 'Tariffs'),
-            'feedback' => Yii::t('app', 'Reviews'),
-            'blog'     => Yii::t('app', 'Blog'),
-            'faq'      => Yii::t('app', 'FAQ'),
-            'about'    => Yii::t('app', 'About Us'),
+            'index'    => Yii::t('menu', 'Homepage'),
+            'tariff'   => Yii::t('menu', 'Tariffs'),
+            'feedback' => Yii::t('menu', 'Reviews'),
+            'blog'     => Yii::t('menu', 'Blog'),
+            'faq'      => Yii::t('menu', 'FAQ'),
+            'about'    => Yii::t('menu', 'About Us'),
         ];
 
         return '

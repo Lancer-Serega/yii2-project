@@ -233,7 +233,7 @@
 
 
 
-.is-signin-open
+.is-signin-form-open
     .signin__btn
         [class^="icon-arrow-"]
             transform: rotate(180deg)
@@ -299,3 +299,30 @@
             display: block
             width: 100%
             margin: 10rem 0
+
+.is-signin-form-open .signin
+    & > .signin__btn
+        [class^="icon-arrow-"]
+            transform: rotate(180deg)
+        .signin__dropdown
+            opacity: 1
+            visibility: visible
+    & > .dropdown-menu
+        display: flex
+        flex-direction: column
+        position: absolute
+        left: -100px
+        & > .dropdown-item
+            padding: 10px
+            &:hover
+                background-color: rgba(120, 208, 157, .44)
+                & > .dropdown-item-res
+                    transition: all ease-in 250ms
+                    margin-left: 35px
+            & > .dropdown-item-res
+                margin-left: 30px
+                color: #4774a4
+                transition: all ease-in 250ms
+                &:hover
+                    color: #395d83
+                    //margin-left: 35px

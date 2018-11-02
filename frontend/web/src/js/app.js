@@ -30,12 +30,16 @@ $(function () {
     // Header - Signin
     $(document).on('click', '.signin__btn', function (event) {
         event.preventDefault();
-        let htmlBlock = $('html');
-        if (htmlBlock.is('.is-signin-form-open')) {
-            htmlBlock.removeClass('is-signin-form-open');
-        } else {
-            htmlBlock.addClass('is-signin-form-open');
-        }
+        let htmlBlock = $('html'),
+            parent = $(this).closest('.signin');
+
+        htmlBlock.is('.is-signin-form-open')
+            ? htmlBlock.removeClass('is-signin-form-open')
+            : htmlBlock.addClass('is-signin-form-open');
+
+        parent.hasClass('open')
+            ? parent.removeClass('open')
+            : parent.addClass('open');
     });
     $(document).on('click', function (event) {
         if ($(event.target).closest('.signin-form').length === 0) {
@@ -271,4 +275,6 @@ $(function () {
             }
         });
     });
+
+    $('.dropdown-toggle').dropdown();
 });
