@@ -16,7 +16,7 @@ $this->title = 'Blog - Proxy';
                     <input class="search__input" type="search" placeholder="Поиск">
                     <button class="search__btn">
                         <svg class="icon-search">
-                            <use xlink:href="sprites/sprite.svg#icon-search"></use>
+                            <use xlink:href="/sprites/sprite.svg#icon-search"></use>
                         </svg>
                     </button>
                 </form>
@@ -89,7 +89,7 @@ $this->title = 'Blog - Proxy';
                 </ul>
                 <div class="pagination"><a class="pagination__link pagination__link--prev" href="#">
                         <svg class="icon-pagination-prev">
-                            <use xlink:href="sprites/sprite.svg#icon-pagination-prev"></use>
+                            <use xlink:href="/sprites/sprite.svg#icon-pagination-prev"></use>
                         </svg>
                     </a><a class="pagination__link" href="#">1</a><a class="pagination__link" href="#">2</a><a
                             class="pagination__link is-active" href="#">3</a><a class="pagination__link"
@@ -99,7 +99,7 @@ $this->title = 'Blog - Proxy';
                             class="pagination__dots">...</span><a class="pagination__link" href="#">14</a><a
                             class="pagination__link pagination__link--next" href="#">
                         <svg class="icon-pagination-next">
-                            <use xlink:href="sprites/sprite.svg#icon-pagination-next"></use>
+                            <use xlink:href="/sprites/sprite.svg#icon-pagination-next"></use>
                         </svg>
                     </a></div>
             </div>

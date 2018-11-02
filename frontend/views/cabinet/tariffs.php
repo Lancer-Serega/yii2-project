@@ -1,8 +1,16 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: sergey
+ * Date: 02.11.18
+ * Time: 15:37
+ */
 
 use \yii\helpers\Url;
 
-$this->title = 'Tariffs - Proxy';
+$this->title = Yii::t('menu', 'Tariffs');
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <!-- Tariff :: Start-->
@@ -87,7 +95,7 @@ $this->title = 'Tariffs - Proxy';
                         <div class="tariff__item-code">
                             <label class="ui-label">Безлимитный трафик</label>
                             <input class="ui-input ui-input--38" type="text" placeholder="Введите секретный код"><a
-                                    class="ui-link ui-link--green" href="#"><span class="ui-link__dashed">Как получить секретный код?</span></a>
+                                class="ui-link ui-link--green" href="#"><span class="ui-link__dashed">Как получить секретный код?</span></a>
                         </div>
                         <div class="tariff__item-subsc">
                             <label class="ui-check">
@@ -107,7 +115,6 @@ $this->title = 'Tariffs - Proxy';
     </div>
 </div>
 <!-- Tariff :: End-->
-
 <!-- Adv :: Start-->
 <div class="adv">
     <div class="container-fluid">
@@ -215,7 +222,6 @@ $this->title = 'Tariffs - Proxy';
     </div>
 </div>
 <!-- Adv :: End-->
-
 <!-- Contacts :: Start-->
 <div class="contacts">
     <div class="container-fluid">
@@ -236,9 +242,9 @@ $this->title = 'Tariffs - Proxy';
                                 нам и мы ответим:</p>
                             <ul class="contacts__menu">
                                 <li><a class="contacts__link" href="#"><span
-                                                class="icon-skype"></span>testSkypeLogin</a></li>
+                                            class="icon-skype"></span>testSkypeLogin</a></li>
                                 <li><a class="contacts__link" href="#"><span
-                                                class="icon-telegram"></span>testTgLogin</a></li>
+                                            class="icon-telegram"></span>testTgLogin</a></li>
                                 <li><a class="contacts__link" href="#"><span class="icon-facebook"></span>ServiceProfile</a>
                                 </li>
                                 <li><a class="contacts__link" href="#"><span class="icon-whatsapp"></span>+7 987
@@ -246,7 +252,7 @@ $this->title = 'Tariffs - Proxy';
                             </ul>
                         </div>
                         <p class="contacts__caption">Если вы сомневаетесь в качестве прокси-серверов, воспользуйтесь <a
-                                    href="#">пробной версией</a></p>
+                                href="#">пробной версией</a></p>
                     </div>
                 </div>
                 <div class="col-md-6 pull-md-6">

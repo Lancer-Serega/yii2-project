@@ -14,6 +14,7 @@
 use frontend\models\LoginForm;
 use yii\widgets\ActiveForm;
 use \yii\helpers\Html;
+use \yii\helpers\Url;
 
 ?>
 return '
@@ -21,7 +22,7 @@ return '
 <div class="popup" id="popup-login" style="display: none;">
     <span class="popup__close" data-fancybox-close>
         <svg class="icon-close">
-            <use xlink:href="sprites/sprite.svg#icon-close"></use>
+            <use xlink:href="/sprites/sprite.svg#icon-close"></use>
         </svg>
     </span>
 
@@ -84,7 +85,7 @@ return '
                                     <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
                                     <span class="ui-check__checkbox">
                                         <svg class="icon-check">
-                                            <use xlink:href="sprites/sprite.svg#icon-check"></use>
+                                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
                                         </svg>
                                     </span>
                                 </label>

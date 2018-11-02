@@ -2,10 +2,13 @@
 
 namespace frontend\assets;
 
+use lo\widgets\ToggleAsset as BootstrapToggleAsset;
+use yii\bootstrap\BootstrapAsset;
+use yii\bootstrap\BootstrapThemeAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 use yii\web\YiiAsset;
-use yii\bootstrap\BootstrapAsset;
+use yii\bootstrap\BootstrapPluginAsset;
 
 /**
  * Main frontend application asset bundle.
@@ -26,7 +29,10 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         YiiAsset::class,
-//        JqueryAsset::class,
+        JqueryAsset::class,
         BootstrapAsset::class,
+        BootstrapThemeAsset::class,
+        BootstrapPluginAsset::class,
+        BootstrapToggleAsset::class,
     ];
 }

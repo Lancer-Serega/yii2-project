@@ -19,7 +19,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -36,7 +36,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -58,7 +58,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -79,7 +79,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -98,7 +98,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -119,7 +119,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -138,7 +138,7 @@ $this->title = 'Feedback - Proxy';
                                 <time class="feedback__item-date" datetime="2018-09-25">3 минуты назад</time>
                                 <div class="feedback__item-user">
                                     <svg class="icon-user">
-                                        <use xlink:href="sprites/sprite.svg#icon-user"></use>
+                                        <use xlink:href="/sprites/sprite.svg#icon-user"></use>
                                     </svg>
                                     UserLogin
                                     <mark>на форуме bhw.com</mark>
@@ -157,7 +157,7 @@ $this->title = 'Feedback - Proxy';
                     </ul>
                     <div class="pagination"><a class="pagination__link pagination__link--prev" href="#">
                             <svg class="icon-pagination-prev">
-                                <use xlink:href="sprites/sprite.svg#icon-pagination-prev"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-pagination-prev"></use>
                             </svg>
                         </a><a class="pagination__link" href="#">1</a><a class="pagination__link" href="#">2</a><a
                                 class="pagination__link is-active" href="#">3</a><a class="pagination__link"
@@ -167,7 +167,7 @@ $this->title = 'Feedback - Proxy';
                                 class="pagination__dots">...</span><a class="pagination__link" href="#">14</a><a
                                 class="pagination__link pagination__link--next" href="#">
                             <svg class="icon-pagination-next">
-                                <use xlink:href="sprites/sprite.svg#icon-pagination-next"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-pagination-next"></use>
                             </svg>
                         </a></div>
                 </div>
@@ -199,55 +199,55 @@ $this->title = 'Feedback - Proxy';
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-01.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-02.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-03.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-01.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-02.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-03.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-01.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-02.png" alt="">NameDomenSite.com
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                     <li><a class="feedback__forums-link" href="#" target="_blank"><img
                                                     src="images/img-topic-03.png" alt="">Nhttps://news.yandex.ru/story/Vedomosti_uznali_o_planakh_vlastej_nakazat_LDPR_i_KPRF--deaf7978d991d
                                             <svg class="icon-target">
-                                                <use xlink:href="sprites/sprite.svg#icon-target"></use>
+                                                <use xlink:href="/sprites/sprite.svg#icon-target"></use>
                                             </svg>
                                         </a></li>
                                 </ul>

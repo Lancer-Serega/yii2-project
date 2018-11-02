@@ -7,6 +7,9 @@
  */
 
 return [
+    'Menu' => 'Menu',
+    'Index' => 'Index',
+
     // Header Menu
     'Homepage' => 'Homepage',
     'Tariffs' => 'Tariffs',
@@ -17,8 +20,10 @@ return [
 
     // Account Menu
     'Account' => 'Account',
-    'Active tarifs' => 'Active tarifs',
-    'Tarifs' => 'Tarifs',
+    'Active Tariffs' => 'Active Tariffs',
     'Trial period' => 'Trial period',
     'Support' => 'Support',
+    'Settings' => 'Settings',
+    'Security' => 'Security',
+    'Finance operations' => 'Finance operations',
 ];

@@ -6,7 +6,7 @@
  * Time: 15:37
  */
 
-$this->title = Yii::t('menu', 'Index');
+$this->title = Yii::t('menu', 'Trial period');
 $this->params['breadcrumbs'][] = $this->title;
 
 echo "<h1>Name: $this->title</h1>";

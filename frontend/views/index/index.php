@@ -156,7 +156,7 @@ $this->title = 'Homepage - Proxy';
                             <label class="ui-check">
                                 <input class="ui-check__input" type="checkbox" checked><span class="ui-check__checkbox">
                           <svg class="icon-check">
-                            <use xlink:href="sprites/sprite.svg#icon-check"></use>
+                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
                           </svg></span>email-рассылка
                             </label>
                         </div>
@@ -181,7 +181,7 @@ $this->title = 'Homepage - Proxy';
                             <label class="ui-check">
                                 <input class="ui-check__input" type="checkbox" checked><span class="ui-check__checkbox">
                           <svg class="icon-check">
-                            <use xlink:href="sprites/sprite.svg#icon-check"></use>
+                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
                           </svg></span>email-рассылка
                             </label>
                         </div>
@@ -203,7 +203,7 @@ $this->title = 'Homepage - Proxy';
                             <label class="ui-check">
                                 <input class="ui-check__input" type="checkbox" checked><span class="ui-check__checkbox">
                           <svg class="icon-check">
-                            <use xlink:href="sprites/sprite.svg#icon-check"></use>
+                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
                           </svg></span>email-рассылка
                             </label>
                         </div>
@@ -225,7 +225,7 @@ $this->title = 'Homepage - Proxy';
                             <label class="ui-check">
                                 <input class="ui-check__input" type="checkbox" checked><span class="ui-check__checkbox">
                           <svg class="icon-check">
-                            <use xlink:href="sprites/sprite.svg#icon-check"></use>
+                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
                           </svg></span>email-рассылка
                             </label>
                         </div>
@@ -250,7 +250,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-1">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-1"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-1"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Обширная <br>ГЕО зона</a></h3>
@@ -262,7 +262,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-2">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-2"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-2"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">100% совместимость <br>инструментов для SEO</a></h3>
@@ -274,7 +274,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-3">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-3"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-3"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Параллельные <br>сессии</a></h3>
@@ -286,7 +286,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-4">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-4"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-4"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Профессиональная <br>тех.поддержка</a></h3>
@@ -298,7 +298,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-5">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-5"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-5"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Поддерживаем <br>все протоколы</a></h3>
@@ -310,7 +310,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-6">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-6"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-6"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Удобная <br>админ панель</a></h3>
@@ -322,7 +322,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-7">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-7"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-7"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Привязка <br>нескольких IP</a></h3>
@@ -334,7 +334,7 @@ $this->title = 'Homepage - Proxy';
                     <div class="adv__item">
                         <figure class="adv__item-icon">
                             <svg class="icon-adv-8">
-                                <use xlink:href="sprites/sprite.svg#icon-adv-8"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-adv-8"></use>
                             </svg>
                         </figure>
                         <h3 class="adv__item-title"><a href="#">Возможность <br>email-рассылки</a></h3>
@@ -477,12 +477,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
@@ -494,12 +494,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
@@ -512,12 +512,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
@@ -532,12 +532,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
@@ -553,12 +553,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
@@ -574,12 +574,12 @@ $this->title = 'Homepage - Proxy';
                     <div class="row">
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Оригинал отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                         <div class="col-sm-auto"><a class="ui-link ui-link--green" href="#">Тема отзыва
                                 <svg class="icon-arrow-right">
-                                    <use xlink:href="sprites/sprite.svg#icon-arrow-right"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-arrow-right"></use>
                                 </svg>
                             </a></div>
                     </div>
