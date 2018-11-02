@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true" style="">
                         <div class="panel-body">
-                            <table class="table" id="table-auth-two-factor">
+                            <table class="table table-hover" id="table-auth-two-factor">
                                 <tr>
                                     <td>
                                         <?= Toggle::widget([
