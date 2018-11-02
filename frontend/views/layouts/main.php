@@ -41,7 +41,7 @@ AppAsset::register($this);
     <header class="header compensate-for-scrollbar">
         <div class="container-fluid">
             <div class="logo">
-                <a href="<?= Url::to('/', true); ?>">
+                <a href="<?= Url::to(['/'], true); ?>">
                     <img src="<?= Url::to('/images/logo.png', true); ?>" alt="ProxyServers" />
                 </a>
             </div>
@@ -102,17 +102,17 @@ AppAsset::register($this);
                         <ul class="payments__list">
                             <li>
                                 <svg class="icon-paypal">
-                                    <use xlink:href="sprites/sprite.svg#icon-paypal"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-paypal"></use>
                                 </svg>
                             </li>
                             <li>
                                 <svg class="icon-visa">
-                                    <use xlink:href="sprites/sprite.svg#icon-visa"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-visa"></use>
                                 </svg>
                             </li>
                             <li>
                                 <svg class="icon-mastercard">
-                                    <use xlink:href="sprites/sprite.svg#icon-mastercard"></use>
+                                    <use xlink:href="/sprites/sprite.svg#icon-mastercard"></use>
                                 </svg>
                             </li>
                         </ul>
@@ -124,8 +124,8 @@ AppAsset::register($this);
     <!-- Footer :: End-->
 
     <!-- Popups widgets :: Start -->
-    <?= LogIn::widget(['formUrl' => Url::to('/login')]); ?>
-    <?= SignIn::widget(['formUrl' => Url::to('/signin')]); ?>
+    <?= LogIn::widget(['formUrl' => Url::to(['/login'])]); ?>
+    <?= SignIn::widget(['formUrl' => Url::to(['/signin'])]); ?>
     <!-- Popups widgets :: END -->
 
     <?php $this->endBody(); ?>

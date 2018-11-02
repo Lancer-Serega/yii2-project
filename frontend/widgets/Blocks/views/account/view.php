@@ -34,30 +34,41 @@ use \yii\helpers\Html;
             </svg>
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownUserMenuButton">
-            <div class="dropdown-header">Menu</div>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/account'); ?>">
+            <div class="dropdown-header"><?= Yii::t('menu', 'Menu'); ?></div>
+
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/account']); ?>">
                 <span class="dropdown-item-res"><?= Yii::t('menu', 'Account'); ?></span>
             </a>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/active-tarifs'); ?>">
-                <span class="dropdown-item-res"><?= Yii::t('menu', 'Active tarifs'); ?></span>
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/active-tariffs']); ?>">
+                <span class="dropdown-item-res"><?= Yii::t('menu', 'Active Tariffs'); ?></span>
             </a>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/tarifs') ;?>">
-                <span class="dropdown-item-res"><?= Yii::t('menu', 'Tarifs'); ?></span>
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/tariffs']) ;?>">
+                <span class="dropdown-item-res"><?= Yii::t('menu', 'Tariffs'); ?></span>
             </a>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/trial-period') ;?>">
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/trial-period']) ;?>">
                 <span class="dropdown-item-res"><?= Yii::t('menu', 'Trial period'); ?></span>
             </a>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/support') ;?>">
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/support']) ;?>">
                 <span class="dropdown-item-res"><?= Yii::t('menu', 'Support'); ?></span>
             </a>
-            <a class="dropdown-item" href="<?= Url::to('/cabinet/faq') ;?>">
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/faq']) ;?>">
                 <span class="dropdown-item-res"><?= Yii::t('menu', 'FAQ'); ?></span>
             </a>
 
             <div class="dropdown-divider"></div>
             <div class="dropdown-header"><?= !empty($user->username) ? Html::encode($user->username) : $user->email; ?></div>
-            <a class="dropdown-item" href="<?= Url::to('/logout'); ?>">
-                <span class="dropdown-item-res">
+
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/settings']) ;?>">
+                <span class="dropdown-item-res color-blue"><?= Yii::t('menu', 'Settings'); ?></span>
+            </a>
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/security']) ;?>">
+                <span class="dropdown-item-res color-blue"><?= Yii::t('menu', 'Security'); ?></span>
+            </a>
+            <a class="dropdown-item" href="<?= Url::to(['/cabinet/finance-operations']) ;?>">
+                <span class="dropdown-item-res color-blue"><?= Yii::t('menu', 'Finance operations'); ?></span>
+            </a>
+            <a class="dropdown-item" href="<?= Url::to(['/logout']); ?>">
+                <span class="dropdown-item-res color-red">
                     <?= Yii::t('form', 'Log Out'); ?>
                 </span>
             </a>

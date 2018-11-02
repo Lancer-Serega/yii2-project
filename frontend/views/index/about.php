@@ -58,7 +58,7 @@ $this->title = 'About - Proxy';
                     <div class="values__item">
                         <figure class="values__item-icon">
                             <svg class="icon-values-01">
-                                <use xlink:href="sprites/sprite.svg#icon-values-01"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-values-01"></use>
                             </svg>
                         </figure>
                         <h3 class="values__item-title">Отношение к продукту</h3>
@@ -70,7 +70,7 @@ $this->title = 'About - Proxy';
                     <div class="values__item">
                         <figure class="values__item-icon">
                             <svg class="icon-values-02">
-                                <use xlink:href="sprites/sprite.svg#icon-values-02"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-values-02"></use>
                             </svg>
                         </figure>
                         <h3 class="values__item-title">Отношение к работе</h3>
@@ -82,7 +82,7 @@ $this->title = 'About - Proxy';
                     <div class="values__item">
                         <figure class="values__item-icon">
                             <svg class="icon-values-03">
-                                <use xlink:href="sprites/sprite.svg#icon-values-03"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-values-03"></use>
                             </svg>
                         </figure>
                         <h3 class="values__item-title">Отношение к клиентам</h3>

@@ -49,42 +49,63 @@ class CabinetController extends BaseController
 
     public function actionAccount()
     {
-        return $this->render('index', [
+        return $this->render('account', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionActiveTarifs()
+    public function actionActiveTariffs()
     {
-        return $this->render('index', [
+        return $this->render('active-tariffs', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionTarifs()
+    public function actionTariffs()
     {
-        return $this->render('index', [
+        return $this->render('tariffs', [
             'response' => __METHOD__,
         ]);
     }
 
     public function actionTrialPeriod()
     {
-        return $this->render('index', [
+        return $this->render('trial-period', [
             'response' => __METHOD__,
         ]);
     }
 
     public function actionSupport()
     {
-        return $this->render('index', [
+        return $this->render('support', [
             'response' => __METHOD__,
         ]);
     }
 
     public function actionFaq()
     {
-        return $this->render('index', [
+        return $this->render('faq', [
+            'response' => __METHOD__,
+        ]);
+    }
+
+    public function actionSettings()
+    {
+        return $this->render('settings', [
+            'response' => __METHOD__,
+        ]);
+    }
+
+    public function actionSecurity()
+    {
+        return $this->render('security', [
+            'response' => __METHOD__,
+        ]);
+    }
+
+    public function actionFinanceOperations()
+    {
+        return $this->render('finance-operations', [
             'response' => __METHOD__,
         ]);
     }

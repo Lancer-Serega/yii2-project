@@ -7,18 +7,23 @@
  */
 
 return [
+    'Menu' => 'Меню',
+    'Index' => 'Главная',
+
     // Header Menu
     'Homepage' => 'Главная',
-    'Tariffs' => 'Тарифы',
+    'Tariffs' => 'Все тарифы',
     'Reviews' => 'Отзывы',
     'Blog' => 'Блог',
     'FAQ' => 'FAQ',
     'About Us' => 'О нас',
 
     // Account Menu
-    'Account' => 'Аккаунт',
-    'Active tarifs' => 'Активные тарифы',
-    'Tarifs' => 'Все тарифы',
+    'Account' => 'Личный кабинет',
+    'Active Tariffs' => 'Активные тарифы',
     'Trial period' => 'Триальный период',
     'Support' => 'Поддержка',
+    'Settings' => 'Настройки',
+    'Security' => 'Безопасность',
+    'Finance operations' => 'Финансовые операции',
 ];

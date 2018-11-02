@@ -41,11 +41,6 @@ $(function () {
             ? parent.removeClass('open')
             : parent.addClass('open');
     });
-    $(document).on('click', function (event) {
-        if ($(event.target).closest('.signin-form').length === 0) {
-            $('html').removeClass('is-signin-open');
-        }
-    });
 
     // Header - Language
     $(document).on('click', '.language__btn', function (event) {
@@ -64,10 +59,10 @@ $(function () {
     });
 
     // Slides
-    let slickPrev = '<button class="slick-arrow slick-prev"><svg class="icon-prev"><use xlink:href="sprites/sprite.svg#icon-prev"></use></svg></button>',
-        slickNext = '<button class="slick-arrow slick-next"><svg class="icon-next"><use xlink:href="sprites/sprite.svg#icon-next"></use></svg></button>',
-        slickPrevVertical = '<button class="slick-arrow slick-prev"><svg class="icon-prev-vertical"><use xlink:href="sprites/sprite.svg#icon-prev-vertical"></use></svg></button>',
-        slickNextVertical = '<button class="slick-arrow slick-next"><svg class="icon-next-vertical"><use xlink:href="sprites/sprite.svg#icon-next-vertical"></use></svg></button>';
+    let slickPrev = '<button class="slick-arrow slick-prev"><svg class="icon-prev"><use xlink:href="/sprites/sprite.svg#icon-prev"></use></svg></button>',
+        slickNext = '<button class="slick-arrow slick-next"><svg class="icon-next"><use xlink:href="/sprites/sprite.svg#icon-next"></use></svg></button>',
+        slickPrevVertical = '<button class="slick-arrow slick-prev"><svg class="icon-prev-vertical"><use xlink:href="/sprites/sprite.svg#icon-prev-vertical"></use></svg></button>',
+        slickNextVertical = '<button class="slick-arrow slick-next"><svg class="icon-next-vertical"><use xlink:href="/sprites/sprite.svg#icon-next-vertical"></use></svg></button>';
 
     // Hero Slides
     $('.js-slick-hero').slick({
@@ -277,4 +272,5 @@ $(function () {
     });
 
     $('.dropdown-toggle').dropdown();
+    $('.collapse').collapse();
 });

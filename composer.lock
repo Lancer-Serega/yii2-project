@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64ad49a657eecd54d7755099b4a6d6e9",
+    "content-hash": "639938d7fa69f216ee84e1843f6e8d3f",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -22,6 +22,25 @@
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-toggle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:minhur/bootstrap-toggle.git",
+                "reference": "b76c094aca46c7d959aae991033fa578bdb0ca5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minhur/bootstrap-toggle/zipball/b76c094aca46c7d959aae991033fa578bdb0ca5d",
+                "reference": "b76c094aca46c7d959aae991033fa578bdb0ca5d",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -330,6 +349,52 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "loveorigami/yii2-bootstrap-toggle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/loveorigami/yii2-bootstrap-toggle.git",
+                "reference": "a55c359b2b67ba79e2276c44a78b3a22101d18ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/loveorigami/yii2-bootstrap-toggle/zipball/a55c359b2b67ba79e2276c44a78b3a22101d18ca",
+                "reference": "a55c359b2b67ba79e2276c44a78b3a22101d18ca",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap-toggle": "*",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "require-dev": {
+                "yiisoft/yii2-debug": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lo\\widgets\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Lukyanov",
+                    "email": "loveorigami@mail.ru"
+                }
+            ],
+            "description": "Yii2 bootstrap-toggle widget",
+            "keywords": [
+                "bootstrap",
+                "toggle",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-12-08T07:21:26+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3384,7 +3449,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "yiisoft/yii2-bootstrap": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -16,7 +16,7 @@ $this->title = 'FAQ - Proxy';
                     <input class="search__input" type="search" placeholder="Поиск">
                     <button class="search__btn">
                         <svg class="icon-search">
-                            <use xlink:href="sprites/sprite.svg#icon-search"></use>
+                            <use xlink:href="/sprites/sprite.svg#icon-search"></use>
                         </svg>
                     </button>
                 </form>
@@ -46,7 +46,7 @@ $this->title = 'FAQ - Proxy';
                     <dl class="faq__group-dl js-accordion">
                         <dt>Каждый веб-разработчик знает, что такое текст-«рыба»
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -55,7 +55,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Отсюда напрашивается вывод, что все же лучше
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -64,7 +64,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>И даже с языками, использующими латинский алфавит
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -73,7 +73,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Каждый веб-разработчик знает, что такое текст-«рыба»
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -82,7 +82,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Своим появлением Lorem ipsum обязан древнеримскому философу
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -96,7 +96,7 @@ $this->title = 'FAQ - Proxy';
                     <dl class="faq__group-dl js-accordion">
                         <dt>Каждый веб-разработчик знает, что такое текст-«рыба»
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -105,7 +105,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Отсюда напрашивается вывод, что все же лучше
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -119,7 +119,7 @@ $this->title = 'FAQ - Proxy';
                     <dl class="faq__group-dl js-accordion">
                         <dt>Каждый веб-разработчик знает, что такое текст-«рыба»
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -128,7 +128,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Отсюда напрашивается вывод, что все же лучше
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -142,7 +142,7 @@ $this->title = 'FAQ - Proxy';
                     <dl class="faq__group-dl js-accordion">
                         <dt>Каждый веб-разработчик знает, что такое текст-«рыба»
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не
@@ -151,7 +151,7 @@ $this->title = 'FAQ - Proxy';
                         </dd>
                         <dt>Отсюда напрашивается вывод, что все же лучше
                             <svg class="icon-accordion">
-                                <use xlink:href="sprites/sprite.svg#icon-accordion"></use>
+                                <use xlink:href="/sprites/sprite.svg#icon-accordion"></use>
                             </svg>
                         </dt>
                         <dd>Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не

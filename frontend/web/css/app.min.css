@@ -1158,27 +1158,14 @@ mark {
     opacity: 0;
     transition: 0.25s; }
 
-.btn {
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-  font: 700 14rem/19rem "Segoe UI", Helvetica, Arial, sans-serif;
-  border: 2rem solid transparent;
-  border-radius: 4rem;
-  padding: 13rem 22rem;
-  min-width: 155rem;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.25s;
-  text-transform: uppercase;
-  background: none;
-  cursor: pointer; }
-  .btn:hover {
-    text-decoration: none; }
-  .btn:active {
-    transition: none;
-    -ms-transform: translate(0, 1px);
-    transform: translate(0, 1px); }
+.btn--25 {
+  min-width: auto;
+  text-transform: none;
+  font-size: 12rem;
+  line-height: 18rem;
+  font-weight: 200;
+  border-width: 2rem;
+  padding: 3.5rem 20rem 7rem; }
 
 .btn--36 {
   min-width: auto;
@@ -1191,7 +1178,6 @@ mark {
 
 .btn--37 {
   min-width: 101rem;
-  text-transform: none;
   font-size: 12rem;
   line-height: 21rem;
   font-weight: 700;
@@ -1201,7 +1187,6 @@ mark {
 
 .btn--45 {
   min-width: 153rem;
-  text-transform: none;
   font-size: 12rem;
   line-height: 21rem;
   font-weight: 700;
@@ -6012,11 +5997,11 @@ body {
   opacity: 0;
   visibility: hidden; }
 
-.is-signin-open .signin__btn [class^="icon-arrow-"] {
+.is-signin-form-open .signin__btn [class^="icon-arrow-"] {
   -ms-transform: rotate(180deg);
   transform: rotate(180deg); }
 
-.is-signin-open .signin__dropdown {
+.is-signin-form-open .signin__dropdown {
   opacity: 1;
   visibility: visible; }
 
@@ -6035,7 +6020,7 @@ body {
       margin: 0 0 0 10rem; } }
 
 .signin__btn {
-  display: none;
+  display: block;
   width: 32rem;
   height: 32rem;
   border-radius: 50%;
@@ -6081,6 +6066,35 @@ body {
       display: block;
       width: 100%;
       margin: 10rem 0; } }
+
+.is-signin-form-open .signin > .signin__btn [class^="icon-arrow-"] {
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg); }
+
+.is-signin-form-open .signin > .signin__btn .signin__dropdown {
+  opacity: 1;
+  visibility: visible; }
+
+.is-signin-form-open .signin > .dropdown-menu {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  left: -100px; }
+  .is-signin-form-open .signin > .dropdown-menu > .dropdown-item {
+    padding: 10px; }
+    .is-signin-form-open .signin > .dropdown-menu > .dropdown-item:hover {
+      background-color: rgba(120, 208, 157, 0.44); }
+      .is-signin-form-open .signin > .dropdown-menu > .dropdown-item:hover > .dropdown-item-res {
+        transition: all ease-in 250ms;
+        margin-left: 35px; }
+    .is-signin-form-open .signin > .dropdown-menu > .dropdown-item > .dropdown-item-res {
+      margin-left: 30px;
+      color: #4774a4;
+      transition: all ease-in 250ms; }
+      .is-signin-form-open .signin > .dropdown-menu > .dropdown-item > .dropdown-item-res:hover {
+        color: #395d83; }
 
 .main {
   -ms-flex: 1;
@@ -6195,3 +6209,24 @@ body {
 @media only screen and (max-width: 767px) {
   .is-visible-md {
     display: none; } }
+
+.dropdown-divider {
+  border-top: 1px solid rgba(120, 208, 157, 0.44); }
+
+.color-red {
+  color: #b30021 !important; }
+
+.color-green {
+  color: #009a00 !important; }
+
+.color-blue {
+  color: #0000a5 !important; }
+
+.color-yellow {
+  color: #a9a900 !important; }
+
+.color-black {
+  color: #000 !important; }
+
+.color-gray {
+  color: #ccc !important; }

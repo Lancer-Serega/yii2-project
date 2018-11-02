@@ -26,7 +26,7 @@ class HeaderMenu extends Widget
         ];
 
         $link = [
-            'index'    => Url::to('/', true),
+            'index'    => Url::to(['/'], true),
             'tariff'   => Url::to(['tariff/index']),
             'feedback' => Url::to(['index/feedback']),
             'blog'     => Url::to(['blog/index']),
