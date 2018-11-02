@@ -44,5 +44,13 @@ return [
                 'mail' => 'mail.php',
             ],
         ],
+        'menu' => [
+            'class' => PhpMessageSource::class,
+            'basePath' => '@frontend/i18n',
+            'sourceLanguage' => 'en-US',
+            'fileMap' => [
+                'menu' => 'menu.php',
+            ],
+        ],
     ],
 ];

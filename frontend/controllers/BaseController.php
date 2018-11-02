@@ -5,7 +5,6 @@ use frontend\models\User;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
 /**
@@ -31,6 +30,7 @@ class BaseController extends Controller
      * @param $action
      * @return bool
      * @throws BadRequestHttpException
+     * @throws \Throwable
      */
     public function beforeAction($action)
     {

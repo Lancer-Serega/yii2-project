@@ -1,17 +1,19 @@
 <?php
 
 /**
- * @var $this View
- * @var $content string
- * @var $signinFormModel SigninForm
+ * @var View $this
+ * @var string $content
+ * @var User $user
+ * @var SigninForm $signinFormModel
  */
 
+use frontend\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 use \frontend\models\SigninForm;
-use \frontend\widgets\Lang;
-use \frontend\widgets\Blocks\{HeaderMenu, LogIn, SignIn};
+use \frontend\widgets\LanguageCheck;
+use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignIn};
 use \frontend\assets\AppAsset;
 use \common\widgets\Alert;
 
@@ -44,30 +46,8 @@ AppAsset::register($this);
                 </a>
             </div>
             <?= HeaderMenu::widget(['route' => $this->context->route]); ?>
-            <?= Lang::widget(['app' => \Yii::$app]); ?>
-
-            <?php if (Yii::$app->user->isGuest): ?>
-                <div class="signin">
-                    <div class="signin__dropdown">
-                        <a class="btn btn--36 btn--green-empty" href="#" data-fancybox data-src="#popup-login"><?= Yii::t('form', 'Log In'); ?></a>
-                        <a class="btn btn--36 btn--green-link" href="#" data-fancybox data-src="#popup-signin"><?= Yii::t('form', 'Sign In'); ?></a>
-                    </div>
-                </div>
-            <?php else: ?>
-                <div class="signin">
-                    <div class="signin__btn">
-                        <svg class="icon-signin">
-                            <use xlink:href="sprites/sprite.svg#icon-signin"></use>
-                        </svg>
-                        <svg class="icon-arrow-down">
-                            <use xlink:href="sprites/sprite.svg#icon-arrow-down"></use>
-                        </svg>
-                    </div>
-                    <div class="signin__dropdown">
-                        <a class="btn btn--25 btn--blue" href="<?= Url::to('/logout'); ?>"><?= Yii::t('form', 'Log Out'); ?></a>
-                    </div>
-                </div>
-            <?php endif; ?>
+            <?= LanguageCheck::widget(['app' => Yii::$app]); ?>
+            <?= AccountMenu::widget(['user' => Yii::$app->getUser()->getIdentity()]); ?>
         </div>
     </header>
     <!-- Header :: End-->
