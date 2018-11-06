@@ -10,11 +10,6 @@ frontend/runtime/
 backend/runtime/
 console/runtime/
 docks/
-frontend/web/assets/
-frontend/web/css/
-frontend/web/js/
-frontend/web/fonts/
-frontend/web/sprites/
 
 # netbeans project files
 nbproject
