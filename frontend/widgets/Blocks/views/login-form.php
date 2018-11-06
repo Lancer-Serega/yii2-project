@@ -17,7 +17,7 @@ use \yii\helpers\Html;
 use \yii\helpers\Url;
 
 ?>
-return '
+
 <!-- Popups LogIn:: Start-->
 <div class="popup" id="popup-login" style="display: none;">
     <span class="popup__close" data-fancybox-close>

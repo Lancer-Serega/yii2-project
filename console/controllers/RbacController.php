@@ -10,42 +10,43 @@ namespace console\controllers;
 
 use Yii;
 use yii\console\Controller;
+use yii\rbac\DBManager;
 
 class RbacController extends Controller
 {
+    /**
+     * @throws \yii\base\Exception
+     * @throws \Exception
+     */
     public function actionInit()
     {
+        /**
+         * @var DBManager $auth
+         */
         $auth = Yii::$app->authManager;
+        $permitCabinetView = $auth->createPermission('cabinet.view');
+        $permitCabinetView->description = 'Access to the personal cabinet for registered users';
+        $auth->add($permitCabinetView);
 
-        $roles = [];
-        $roles['root'] = $auth->createRole('root');
-        $roles['root']->description = 'Root';
+        $roleUser = $auth->createRole('user');
+        $roleUser->description = 'Role - User';
+        $auth->add($roleUser);
+        $auth->addChild($roleUser, $permitCabinetView);
 
-        $roles['admin'] = $auth->createRole('admin');
-        $roles['admin']->description = 'Admin';
+        $roleAdmin = $auth->createRole('admin');
+        $roleAdmin->description = 'Role - Admin';
+        $auth->add($roleAdmin);
+        $auth->addChild($roleAdmin, $roleUser);
 
-        $roles['user'] = $auth->createRole('user');
-        $roles['user']->description = 'User';
+        $roleRoot = $auth->createRole('root');
+        $roleRoot->description = 'Role - Root';
+        $auth->add($roleRoot);
+        $auth->addChild($roleRoot, $roleAdmin);
 
-        $roles['guest'] = $auth->createRole('guest');
-        $roles['guest']->description = 'Guest';
-
-        $auth->add($roles['root'], $roles['admin']);
-        $auth->add($roles['admin'], $roles['user']);
-        $auth->add($roles['user'], $roles['guest']);
-
-        // Назначение ролей пользователям.
-        // 1 и 2 это IDs возвращаемые IdentityInterface::getId()
-        // обычно реализуемый в модели User.
-        $auth->assign($roles['root'], 1);
-        $auth->assign($roles['admin'], 2);
-        $auth->assign($roles['user'], 3);
-        $auth->assign($roles['user'], 4);
-        $auth->assign($roles['user'], 5);
-
-        // Permissions
-        $permit = Yii::$app->authManager->createPermission('user.auth');
-        $permit->description = 'Authenticated user';
-        $auth->add($permit);
+        $auth->assign($roleRoot, 1);
+        $auth->assign($roleAdmin, 2);
+        $auth->assign($roleUser, 3);
+        $auth->assign($roleUser, 4);
+        $auth->assign($roleUser, 5);
     }
 }

@@ -8,10 +8,9 @@
 
 namespace frontend\services;
 
+use Yii;
 use frontend\models\SigninForm;
 use frontend\models\User;
-use Yii;
-use yii\web\IdentityInterface;
 
 class IdentityService
 {
@@ -38,7 +37,14 @@ class IdentityService
         $user->setPassword($form->password);
         $user->generateAuthKey();
 
-        return $user->save() ? $user : null;
+        if ($user->save()) {
+            $auth = Yii::$app->authManager;
+            $auth->assign($auth->getRole(RbacService::ROLE_USER), $user->getId());
+
+            return $user;
+        }
+
+        return null;
     }
 
     /**

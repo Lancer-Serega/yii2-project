@@ -31,7 +31,7 @@ class CabinetController extends BaseController
         ];
 
         if (parent::beforeAction($action)) {
-            if (!\Yii::$app->user->can('user')) {
+            if (!\Yii::$app->user->can('cabinet.view')) {
                 throw new ForbiddenHttpException(Yii::t('error', 'Access denied'));
             }
             return true;
@@ -44,6 +44,7 @@ class CabinetController extends BaseController
     {
         return $this->render('index', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
@@ -51,6 +52,7 @@ class CabinetController extends BaseController
     {
         return $this->render('account', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
@@ -58,20 +60,20 @@ class CabinetController extends BaseController
     {
         return $this->render('active-tariffs', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
     public function actionTariffs()
     {
-        return $this->render('tariffs', [
-            'response' => __METHOD__,
-        ]);
+        return $this->render('tariffs');
     }
 
     public function actionTrialPeriod()
     {
         return $this->render('trial-period', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
@@ -79,6 +81,7 @@ class CabinetController extends BaseController
     {
         return $this->render('support', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
@@ -86,27 +89,22 @@ class CabinetController extends BaseController
     {
         return $this->render('faq', [
             'response' => __METHOD__,
+            'this' => $this,
         ]);
     }
 
     public function actionSettings()
     {
-        return $this->render('settings', [
-            'response' => __METHOD__,
-        ]);
+        return $this->render('settings');
     }
 
     public function actionSecurity()
     {
-        return $this->render('security', [
-            'response' => __METHOD__,
-        ]);
+        return $this->render('security');
     }
 
     public function actionFinanceOperations()
     {
-        return $this->render('finance-operations', [
-            'response' => __METHOD__,
-        ]);
+        return $this->render('finance-operations');
     }
 }

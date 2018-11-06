@@ -6,6 +6,9 @@
 # phpstorm project files
 .idea
 log/
+node_modules/
+frontend/web/assets/
+frontend/web/node_modules/
 frontend/runtime/
 backend/runtime/
 console/runtime/
