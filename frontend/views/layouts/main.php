@@ -7,10 +7,11 @@
  * @var SigninForm $signinFormModel
  */
 
-use frontend\models\User;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\web\View;
+use \frontend\models\User;
+use \yii\helpers\Html;
+use \yii\helpers\Url;
+use \yii\web\View;
+use \yii\widgets\Breadcrumbs;
 use \frontend\models\SigninForm;
 use \frontend\widgets\LanguageCheck;
 use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignIn};
@@ -58,6 +59,12 @@ AppAsset::register($this);
 
     <!-- Main :: Start-->
     <main class="main">
+        <div id="breadcrumps">
+            <div class="container-fluid">
+                <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs'] ?? [],]); ?>
+            </div>
+        </div>
+
         <?= $content; ?>
     </main>
     <!-- Main :: End-->

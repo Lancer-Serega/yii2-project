@@ -58,3 +58,16 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+
+INSTALL
+-------
+- Install nginx 1.15.5
+- Install php 7.2
+- Install mysql 5.5(14.14)
+- Past your path to runtime-cache folder in `./frontend/config/params_local.php`:
+    (example: 'runtime_cache_dir_frontend' => '/var/www/project/web/frontend/runtime/cache')
+- configure ./console/config/db.php
+- configure ./frontend/config/db.php
+- `composer install`
+- `./yii migrate/up && ./yii migrate --migrationPath=@yii/rbac/migrations/`

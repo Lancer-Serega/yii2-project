@@ -6,6 +6,8 @@
  * Time: 15:37
  */
 
+$this->title = Yii::t('menu', 'Account');
+$this->params['breadcrumbs'][] = $this->title;
 $this->title = Yii::t('menu', 'FAQ');
 $this->params['breadcrumbs'][] = $this->title;
 

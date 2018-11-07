@@ -44,7 +44,6 @@ class CabinetController extends BaseController
     {
         return $this->render('index', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 
@@ -52,7 +51,6 @@ class CabinetController extends BaseController
     {
         return $this->render('account', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 
@@ -60,7 +58,6 @@ class CabinetController extends BaseController
     {
         return $this->render('active-tariffs', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 
@@ -73,7 +70,6 @@ class CabinetController extends BaseController
     {
         return $this->render('trial-period', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 
@@ -81,7 +77,6 @@ class CabinetController extends BaseController
     {
         return $this->render('support', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 
@@ -89,7 +84,6 @@ class CabinetController extends BaseController
     {
         return $this->render('faq', [
             'response' => __METHOD__,
-            'this' => $this,
         ]);
     }
 

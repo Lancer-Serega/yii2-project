@@ -29,7 +29,7 @@ return [
 
     'cache' => [
         'class' => FileCache::class,
-        'cachePath' => '/home/sergey/Projects/YII2/advanced/frontend/runtime/cache',
+        'cachePath' => $params['runtime_cache_dir_frontend'],
     ],
 
     'db' => $db,

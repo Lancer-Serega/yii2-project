@@ -8,6 +8,8 @@
 
 use \yii\helpers\Url;
 
+$this->title = Yii::t('menu', 'Account');
+$this->params['breadcrumbs'][] = $this->title;
 $this->title = Yii::t('menu', 'Tariffs');
 $this->params['breadcrumbs'][] = $this->title;
 

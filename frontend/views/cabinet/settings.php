@@ -7,7 +7,10 @@
  */
 
 use lo\widgets\Toggle;
+use yii\helpers\Url;
 
+$this->title = Yii::t('menu', 'Account');
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => [Url::to('/cabinet')]];
 $this->title = Yii::t('menu', 'Settings');
 $this->params['breadcrumbs'][] = $this->title;
 
