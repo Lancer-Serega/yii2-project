@@ -22,6 +22,9 @@ use yii\web\IdentityInterface;
  * @property int $status User status (active or deleted)
  * @property string $created_at User register date
  * @property string $updated_at User update date
+ * @property int $phone [int(22) unsigned]  User phone
+ * @property string $skype [varchar(255)]  User skype
+ * @property string $telegram [varchar(32)]  User telegram
  */
 class User extends ActiveRecord implements IdentityInterface
 {

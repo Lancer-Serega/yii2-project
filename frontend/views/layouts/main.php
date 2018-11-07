@@ -32,7 +32,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags(); ?>
     <title><?= Html::encode($this->title); ?></title>
     <link rel="shortcut icon" href="<?= Url::to('/images/favicon.ico', true); ?>">
-    <?php $this->head() ?>
+    <?php $this->head(); ?>
 </head>
 
 <body class="page-homepage">
@@ -130,10 +130,12 @@ AppAsset::register($this);
     </footer>
     <!-- Footer :: End-->
 
+    <?php if (Yii::$app->user->isGuest): ?>
     <!-- Popups widgets :: Start -->
     <?= LogIn::widget(['formUrl' => Url::to(['/login'])]); ?>
     <?= SignIn::widget(['formUrl' => Url::to(['/signin'])]); ?>
     <!-- Popups widgets :: END -->
+    <?php endif; ?>
 
     <?php $this->endBody(); ?>
 </div>

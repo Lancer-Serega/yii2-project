@@ -29,7 +29,7 @@ class Lang extends ActiveRecord
      * Getting the current language object
      * @return Lang
      */
-    public static function getCurrent()
+    public static function getCurrent(): Lang
     {
         if( self::$current === null ){
             self::$current = self::getDefaultLang();
@@ -41,10 +41,10 @@ class Lang extends ActiveRecord
      * Setting the current language object and user locale
      * @param string $url
      */
-    public static function setCurrent($url = null)
+    public static function setCurrent($url = null): void
     {
         $language = self::getLangByUrl($url);
-        self::$current = ($language === null) ? self::getDefaultLang() : $language;
+        self::$current = $language ?? self::getDefaultLang();
         Yii::$app->language = self::$current->local;
     }
 
@@ -77,9 +77,36 @@ class Lang extends ActiveRecord
     }
 
     /**
+     * Prepare lang list for html select/option tag
+     * ```html
+     *    <select>
+     *        <option value="$key">$value</option>
+     *    </select>
+     * ```
+     *
+     * @param array $langList
+     * @param $key
+     * @param $value
+     * @return array
+     */
+    public static function prepareForDropdown(array $langList, $key, $value): array
+    {
+        if (!\count($langList)) {
+            return $langList;
+        }
+
+        $prepareLangList = [];
+        foreach ($langList as $langInfo) {
+            $prepareLangList[$langInfo[$key]] = $langInfo[$value];
+        }
+
+        return $prepareLangList;
+    }
+
+    /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'lang';
     }
@@ -87,7 +114,7 @@ class Lang extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['url', 'local', 'name'], 'required'],
@@ -103,7 +130,7 @@ class Lang extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -119,7 +146,7 @@ class Lang extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'timestamp' => [

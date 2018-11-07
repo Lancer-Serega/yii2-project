@@ -29,7 +29,7 @@ class LangRequest extends Request
     {
         $this->_lang_url = $this->getUrl();
         $url_list = explode('/', $this->_lang_url);
-        $lang_url = isset($url_list[1]) ? $url_list[1] : null;
+        $lang_url = $url_list[1] ?? null;
         Lang::setCurrent($lang_url);
 
         if(
@@ -37,7 +37,7 @@ class LangRequest extends Request
             && $lang_url === Lang::getCurrent()->url
             && 1 === strpos($this->_lang_url, Lang::getCurrent()->url)
         ) {
-            $this->_lang_url = substr($this->_lang_url, strlen(Lang::getCurrent()->url) + 1);
+            $this->_lang_url = substr($this->_lang_url, \strlen(Lang::getCurrent()->url) + 1);
         }
     }
 
@@ -70,11 +70,11 @@ class LangRequest extends Request
         $scriptUrl = $this->getScriptUrl();
         $baseUrl = $this->getBaseUrl();
         if (strpos($pathInfo, $scriptUrl) === 0) {
-            $pathInfo = substr($pathInfo, strlen($scriptUrl));
+            $pathInfo = substr($pathInfo, \strlen($scriptUrl));
         } elseif ($baseUrl === '' || strpos($pathInfo, $baseUrl) === 0) {
-            $pathInfo = substr($pathInfo, strlen($baseUrl));
+            $pathInfo = substr($pathInfo, \strlen($baseUrl));
         } elseif (isset($_SERVER['PHP_SELF']) && strpos($_SERVER['PHP_SELF'], $scriptUrl) === 0) {
-            $pathInfo = substr($_SERVER['PHP_SELF'], strlen($scriptUrl));
+            $pathInfo = substr($_SERVER['PHP_SELF'], \strlen($scriptUrl));
         } else {
             throw new InvalidConfigException('Unable to determine the path info of the current request.');
         }

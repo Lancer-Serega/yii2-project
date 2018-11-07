@@ -50,22 +50,22 @@ use \yii\helpers\Html;
                             </span>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Your name')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Your name'), 'autocomplete' => 'username']; ?>
                                 <?= $form->field($signinFormModel, 'username')->textInput($options)->label(Yii::t('form', 'Your name')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
                                 <?= $form->field($signinFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
                                 <?= $form->field($signinFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password repeat')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password repeat'), 'autocomplete' => 'password_repeat']; ?>
                                 <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options)->label(Yii::t('form', 'Password repeat')); ?>
                             </div>
 

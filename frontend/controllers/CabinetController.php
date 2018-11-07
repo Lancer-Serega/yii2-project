@@ -8,8 +8,11 @@
 
 namespace frontend\controllers;
 
+use frontend\models\UserChangeAccountFormModel;
+use frontend\services\IdentityService;
 use Yii;
 use yii\web\ForbiddenHttpException;
+use yii\web\Response;
 
 /**
  * Cabinet controller
@@ -90,6 +93,50 @@ class CabinetController extends BaseController
     public function actionSettings()
     {
         return $this->render('settings');
+    }
+
+    public function actionSettingsSave()
+    {
+        if (!Yii::$app->getRequest()->isAjax) {
+            Yii::$app->getResponse()->setStatusCode(404);
+            Yii::$app->getResponse()->send();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $flashList = [];
+        $errorList = [];
+        $form = new UserChangeAccountFormModel();
+        $service = new IdentityService();
+        if ($form->load(Yii::$app->request->post(), 'UserChangeAccountFormModel')) {
+            try {
+                $user = $service->userChangeAccount($form);
+                if ($user) {
+                    $service->sendEmailConfirm($user);
+                    $auth = Yii::$app->authManager;
+                    $auth->assign($auth->getRole('user'), $user->id);
+                    $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
+                    $this->jsonData['data'] = [
+                        'user_id' => $user->id,
+                        'user_email' => $user->email,
+                    ];
+                    Yii::$app->session->setFlash('warning', Yii::t('form', 'To complete the registration, confirm your email. Check your email.'));
+                }
+            } catch (\Exception $e) {
+                Yii::$app->errorHandler->logException($e);
+                $this->responseStatus = self::RESPONSE_STATUS_ERROR;
+                $errorList[] = $e->getMessage();
+                $flashList = ['error' => $e->getMessage()];
+            }
+        }
+
+        $data = array_merge_recursive($this->jsonData, [
+            'status' => $this->responseStatus,
+            'errors' => $errorList,
+            'flash' => $flashList,
+        ]);
+
+        return $data;
     }
 
     public function actionSecurity()

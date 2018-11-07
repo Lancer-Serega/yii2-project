@@ -34,8 +34,7 @@ use \yii\helpers\Url;
                 <div class="col-md-12 pull-md-12">
                     <div class="auth__reg">
                         <div class="ui-form">
-                            <?php
-                            $form = ActiveForm::begin([
+                            <?php $form = ActiveForm::begin([
                                 'id' => 'login-form',
                                 'action' => $formUrl,
                                 'options' => [
@@ -44,38 +43,37 @@ use \yii\helpers\Url;
                                     'data-type' => 'JSON',
                                     'data-content-type' => 'application/json',
                                 ],
-                            ]);
-                            ?>
+                            ]); ?>
 
                             <span class="ui-legend">
                                 <?= Yii::t('form', 'Authorization form'); ?>
                             </span>
 
-                            <div class="auth__social">
-                                <p class="auth__social-text"><?= Yii::t('form', 'Log In via'); ?></p>
-                                <div class="auth__social-control">
-                                    <a class="auth__social-btn" href="#">
-                                        <span class="icon-social-fb"></span>
-                                    </a>
-                                    <a class="auth__social-btn" href="#">
-                                        <span class="icon-social-tw"></span>
-                                    </a>
-                                    <a class="auth__social-btn" href="#">
-                                        <span class="icon-social-gp"></span>
-                                    </a>
-                                    <a class="auth__social-btn" href="#">
-                                        <span class="icon-social-vk"></span>
-                                    </a>
-                                </div>
-                            </div>
+<!--                            <div class="auth__social">-->
+<!--                                <p class="auth__social-text">--><?php // echo Yii::t('form', 'Log In via'); ?><!--</p>-->
+<!--                                <div class="auth__social-control">-->
+<!--                                    <a class="auth__social-btn" href="#">-->
+<!--                                        <span class="icon-social-fb"></span>-->
+<!--                                    </a>-->
+<!--                                    <a class="auth__social-btn" href="#">-->
+<!--                                        <span class="icon-social-tw"></span>-->
+<!--                                    </a>-->
+<!--                                    <a class="auth__social-btn" href="#">-->
+<!--                                        <span class="icon-social-gp"></span>-->
+<!--                                    </a>-->
+<!--                                    <a class="auth__social-btn" href="#">-->
+<!--                                        <span class="icon-social-vk"></span>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!--                            </div>-->
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
                                 <?= $form->field($loginFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password')]; ?>
+                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
                                 <?= $form->field($loginFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 

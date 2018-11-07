@@ -31,7 +31,7 @@ var gulp = require('gulp'),
 
     uglify = require('gulp-uglify'),
 
-    // streamify = require('gulp-streamify'),
+    streamify = require('gulp-streamify'),
 
 
     spritesmith = require('gulp.spritesmith'),
@@ -82,7 +82,7 @@ var src = {
     spriteSvg: 'src/sprites/_svg/*.svg'
 };
 
-var dist = {
+let dist = {
     pagelist: './',
     html: './',
     fonts: './fonts/',
@@ -271,24 +271,24 @@ gulp.task('fonts', function () {
 // --------------------------------------------------------------------------
 
 
-gulp.task('images', function () {
-
-    return gulp.src(src.images)
-    // .pipe(imagemin([
-    // 	imagemin.gifsicle({interlaced: true}),
-    // 	imagemin.jpegtran({progressive: true}),
-    // 	imagemin.optipng({optimizationLevel: 7}),
-    // 	imagemin.svgo({
-    // 		plugins: [
-    // 			{removeViewBox: true},
-    // 			{cleanupIDs: false}
-    // 		]
-    // 	})
-    // ]))
-        .pipe(gulp.dest(dist.images))
-        .pipe(browserSync.reload({stream: true}))
-
-});
+// gulp.task('images', function () {
+//
+//     return gulp.src(src.images)
+//     // .pipe(imagemin([
+//     // 	imagemin.gifsicle({interlaced: true}),
+//     // 	imagemin.jpegtran({progressive: true}),
+//     // 	imagemin.optipng({optimizationLevel: 7}),
+//     // 	imagemin.svgo({
+//     // 		plugins: [
+//     // 			{removeViewBox: true},
+//     // 			{cleanupIDs: false}
+//     // 		]
+//     // 	})
+//     // ]))
+//         .pipe(gulp.dest(dist.images))
+//         .pipe(browserSync.reload({stream: true}))
+//
+// });
 
 // --------------------------------------------------------------------------
 // Sass
@@ -323,13 +323,11 @@ gulp.task('sass', function () {
 gulp.task('js:plugins', function () {
     return gulp.src([
         path.resolve('node_modules', 'svg4everybody/dist/svg4everybody.js'),
-        path.resolve('node_modules', 'jquery/dist/jquery.js'),
         path.resolve('node_modules', 'slick-carousel/slick/slick.js'),
         path.resolve('node_modules', '@fancyapps/fancybox/dist/jquery.fancybox.js'),
         path.resolve('node_modules', 'jquery-validation/dist/jquery.validate.min.js'),
         path.resolve('node_modules', 'inputmask/dist/jquery.inputmask.bundle.js'),
-        path.resolve('src/js/plugins', 'jquery.formstyler.js')
-
+        path.resolve('node_modules', 'jquery-form-styler/dist/jquery.formstyler.js'),
     ])
         .pipe(plumber({
             errorHandler: notify.onError("Error: <%= error.message %>")
@@ -353,7 +351,7 @@ gulp.task('js:app', function () {
             errorHandler: notify.onError("Error: <%= error.message %>")
         }))
         .pipe(source('app.min.js'))
-        // .pipe(streamify(uglify()))
+        // .pipe(streamify(uglify())) // FIXME: uncomment before deploy
         .pipe(gulp.dest(dist.js))
         .pipe(browserSync.reload({stream: true}))
 });
@@ -419,7 +417,7 @@ gulp.task('watch', function () {
 
 gulp.task('default', function () {
 
-    runSequence('clean', 'spriteImages', 'spriteSvg', 'js', 'sass', /*'html',*/ 'critical', 'fonts', 'images'/*, 'pages'*/, 'watch')
+    runSequence(/*'clean', 'spriteImages', 'spriteSvg',*/ 'js', 'sass', /*'html', 'critical', 'fonts', 'images', 'pages',*/ 'watch')
 
 });
 

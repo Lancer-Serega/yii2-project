@@ -22,8 +22,8 @@ class SigninForm extends Model
         $msg = [
             'required' => Yii::t('form', 'This field is required'),
             'username' => [
-                'min' => Yii::t('form', 'The "Username" value must contain at least {min} characters.'),
-                'max' => Yii::t('form', 'The "Username" value must contain a maximum of {max} characters.'),
+                'min' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => Yii::t('form', 'Your name')]),
+                'max' => Yii::t('form', 'The "{field_name}" value must contain a maximum of {max} characters.', ['field_name' => Yii::t('form', 'Your name')]),
             ],
             'email' => [
                 'email' => Yii::t('form', ''),
@@ -49,7 +49,6 @@ class SigninForm extends Model
             ['email', 'unique', 'targetClass' => User::class, 'message' => $msg['email']['unique']],
 
             ['password', 'string', 'min' => 8, 'tooShort' => $msg['password']['min']],
-
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => $msg['password_repeat']['compare']],
         ];
     }

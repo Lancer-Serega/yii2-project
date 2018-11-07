@@ -8,6 +8,7 @@
 
 namespace frontend\services;
 
+use frontend\models\UserChangeAccountFormModel;
 use Yii;
 use frontend\models\SigninForm;
 use frontend\models\User;
@@ -20,7 +21,7 @@ class IdentityService
      * @return User|null
      * @throws \yii\base\Exception
      */
-    public function signin(SigninForm $form)
+    public function signin(SigninForm $form): ?User
     {
         if (!$form->validate()) {
             return null;
@@ -51,7 +52,7 @@ class IdentityService
      * Sends a letter to the registering user with a link to confirm registration
      * @param User $user
      */
-    public function sendEmailConfirm(User $user)
+    public function sendEmailConfirm(User $user): void
     {
         $email = $user->email;
 
@@ -103,5 +104,35 @@ class IdentityService
         if (!Yii::$app->getUser()->login($user)){
             throw new \RuntimeException('Error authentication.');
         }
+    }
+
+    /**
+     * @param UserChangeAccountFormModel $form
+     * @return User|null
+     * @throws \Throwable
+     * @throws \yii\base\Exception
+     */
+    public function userChangeAccount(UserChangeAccountFormModel $form): ?User
+    {
+        if (!$form->validate()) {
+            return null;
+        }
+
+        /**
+         * @var User $user
+         */
+        $user = Yii::$app->user->getIdentity();
+//        $user->lang = $form->lang;
+        !$form->username ?: $user->username = $form->username;
+        !$form->phone ?: $user->phone = $form->phone;
+        !$form->skype ?: $user->skype = $form->skype;
+        !$form->telegram ?: $user->telegram = $form->telegram;
+        !$form->new_password ?: $user->setPassword($form->new_password);
+
+        if ($user->save()) {
+            return $user;
+        }
+
+        return null;
     }
 }

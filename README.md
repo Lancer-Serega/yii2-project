@@ -1,3 +1,19 @@
+
+INSTALL Proxy app
+-----------------
+- Install nginx 1.15.5
+- Install php 7.2
+- Install mysql 5.5(14.14)
+- Past your path to runtime-cache folder in `./frontend/config/params_local.php`:
+    (example: 'runtime_cache_dir_frontend' => '/var/www/project/web/frontend/runtime/cache')
+- configure ./console/config/db.php
+- configure ./frontend/config/db.php
+- `composer install`
+- `./yii migrate/up && ./yii migrate --migrationPath=@yii/rbac/migrations/`
+- Go to in terminal `cd ./frontend/web` and run `npm install --only-dev`
+- Run gulpfile.js `node ./node_modules/gulp/bin/gulp.js --color --gulpfile ./gulpfile.js`
+
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
@@ -58,16 +74,3 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
-
-
-INSTALL
--------
-- Install nginx 1.15.5
-- Install php 7.2
-- Install mysql 5.5(14.14)
-- Past your path to runtime-cache folder in `./frontend/config/params_local.php`:
-    (example: 'runtime_cache_dir_frontend' => '/var/www/project/web/frontend/runtime/cache')
-- configure ./console/config/db.php
-- configure ./frontend/config/db.php
-- `composer install`
-- `./yii migrate/up && ./yii migrate --migrationPath=@yii/rbac/migrations/`

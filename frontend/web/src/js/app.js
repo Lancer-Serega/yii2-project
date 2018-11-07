@@ -244,33 +244,28 @@ $(function () {
                 accept: 'Подтвердите условия'
             },
             errorPlacement: validateErrorPlacement,
-            submitHandler: function (form) {
+            submitHandler: function (form, e) {
+                e.preventDefault();
                 let data = $(form).serialize();//$(form).data('type') === 'JSON' ? $(form).serializeArray() : $(form).serialize();
 
                 $.ajax({
                     type: $(form).attr('method') || 'get',
                     url: $(form).attr('action') || '#',
                     data: data,
-                    success: function (form) {
+                    success: function (form, e) {
                         console.log(form.statusText);
                         location.reload();
                     },
                     error: function (xhr, status, error) {
                         console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
                         console.log("Response text: " + xhr.responseText);
-                        location.reload();
                     },
                     fail: function (xhr, status, error) {
                         console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
                         console.log("Response text: " + xhr.responseText);
-                        location.reload();
                     }
                 });
-                event.preventDefault();
             }
         });
     });
-
-    $('.dropdown-toggle').dropdown();
-    $('.collapse').collapse();
 });

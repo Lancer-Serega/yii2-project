@@ -23,8 +23,7 @@ class AppAsset extends AssetBundle
         '/css/app.min.css',
     ];
     public $js = [
-        '/js/plugins/plugins.min.js',
-        '/js/plugins/jquery.formstyler.js',
+        '/js/plugins.min.js',
         '/js/app.min.js',
     ];
     public $depends = [
