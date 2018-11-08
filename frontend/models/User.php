@@ -11,7 +11,6 @@ use yii\web\IdentityInterface;
  * This is the model class for table "user".
  *
  * @property int $id
- * @property string $login User login
  * @property string $username User name
  * @property string $auth_key
  * @property string $password_hash Hash user password
@@ -25,6 +24,7 @@ use yii\web\IdentityInterface;
  * @property int $phone [int(22) unsigned]  User phone
  * @property string $skype [varchar(255)]  User skype
  * @property string $telegram [varchar(32)]  User telegram
+ * @property int $language [int(11) unsigned]  User language interface
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -48,12 +48,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['login', 'username', 'auth_key', 'password_hash', 'email'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email'], 'required'],
             [['email_status', 'status'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['login', 'username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key', 'email_confirm_token'], 'string', 'max' => 32],
-            [['login'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
             [['email_confirm_token'], 'unique'],
@@ -71,7 +70,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
             'username' => 'Username',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',

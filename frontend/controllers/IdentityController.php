@@ -15,6 +15,7 @@ use \Yii;
 use frontend\models\SigninForm;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use frontend\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
@@ -27,32 +28,56 @@ use yii\web\Response;
 class IdentityController extends BaseController
 {
     /**
+     * @return array
+     */
+    public function behaviors(): array
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'login' => ['POST'],
+                    'logout' => ['GET'],
+                    'signin' => ['POST'],
+                    'signin-confirm' => ['GET'],
+                    'resend-email' => ['GET'],
+                    'request-password-resend' => ['GET', 'POST'],
+                    'reset-password' => ['GET', 'POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
      * Logs in a user.
      * @return mixed
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $this->responseStatus = self::RESPONSE_STATUS_ERROR;
 
         $loginForm = new LoginForm();
         if ($loginForm->load(Yii::$app->request->post())) {
             try {
                 if ($loginForm->login()) {
-                    return $this->goBack();
+                    $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
+                    $this->jsonData['redirect'] = Yii::$app->getUser()->getReturnUrl();
+                    return $this->jsonData;
                 }
+
+                $this->jsonData['flash']['error'][] = Yii::t('form', 'Not a valid email or password.');
             } catch (\DomainException $e) {
-                Yii::$app->session->setFlash('error', $e->getMessage());
-                return $this->goHome();
+                $msg = Yii::t('error', 'Excuse me.');
+                $msg .= Yii::t('error', 'An authorization failed.');
+                $msg .= Yii::t('error', 'Our development team is already trying to fix this problem.');
+                $msg .= Yii::t('error', 'Soon we will fix it.');
+                $this->jsonData['flash']['error'][] = Yii::t('error', $msg);
+                return $this->jsonData;
             }
         }
 
-        $loginForm->password = '';
-
-        return $this->render('login', [
-            'loginForm' => $loginForm,
-        ]);
+        return $this->jsonData;
     }
 
     /**
@@ -73,15 +98,8 @@ class IdentityController extends BaseController
      */
     public function actionSignin()
     {
-        if (!Yii::$app->getRequest()->isAjax) {
-            Yii::$app->getResponse()->setStatusCode(404);
-            Yii::$app->getResponse()->send();
-        }
-
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $flashList = [];
-        $errorList = [];
         $signinForm = new SigninForm();
         $service = new IdentityService();
         if ($signinForm->load(Yii::$app->request->post(), 'SigninForm')) {
@@ -89,30 +107,25 @@ class IdentityController extends BaseController
                 $user = $service->signin($signinForm);
                 if ($user) {
                     $service->sendEmailConfirm($user);
-                    $auth = Yii::$app->authManager;
-                    $auth->assign($auth->getRole('user'), $user->id);
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['data'] = [
                         'user_id' => $user->id,
                         'user_email' => $user->email,
                     ];
-                    Yii::$app->session->setFlash('warning', Yii::t('form', 'To complete the registration, confirm your email. Check your email.'));
+                    $this->jsonData['flash']['info'][] = Yii::t('form', 'To complete the registration, confirm your email. Check your email.');
+                } else {
+                    $this->responseStatus = self::RESPONSE_STATUS_ERROR;
+                    $this->jsonData['form'] = $signinForm->getErrors();
+                    $this->jsonData['flash']['error'] = $signinForm->getErrors();
                 }
             } catch (Exception $e) {
                 Yii::$app->errorHandler->logException($e);
                 $this->responseStatus = self::RESPONSE_STATUS_ERROR;
-                $errorList[] = $e->getMessage();
-                $flashList = ['error' => $e->getMessage()];
             }
         }
+        $this->jsonData['status'] = $this->responseStatus;
 
-        $data = array_merge_recursive($this->jsonData, [
-            'status' => $this->responseStatus,
-            'errors' => $errorList,
-            'flash' => $flashList,
-        ]);
-
-        return $data;
+        return $this->jsonData;
     }
 
     /**
@@ -121,7 +134,7 @@ class IdentityController extends BaseController
      * @param $token
      * @return Response
      */
-    public function actionSigninConfirm($token)
+    public function actionSigninConfirm($token): Response
     {
         $identityService = new IdentityService();
 
@@ -140,7 +153,7 @@ class IdentityController extends BaseController
      * Resend email confirm user
      * @param $token
      */
-    public function actionResendEmail($token)
+    public function actionResendEmail($token): void
     {
         /**
          * @var User $user

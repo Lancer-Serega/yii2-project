@@ -31,7 +31,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <?= Html::csrfMetaTags(); ?>
     <title><?= Html::encode($this->title); ?></title>
-    <link rel="shortcut icon" href="<?= Url::to('/images/favicon.ico', true); ?>">
+    <link rel="shortcut icon" href="<?= Url::to('/favicon.ico', true); ?>">
     <?php $this->head(); ?>
 </head>
 
@@ -53,9 +53,13 @@ AppAsset::register($this);
     </header>
     <!-- Header :: End-->
 
-    <?php if (count(Yii::$app->session->getAllFlashes())) {
-        echo Alert::widget() . '<br/>';
-    } ?>
+    <!-- Flash messages :: Start -->
+    <div class="container-fluid">
+        <?php if (count(Yii::$app->session->getAllFlashes())) {
+            echo Alert::widget() . '<br/>';
+        } ?>
+    </div>
+    <!-- Flash messages :: End -->
 
     <!-- Main :: Start-->
     <main class="main">

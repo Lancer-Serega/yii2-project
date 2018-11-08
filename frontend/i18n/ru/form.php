@@ -12,6 +12,7 @@ return [
     'Email' => 'Email',
     'Password' => 'Пароль',
     'New password' => 'Новый пароль',
+    'Repeat password' => 'Повторите пароль',
     'Already have an account?' => 'Уже зарегистрированы?',
     'Log In via' => 'Войти через',
     'By signin-form up, you agree to License Agreement.' => 'Регистрируясь, вы соглашаетесь с Лицензионным соглашением.',
@@ -61,4 +62,7 @@ return [
     'I the "{field_name}" characters must be in the range from {min} to {max}.' => 'В поле {field_name} количество символов должно быть в диапазоне от {min} до {max}',
     'Invalid characters are present.' => 'Присутствуют недопустимые символы.',
     'Only Latin letters, numbers and underscores are allowed.' => 'Разрешены только латинские буквы, цифры и символы подчеркивания.',
+    '"{field_name}" field is required' => 'Поле "{field_name}" обязательное для заполнения',
+    'Invalid email address. Example: email@example.com' => 'Не корректный email адрес. Пример: email@email.ru',
+    'Not a valid email or password.' => 'Не правильный email или пароль.',
 ];

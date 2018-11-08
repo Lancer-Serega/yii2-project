@@ -26,7 +26,7 @@ class SigninForm extends Model
                 'max' => Yii::t('form', 'The "{field_name}" value must contain a maximum of {max} characters.', ['field_name' => Yii::t('form', 'Your name')]),
             ],
             'email' => [
-                'email' => Yii::t('form', ''),
+                'email' => Yii::t('form', 'Invalid email address. Example: email@example.com'),
                 'max' => Yii::t('form', 'The "Email" value must contain a maximum of {max} characters.'),
                 'unique' => Yii::t('form', 'This email address has already been taken.'),
             ],
@@ -46,10 +46,18 @@ class SigninForm extends Model
 
             ['email', 'email', 'message' => $msg['email']['email']],
             ['email', 'string', 'max' => 255, 'tooLong' => $msg['email']['max']],
-            ['email', 'unique', 'targetClass' => User::class, 'message' => $msg['email']['unique']],
+            ['email', 'uniqueEmail'],
 
             ['password', 'string', 'min' => 8, 'tooShort' => $msg['password']['min']],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => $msg['password_repeat']['compare']],
         ];
+    }
+
+    public function uniqueEmail($attribute)
+    {
+        $user = User::findOne(['email' => $this->email]);
+        if ($user) {
+            $this->addError($attribute, Yii::t('form', 'This email address has already been taken.'));
+        }
     }
 }

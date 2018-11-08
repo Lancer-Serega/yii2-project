@@ -11,6 +11,7 @@ return [
     'Email' => 'Email',
     'Password' => 'Password',
     'New password' => 'New password',
+    'Repeat password' => 'Repeat password',
     'Already have an account?' => 'Already have an account?',
     'Log In via' => 'Log In via',
     'By signin-form up, you agree to License Agreement.' => 'By signin-form up, you agree to License Agreement.',
@@ -61,4 +62,7 @@ return [
     'The "{field_name}" number value of characters must be in the range from [min] to {max}.' => 'The "{field_name}" number value of characters must be in the range from [min] to {max}.',
     'Invalid characters are present.' => 'Invalid characters are present.',
     'Only Latin letters, numbers and underscores are allowed.' => 'Only Latin letters, numbers and underscores are allowed.',
+    '"{field_name}" field is required' => '"{field_name}" field is required',
+    'Invalid email address. Example: email@example.com' => 'Invalid email address. Example: email@example.com',
+    'Not a valid email or password.' => 'Not a valid email or password.',
 ];

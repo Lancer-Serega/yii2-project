@@ -8,6 +8,7 @@
 
 namespace console\controllers;
 
+use frontend\services\RbacService;
 use Yii;
 use yii\console\Controller;
 use yii\rbac\DBManager;
@@ -24,21 +25,21 @@ class RbacController extends Controller
          * @var DBManager $auth
          */
         $auth = Yii::$app->authManager;
-        $permitCabinetView = $auth->createPermission('cabinet.view');
+        $permitCabinetView = $auth->createPermission(RbacService::PERMISSION_CABINET_VIEW);
         $permitCabinetView->description = 'Access to the personal cabinet for registered users';
         $auth->add($permitCabinetView);
 
-        $roleUser = $auth->createRole('user');
+        $roleUser = $auth->createRole(RbacService::ROLE_USER);
         $roleUser->description = 'Role - User';
         $auth->add($roleUser);
         $auth->addChild($roleUser, $permitCabinetView);
 
-        $roleAdmin = $auth->createRole('admin');
+        $roleAdmin = $auth->createRole(RbacService::ROLE_ADMIN);
         $roleAdmin->description = 'Role - Admin';
         $auth->add($roleAdmin);
         $auth->addChild($roleAdmin, $roleUser);
 
-        $roleRoot = $auth->createRole('root');
+        $roleRoot = $auth->createRole(RbacService::ROLE_ROOT);
         $roleRoot->description = 'Role - Root';
         $auth->add($roleRoot);
         $auth->addChild($roleRoot, $roleAdmin);

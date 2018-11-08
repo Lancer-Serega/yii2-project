@@ -14,4 +14,6 @@ class RbacService
     public const ROLE_ROOT = 'root';
     public const ROLE_ADMIN = 'admin';
     public const ROLE_USER = 'user';
+
+    public const PERMISSION_CABINET_VIEW = 'cabinet.view';
 }

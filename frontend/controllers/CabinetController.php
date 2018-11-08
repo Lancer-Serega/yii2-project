@@ -8,9 +8,10 @@
 
 namespace frontend\controllers;
 
-use frontend\models\UserChangeAccountFormModel;
+use frontend\models\UserChangeAccountForm;
 use frontend\services\IdentityService;
 use Yii;
+use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 use yii\web\Response;
 
@@ -20,11 +21,26 @@ use yii\web\Response;
 class CabinetController extends BaseController
 {
     /**
+     * @return array
+     */
+    public function behaviors(): array
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'settings-save' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
      * @inheritdoc
      * @param $action
      * @return bool
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         $this->jsonData = [
             'status' => 'success',
@@ -43,78 +59,75 @@ class CabinetController extends BaseController
         return false;
     }
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         return $this->render('index', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionAccount()
+    public function actionAccount(): string
     {
         return $this->render('account', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionActiveTariffs()
+    public function actionActiveTariffs(): string
     {
         return $this->render('active-tariffs', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionTariffs()
+    public function actionTariffs(): string
     {
         return $this->render('tariffs');
     }
 
-    public function actionTrialPeriod()
+    public function actionTrialPeriod(): string
     {
         return $this->render('trial-period', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionSupport()
+    public function actionSupport(): string
     {
         return $this->render('support', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionFaq()
+    public function actionFaq(): string
     {
         return $this->render('faq', [
             'response' => __METHOD__,
         ]);
     }
 
-    public function actionSettings()
+    public function actionSettings(): string
     {
         return $this->render('settings');
     }
 
-    public function actionSettingsSave()
+    /**
+     * @return array
+     * @throws \Throwable
+     */
+    public function actionSettingsSave(): array
     {
-        if (!Yii::$app->getRequest()->isAjax) {
-            Yii::$app->getResponse()->setStatusCode(404);
-            Yii::$app->getResponse()->send();
-        }
-
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $flashList = [];
         $errorList = [];
-        $form = new UserChangeAccountFormModel();
+        $form = new UserChangeAccountForm();
         $service = new IdentityService();
-        if ($form->load(Yii::$app->request->post(), 'UserChangeAccountFormModel')) {
+        if ($form->load(Yii::$app->request->post(), 'UserChangeAccountForm')) {
             try {
                 $user = $service->userChangeAccount($form);
                 if ($user) {
                     $service->sendEmailConfirm($user);
-                    $auth = Yii::$app->authManager;
-                    $auth->assign($auth->getRole('user'), $user->id);
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['data'] = [
                         'user_id' => $user->id,
@@ -139,12 +152,12 @@ class CabinetController extends BaseController
         return $data;
     }
 
-    public function actionSecurity()
+    public function actionSecurity(): string
     {
         return $this->render('security');
     }
 
-    public function actionFinanceOperations()
+    public function actionFinanceOperations(): string
     {
         return $this->render('finance-operations');
     }

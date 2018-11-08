@@ -3,7 +3,6 @@
 namespace frontend\models;
 
 use borales\extensions\phoneInput\PhoneInputBehavior;
-use borales\extensions\phoneInput\PhoneInputValidator;
 use Yii;
 use yii\base\Model;
 
@@ -13,12 +12,12 @@ use yii\base\Model;
  * @property User|null $user This property is read-only.
  *
  */
-class UserChangeAccountFormModel extends Model
+class UserChangeAccountForm extends Model
 {
     public $username;
     public $new_password;
     public $password_repeat;
-    public $lang;
+    public $language;
     public $phone;
     public $skype;
     public $telegram;
@@ -29,7 +28,7 @@ class UserChangeAccountFormModel extends Model
     public function rules()
     {
         $msg = [
-            'required' => Yii::t('form', 'This field is required'),
+            'required' => Yii::t('form', '"{field_name}" field is required', ['field_name' => Yii::t('form', 'Your name')]),
             'pattern' => Yii::t('form', 'Invalid characters are present.') . Yii::t('form', 'Only Latin letters, numbers and underscores are allowed.'),
 
             'username' => [
@@ -37,17 +36,19 @@ class UserChangeAccountFormModel extends Model
                 'max' => Yii::t('form', 'The "{field_name}" value must contain a maximum of {max} characters.', ['field_name' => Yii::t('form', 'Your name')]),
             ],
             'new_password' => [
-                'min' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => 'New password']),
+                'min' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => Yii::t('form', 'New password')]),
             ],
             'password_repeat' => [
+                'min' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => Yii::t('form', 'Repeat password')]),
                 'compare' => Yii::t('form', 'Passwords don\'t match'),
             ],
-            'lang' => [
+            'language' => [
                 'validate' => Yii::t('form', 'The selected interface language is currently not available. Select another language from the list.'),
             ],
             'phone' => [
-                'range' => Yii::t('form', 'I the "{field_name}" characters must be in the range from {min} to {max}.', ['field_name' => Yii::t('form', 'Phone')]),
-                'validate' => Yii::t('form', 'Phone is not in the correct format. Enter the phone in the format {phone_example}', ['phone_example' => 12223334455])
+                'validate' => Yii::t('form', 'Phone is not in the correct format. Enter the phone in the format {phone_example}', ['phone_example' => 12223334455]),
+                'min' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => Yii::t('form', 'Your phone')]),
+                'max' => Yii::t('form', 'The "{field_name}" value must contain a maximum of {max} characters.', ['field_name' => Yii::t('form', 'Your phone')]),
             ],
             'skype' => [
                 'match' => Yii::t('form', 'The "{field_name}" value must contain at least {min} characters.', ['field_name' => Yii::t('form', 'Skype')]),
@@ -63,12 +64,14 @@ class UserChangeAccountFormModel extends Model
         ];
 
         return [
-            ['username', 'required'],
-            [['username', 'new_password', 'password_repeat', 'lang', 'phone', 'skype', 'telegram'], 'trim'],
+            ['username', 'required', 'message' => $msg['required']],
+            [['username', 'new_password', 'password_repeat', 'language', 'phone', 'skype', 'telegram'], 'trim'],
             ['username', 'string', 'min' => 2, 'max' => 255, 'tooShort' => $msg['username']['min'], 'tooLong' => $msg['username']['max']],
             ['new_password', 'string', 'min' => 8, 'tooShort' => $msg['new_password']['min']],
+            ['password_repeat', 'string', 'min' => 8, 'tooShort' => $msg['password_repeat']['min']],
             ['password_repeat', 'compare', 'compareAttribute' => 'new_password', 'message' => $msg['password_repeat']['compare']],
-            ['phone', 'number', 'min' => 11, 'max' => 22, 'message' => $msg['phone']['range']],
+            ['phone', 'number', 'message' => $msg['phone']['validate']],
+            ['phone', 'string', 'min' => 11, 'max' => 22, 'tooShort' => $msg['phone']['min'], 'tooLong' => $msg['phone']['max']],
             ['skype', 'string', 'min' => 5, 'max' => 255, 'tooShort' => $msg['skype']['min'], 'tooLong' => $msg['skype']['max']],
             ['telegram', 'string', 'min' => 5, 'max' => 32, 'tooShort' => $msg['telegram']['min'], 'tooLong' => $msg['telegram']['max']],
             [['skype', 'telegram'], 'match', 'pattern'=>'/^[\w_\d]+$/', 'message' => $msg['pattern']],

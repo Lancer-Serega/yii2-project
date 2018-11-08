@@ -24,7 +24,9 @@ use \yii\helpers\Html;
         </svg>
     </span>
 
-    <span class="popup__heading">Some text...</span>
+    <div class="popup__heading">
+        <div class="alert-block" style="font-size:15px"></div>
+    </div>
 
     <div class="popup__container">
         <div class="auth">

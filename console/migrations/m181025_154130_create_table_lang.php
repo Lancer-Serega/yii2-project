@@ -13,6 +13,13 @@ class m181025_154130_create_table_lang extends Migration
      */
     public function safeUp()
     {
+        // Create table
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
+        }
+
         $comments = [
             'table' => 'Language storage table. Taking into account that the number of languages ​​is unlimited and the default language should be indicated, it was decided to store this list in a separate database table.',
             'url' => 'Alphabetic identifier of the language to display in the URL (ru, en, de, ...)',
@@ -23,7 +30,7 @@ class m181025_154130_create_table_lang extends Migration
             'date_create' => 'Creation date (in unix timestamp)',
         ];
 
-        $this->createTable('lang', [
+        $this->createTable('{{%lang}}', [
             'id' => $this->primaryKey(11)->notNull()->unsigned(),
             'url' => $this->string(255)->notNull()->unique()->comment($comments['url']),
             'local' => $this->string(255)->notNull()->unique()->comment($comments['local']),
@@ -31,9 +38,9 @@ class m181025_154130_create_table_lang extends Migration
             'default' => $this->smallInteger(6)->notNull()->defaultValue(0)->comment($comments['default']),
             'date_update' => $this->timestamp()->notNull()->defaultValue(new Expression('NOW()'))->comment($comments['date_update']),
             'date_create' => $this->timestamp()->notNull()->defaultValue(new Expression('NOW()'))->comment($comments['date_create']),
-        ]);
+        ], $tableOptions);
 
-        $this->addCommentOnTable('lang', $comments['table']);
+        $this->addCommentOnTable('{{%lang}}', $comments['table']);
 
         $this->createIndex('lang_idx1', 'lang', 'url');
         $this->createIndex('lang_idx2', 'lang', 'local');
@@ -63,7 +70,7 @@ class m181025_154130_create_table_lang extends Migration
      */
     public function safeDown()
     {
-        $this->delete('lang');
+        $this->delete('{{%lang}}');
 
         $this->dropIndex('lang_idx1', 'lang');
         $this->dropIndex('lang_idx2', 'lang');
@@ -72,7 +79,7 @@ class m181025_154130_create_table_lang extends Migration
         $this->dropIndex('lang_idx5', 'lang');
         $this->dropIndex('lang_idx6', 'lang');
 
-        $this->dropTable('lang');
+        $this->dropTable('{{%lang}}');
 
         return true;
     }

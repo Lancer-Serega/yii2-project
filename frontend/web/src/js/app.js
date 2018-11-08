@@ -1,4 +1,87 @@
 $(function () {
+    $.fn.extend({
+        bs_alert: function (type, message, title) {
+            if (type === 'error') {
+                type = 'danger';
+            }
+
+            let cls = 'alert-' + type,
+                html = '<div class="alert ' + cls + ' alert-dismissable">' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+            if (typeof title !== 'undefined' && title !== '') {
+                html += '<h4>' + title + '</h4>';
+            }
+            html += '<span>' + message + '</span></div>';
+            $('.alert-block').append(html);
+        },
+    });
+
+    /**
+     * Prepare flash messages
+     * @param {Object} flashList
+     */
+    function prepareFlash(flashList) {
+        Object.keys(flashList).forEach((flashType) => {
+            flashList[flashType].forEach((flashMsg) => {
+                $('.alert-block').bs_alert(flashType, flashMsg);
+            });
+        });
+    }
+
+    /**
+     * Prepare flash messages
+     * @param {Object} formMessageList
+     */
+    function prepareFormMessage(formMessageList) {
+        if (!formMessageList.length) {
+            return;
+        }
+
+        debugger; // FIXME: delete before deploy!
+        $('#signinform-email').closest('.form-group');
+    }
+
+    /**
+     * Prepare response data
+     * @param {Object} response
+     */
+    function prepareResponse(response) {
+        prepareFlash(response.flash || []);
+        prepareFormMessage(response.form || []);
+
+        if (response.redirect) {
+            window.location.replace(response.redirect)
+        }
+    }
+
+    $('.js-validate').each(function () {
+        $(this).validate({
+            submitHandler: function (form, e) {
+                e.preventDefault();
+                let data = $(form).serialize();//$(form).data('type') === 'JSON' ? $(form).serializeArray() : $(form).serialize();
+
+                $.ajax({
+                    type: $(form).attr('method') || 'get',
+                    url: $(form).attr('action') || '#',
+                    data: data,
+                    success: function (response) {
+                        prepareResponse(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                        console.log("Response text: " + xhr.responseText);
+                        alert('error');
+                    },
+                    fail: function (xhr, status, error) {
+                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+                        console.log("Response text: " + xhr.responseText);
+                        alert('fail');
+                    }
+                });
+            }
+        });
+    });
+
     // Svg Polyfill
     svg4everybody();
 
@@ -157,9 +240,6 @@ $(function () {
         selectSmartPositioning: false
     });
 
-    // Phone
-    $('input[type=tel]').inputmask({"mask": "+7 (999) 999-99-99", showMaskOnFocus: true});
-
     // Accordion
     $('.js-accordion').on('click', 'dt', function (event) {
         event.preventDefault();
@@ -180,92 +260,5 @@ $(function () {
         $('html, body').animate({
             scrollTop: offsetTop - $('.header').height() - 14
         }, 500);
-    });
-
-    // Validate
-    $.validator.addMethod("regexp", function (value, element) {
-        return this.optional(element) || /^\+\d \(\d{3}\) \d{3}-\d{2}-\d{2}$/.test(value);
-    });
-
-    const validateErrorPlacement = function (error, element) {
-        error.addClass('ui-validate');
-        error.appendTo(element.closest('.ui-field'));
-    };
-
-    const validateHighlight = function (element) {
-        $(element).parent().addClass("is-error").removeClass('is-valid');
-    };
-
-    const validateUnhighlight = function (element) {
-        $(element).parent().addClass('is-valid').removeClass("is-error")
-    };
-
-    $('.js-validate').each(function () {
-        $(this).validate({
-            errorElement: "span",
-            ignore: ":disabled,:hidden",
-            highlight: validateHighlight,
-            unhighlight: validateUnhighlight,
-            rules: {
-                // fullname: "required",
-                // tel: {
-                //     required: true,
-                //     regexp: true
-                // },
-                email: {
-                    required: true,
-                    email: true
-                },
-                // message: "required",
-                // city: "required",
-                // index: "required",
-                // address: "required",
-                // password: "required",
-                // passwordconfirm: {
-                //     required: true,
-                //     equalTo: "#password"
-                // },
-                // accept: "required"
-
-            },
-            messages: {
-                fullname: 'Вы не ввели ФИО',
-                tel: 'Вы не ввели номер телефона',
-                email: 'Введите email',
-                city: 'Введите город',
-                index: 'Введите индекс',
-                address: 'Введите адрес',
-                message: 'Введите сообщение',
-                password: 'Введите пароль',
-                passwordconfirm: {
-                    required: 'Повторите пароль',
-                    equalTo: 'Пароли не совпадают'
-                },
-                accept: 'Подтвердите условия'
-            },
-            errorPlacement: validateErrorPlacement,
-            submitHandler: function (form, e) {
-                e.preventDefault();
-                let data = $(form).serialize();//$(form).data('type') === 'JSON' ? $(form).serializeArray() : $(form).serialize();
-
-                $.ajax({
-                    type: $(form).attr('method') || 'get',
-                    url: $(form).attr('action') || '#',
-                    data: data,
-                    success: function (form, e) {
-                        console.log(form.statusText);
-                        location.reload();
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                        console.log("Response text: " + xhr.responseText);
-                    },
-                    fail: function (xhr, status, error) {
-                        console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                        console.log("Response text: " + xhr.responseText);
-                    }
-                });
-            }
-        });
     });
 });

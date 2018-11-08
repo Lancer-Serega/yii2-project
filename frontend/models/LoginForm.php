@@ -27,9 +27,24 @@ class LoginForm extends Model
      */
     public function rules()
     {
+        $msg = [
+            'email' => [
+                'email' => Yii::t('form', 'Invalid email address. Example: email@example.com'),
+                'max' => Yii::t('form', 'The "Email" value must contain a maximum of {max} characters.'),
+            ],
+            'password' => [
+                'min' => Yii::t('form', 'The "Password" value must contain at least {min} characters.'),
+            ],
+        ];
+
         return [
             // username and password are both required
+            [['email', 'password'], 'trim'],
             [['email', 'password'], 'required'],
+            ['email', 'email', 'message' => $msg['email']['email']],
+            ['email', 'string', 'max' => 255, 'tooLong' => $msg['email']['max']],
+            ['password', 'string', 'min' => 8, 'tooShort' => $msg['password']['min']],
+
             // rememberMe must be a boolean value
             ['remember', 'boolean'],
             // password is validated by validatePassword()
@@ -86,7 +101,11 @@ class LoginForm extends Model
         if ($user->email_status === User::EMAIL_NOT_CONFIRMED) {
             $flashMsg = Yii::t('form', 'To complete the registration, confirm your email ({email}). Check your email.', ['email' => '<strong>' . $user->email . '</strong>']);
             $urlResendToken = Url::toRoute(['/resend-email', 'token' => $user->email_confirm_token]);
-            $flashMsg .= Html::a(Yii::t('form', 'Resend email'), $urlResendToken);
+            $flashMsg .= '<br/>' . Html::a(Yii::t('form', 'Resend email'), $urlResendToken);
+
+            $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['/signin-confirm', 'token' => $user->email_confirm_token]); // FIXME: delete before deploy in production!
+            $flashMsg .= '<br/> Или нажмите на ' . Html::a('эту временную ссылку', $confirmLink) . ' для активации =)'; // FIXME: delete before deploy in production!
+
             Yii::$app->session->setFlash('warning', $flashMsg);
             return true;
         }

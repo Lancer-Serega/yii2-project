@@ -39,6 +39,7 @@ class BaseController extends Controller
             'errors' => [],
             'flash' => [],
             'data' => [],
+            'redirect' => '',
         ];
 
         if (!Yii::$app->user->isGuest) {

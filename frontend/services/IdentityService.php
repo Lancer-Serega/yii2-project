@@ -8,7 +8,7 @@
 
 namespace frontend\services;
 
-use frontend\models\UserChangeAccountFormModel;
+use frontend\models\UserChangeAccountForm;
 use Yii;
 use frontend\models\SigninForm;
 use frontend\models\User;
@@ -20,6 +20,7 @@ class IdentityService
      * @param SigninForm $form
      * @return User|null
      * @throws \yii\base\Exception
+     * @throws \Exception
      */
     public function signin(SigninForm $form): ?User
     {
@@ -28,7 +29,6 @@ class IdentityService
         }
 
         $user = new User();
-        $user->login = $form->email;
         $user->username = $form->username;
         $user->email = $form->email;
         $user->email_confirm_token = Yii::$app->security->generateRandomString(32);
@@ -107,12 +107,12 @@ class IdentityService
     }
 
     /**
-     * @param UserChangeAccountFormModel $form
+     * @param UserChangeAccountForm $form
      * @return User|null
      * @throws \Throwable
      * @throws \yii\base\Exception
      */
-    public function userChangeAccount(UserChangeAccountFormModel $form): ?User
+    public function userChangeAccount(UserChangeAccountForm $form): ?User
     {
         if (!$form->validate()) {
             return null;
@@ -122,15 +122,19 @@ class IdentityService
          * @var User $user
          */
         $user = Yii::$app->user->getIdentity();
-//        $user->lang = $form->lang;
+        $user->language = $form->language;
         !$form->username ?: $user->username = $form->username;
         !$form->phone ?: $user->phone = $form->phone;
         !$form->skype ?: $user->skype = $form->skype;
         !$form->telegram ?: $user->telegram = $form->telegram;
         !$form->new_password ?: $user->setPassword($form->new_password);
 
-        if ($user->save()) {
-            return $user;
+        try {
+            if ($user->save()) {
+                return $user;
+            }
+        } catch (\Exception $e) {
+            return null;
         }
 
         return null;

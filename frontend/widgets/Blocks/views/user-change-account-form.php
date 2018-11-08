@@ -9,14 +9,14 @@
  */
 
 use \frontend\models\User;
-use \frontend\models\userChangeAccountFormModel;
+use \frontend\models\UserChangeAccountForm;
 use \yii\web\View;
 use \yii\widgets\ActiveForm;
 use \yii\helpers\Html;
 
 /**
  * @var View $this
- * @var userChangeAccountFormModel $userChangeAccountFormModel
+ * @var UserChangeAccountForm $userChangeAccountForm
  * @var string $formUrl
  * @var array $langList
  * @var User $user
@@ -42,7 +42,7 @@ $options = [
     'placeholder' => Yii::t('form', 'Your name'),
     'autocomplete' => 'username',
 ];
-$field['username'] = $form->field($userChangeAccountFormModel, 'username')
+$field['username'] = $form->field($userChangeAccountForm, 'username')
     ->textInput($options)
     ->label(Yii::t('form', 'Your name'));
 
@@ -52,7 +52,7 @@ $options = [
     'placeholder' => Yii::t('form', 'New password'),
     'autocomplete' => 'new_password',
 ];
-$field['new_password'] = $form->field($userChangeAccountFormModel, 'new_password')
+$field['new_password'] = $form->field($userChangeAccountForm, 'new_password')
     ->passwordInput($options)
     ->label(Yii::t('form', 'New password'));
 
@@ -62,13 +62,13 @@ $options = [
     'placeholder' => Yii::t('form', 'Password repeat'),
     'autocomplete' => 'password_repeat',
 ];
-$field['password_repeat'] = $form->field($userChangeAccountFormModel, 'password_repeat')
+$field['password_repeat'] = $form->field($userChangeAccountForm, 'password_repeat')
     ->passwordInput($options)
     ->label(Yii::t('form', 'Password repeat'));
 
 // Interface language
 $options = ['class' => 'ui-select'];
-$field['lang'] = $form->field($userChangeAccountFormModel, 'lang')
+$field['lang'] = $form->field($userChangeAccountForm, 'lang')
     ->dropDownList($langList, $options)
     ->label(Yii::t('form', 'Interface language'));
 
@@ -78,7 +78,7 @@ $options = [
     'placeholder' => Yii::t('form', 'Your phone'),
     'autocomplete' => 'phone',
 ];
-$field['phone'] = $form->field($userChangeAccountFormModel, 'phone')
+$field['phone'] = $form->field($userChangeAccountForm, 'phone')
     ->textInput($options)
     ->label(Yii::t('form', 'Your phone'));
 
@@ -89,7 +89,7 @@ $options = [
     'placeholder' => Yii::t('form', 'Your skype'),
     'autocomplete' => 'skype',
 ];
-$field['skype'] = $form->field($userChangeAccountFormModel, 'skype')
+$field['skype'] = $form->field($userChangeAccountForm, 'skype')
     ->textInput($options)
     ->label(Yii::t('form', 'Your skype'));
 
@@ -101,7 +101,7 @@ $options = [
     'autocomplete' => 'telegram',
 ];
 $template = ['template' => "{label}\n" . "<div class='input-group'>\n" . "<span class='input-group-addon'>@</span>\n" . "{input}\n" . "</div>\n" . "{error}\n" . '{hint}'];
-$field['telegram'] = $form->field($userChangeAccountFormModel, 'telegram', $template)
+$field['telegram'] = $form->field($userChangeAccountForm, 'telegram', $template)
     ->textInput($options)
     ->label(Yii::t('form', 'Your telegram'));
 ?>
