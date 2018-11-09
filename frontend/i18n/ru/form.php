@@ -65,4 +65,6 @@ return [
     '"{field_name}" field is required' => 'Поле "{field_name}" обязательное для заполнения',
     'Invalid email address. Example: email@example.com' => 'Не корректный email адрес. Пример: email@email.ru',
     'Not a valid email or password.' => 'Не правильный email или пароль.',
+    'Information saved successfully' => 'Информация успешно сохранена',
+    'Information was not saved due to server error.' => 'Информация не была сохранена из за ошибки на сервере',
 ];

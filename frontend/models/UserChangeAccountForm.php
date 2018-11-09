@@ -77,11 +77,4 @@ class UserChangeAccountForm extends Model
             [['skype', 'telegram'], 'match', 'pattern'=>'/^[\w_\d]+$/', 'message' => $msg['pattern']],
         ];
     }
-
-    public function behaviors()
-    {
-        return [
-            'phoneInput' => PhoneInputBehavior::class,
-        ];
-    }
 }

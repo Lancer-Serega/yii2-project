@@ -119,37 +119,28 @@ class CabinetController extends BaseController
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $flashList = [];
-        $errorList = [];
         $form = new UserChangeAccountForm();
         $service = new IdentityService();
         if ($form->load(Yii::$app->request->post(), 'UserChangeAccountForm')) {
             try {
                 $user = $service->userChangeAccount($form);
                 if ($user) {
-                    $service->sendEmailConfirm($user);
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['data'] = [
                         'user_id' => $user->id,
                         'user_email' => $user->email,
                     ];
-                    Yii::$app->session->setFlash('warning', Yii::t('form', 'To complete the registration, confirm your email. Check your email.'));
+                    $this->jsonData['flash']['success'][] = Yii::t('form', 'Information saved successfully');
                 }
+                $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
             } catch (\Exception $e) {
                 Yii::$app->errorHandler->logException($e);
                 $this->responseStatus = self::RESPONSE_STATUS_ERROR;
-                $errorList[] = $e->getMessage();
-                $flashList = ['error' => $e->getMessage()];
+                $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
             }
         }
 
-        $data = array_merge_recursive($this->jsonData, [
-            'status' => $this->responseStatus,
-            'errors' => $errorList,
-            'flash' => $flashList,
-        ]);
-
-        return $data;
+        return $this->jsonData;
     }
 
     public function actionSecurity(): string

@@ -65,4 +65,6 @@ return [
     '"{field_name}" field is required' => '"{field_name}" field is required',
     'Invalid email address. Example: email@example.com' => 'Invalid email address. Example: email@example.com',
     'Not a valid email or password.' => 'Not a valid email or password.',
+    'Information saved successfully' => 'Information saved successfully',
+    'Information was not saved due to server error.' => 'Information was not saved due to server error.',
 ];

@@ -68,12 +68,13 @@ $field['password_repeat'] = $form->field($userChangeAccountForm, 'password_repea
 
 // Interface language
 $options = ['class' => 'ui-select'];
-$field['lang'] = $form->field($userChangeAccountForm, 'lang')
+$field['lang'] = $form->field($userChangeAccountForm, 'language')
     ->dropDownList($langList, $options)
     ->label(Yii::t('form', 'Interface language'));
 
 // Your phone
 $options = [
+    'value' => $user->phone,
     'class' => 'ui-input',
     'placeholder' => Yii::t('form', 'Your phone'),
     'autocomplete' => 'phone',
