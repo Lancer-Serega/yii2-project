@@ -20,7 +20,7 @@ use \yii\helpers\Html;
 <div class="popup" id="popup-signin" style="display: none;">
     <span class="popup__close" data-fancybox-close>
         <svg class="icon-close">
-            <use xlink:href="/sprites/sprite.svg#icon-close"></use>
+            <use xlink:href="<?= $this->theme->getUrl('/sprites/sprite.svg#icon-close'); ?>"></use>
         </svg>
     </span>
 

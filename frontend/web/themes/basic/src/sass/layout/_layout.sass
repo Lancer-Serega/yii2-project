@@ -1,0 +1,44 @@
+// --------------------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------------------
+
+html, body
+	height: 100%
+
+html
+	font-size: 1px
+
+body
+	background: $baseBg
+	color: $baseColor
+
+.app
+	position: relative
+	min-height: 100%
+	overflow: hidden
+	width: 100%
+	min-width: 320px
+	padding: 126rem 0 0
+	display: flex
+	flex-direction: column
+
+.container-fluid
+	max-width: $baseMaxWidth
+
+.col-content
+	padding: 0 15rem
+	width: 100%
+	+rmin($md)
+		flex: 1
+		order: 1
+
+.col-sidebar
+	padding: 0 15rem
+	width: 100%
+	+rmin($md)
+		flex: 0 0 294rem
+		order: 2
+
+.page-pricing
+	.tariff
+		padding: 12rem 0 53rem 0

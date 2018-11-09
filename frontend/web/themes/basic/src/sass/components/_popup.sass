@@ -1,0 +1,37 @@
+//- --------------------------------------------------------------------------
+//- Popup
+//- --------------------------------------------------------------------------
+
+.popup
+	position: relative
+	width: 100%
+	max-width: 970rem
+	padding: 36rem 54rem 66rem
+	background: #fff
+	border-radius: 10rem
+	box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15)
+	+rmax($md)
+		padding: 36rem 30rem
+
+
+.popup__close
+	display: block
+	position: absolute
+	top: 14rem
+	right: 15rem
+	color: #BDBDBD
+	cursor: pointer
+	transition: 0.25s
+	&:hover
+		color: #000
+
+.popup__heading
+	display: block
+	font-size: 28rem
+	line-height: 33rem
+	font-weight: 200
+	color: #000
+	margin: 0 0 40rem
+	text-align: center
+
+.popup__container

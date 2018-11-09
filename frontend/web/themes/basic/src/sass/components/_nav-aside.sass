@@ -1,0 +1,78 @@
+// --------------------------------------------------------------------------
+// Nav-aside
+// --------------------------------------------------------------------------
+
+.nav-aside
+	font-size: 13rem
+	line-height: 20rem
+	font-weight: 700
+	text-transform: uppercase
+	padding: 0 0 8rem
+	margin: 0 0 32rem
+	position: relative
+	width: 100%
+	&.js-scrollbar
+		white-space: nowrap
+		.nav-aside__menu
+			flex-wrap: nowrap
+
+	
+
+.nav-aside__menu
+	margin: 0
+	padding: 0
+	list-style: none
+	// white-space: nowrap
+	background: #F7FAFE
+	& > li
+		border-bottom: 1px solid #D9DFE8
+		&:last-child
+			border: none
+	+rmax($md)
+		display: flex
+		flex-wrap: wrap
+		// border-bottom: 1px solid #D9DFE8
+		& > li
+			border: none
+	+rmax($sm)
+		& > li
+			// width: 100%
+
+
+
+.nav-aside__link
+	display: block
+	padding: 20rem 38rem
+	text-decoration: none
+	background: #F7FAFE
+	color: #333
+	position: relative
+	transition: 0.25s
+	min-height: 100%
+	&:after
+		content: ''
+		display: block
+		position: absolute
+		top: 0
+		left: 0
+		bottom: 0
+		width: 3rem
+		background: #6FCF97
+		opacity: 0
+	&:hover
+		color: #6FCF97
+		text-decoration: none
+		// background: #fff
+	&.is-active
+		color: #6FCF97
+		background: #fff
+		&:after
+			opacity: 1
+	+rmax($md)
+		padding: 10rem 30rem 12rem
+		&:after
+			right: 0
+			top: auto
+			bottom: 0
+			height: 2rem
+			width: 100%

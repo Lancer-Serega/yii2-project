@@ -1,0 +1,47 @@
+// --------------------------------------------------------------------------
+// Lists
+// --------------------------------------------------------------------------
+
+
+.ui-ul
+    margin: 0 0 24rem
+    padding: 0
+    list-style: none
+    & > li
+        position: relative
+        padding: 0 0 0 42rem
+        margin: 0 0 8rem
+        &:after
+            content: ''
+            display: block
+            position: absolute
+            top: 0
+            left: 25rem
+            width: 5rem
+            height: 5rem
+            top: 8rem
+            background: #639DCB
+        
+    
+
+
+.ui-ol
+    margin: 0 0 24rem
+    padding: 0
+    list-style: none
+    counter-reset: point
+    & > li
+        position: relative
+        padding: 0 0 0 42rem
+        margin: 0 0 8rem
+        &:after
+            content: counter(point) '.'
+            counter-increment: point 1
+            color: #639DCB
+            position: absolute
+            top: 0
+            left: 25rem
+            font-weight: 600
+        
+    
+

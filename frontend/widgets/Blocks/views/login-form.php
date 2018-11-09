@@ -22,7 +22,7 @@ use \yii\helpers\Url;
 <div class="popup" id="popup-login" style="display: none;">
     <span class="popup__close" data-fancybox-close>
         <svg class="icon-close">
-            <use xlink:href="/sprites/sprite.svg#icon-close"></use>
+            <use xlink:href="<?= $this->theme->getUrl('/sprites/sprite.svg#icon-close'); ?>"></use>
         </svg>
     </span>
 
@@ -85,7 +85,7 @@ use \yii\helpers\Url;
                                     <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
                                     <span class="ui-check__checkbox">
                                         <svg class="icon-check">
-                                            <use xlink:href="<?= Url::to('/sprites/sprite.svg#icon-check', true); ?>"></use>
+                                            <use xlink:href="<?= Url::to($this->theme->getUrl('/sprites/sprite.svg#icon-check'), true); ?>"></use>
                                         </svg>
                                     </span>
                                 </label>

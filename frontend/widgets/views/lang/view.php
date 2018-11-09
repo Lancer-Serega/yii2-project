@@ -25,7 +25,7 @@ $langUrl = $request->getLangUrl();
         <span class="icon-language-<?= $currentLang->url; ?>"></span>
         <?= $currentLang->name; ?>
         <svg class="icon-arrow-down">
-            <use xlink:href="/sprites/sprite.svg#icon-arrow-down"></use>
+            <use xlink:href="<?= $this->theme->getUrl('/sprites/sprite.svg#icon-arrow-down'); ?>"></use>
         </svg>
     </button>
     <div class="language__select">

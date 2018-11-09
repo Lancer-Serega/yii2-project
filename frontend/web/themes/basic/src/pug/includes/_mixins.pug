@@ -1,0 +1,11 @@
+//- --------------------------------------------------------------------------
+//- Mixins
+//- --------------------------------------------------------------------------
+
+mixin sprite(svg_id)
+	svg(class=svg_id)
+		use(xlink:href= 'sprites/sprite.svg#' + svg_id)
+
+mixin img(src)
+	img(src=src alt="Alt")
+

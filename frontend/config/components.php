@@ -113,4 +113,17 @@ return [
         // ],
         'rules' => require __DIR__ . '/route.php',
     ],
+
+    'view' => [
+        'theme' => [
+            'basePath' => '@app/themes/basic',
+            'baseUrl' => '@web/themes/basic',
+            'pathMap' => [
+                '@app/views' => [
+                    '@app/views/themes/basic',
+                    '@app/views/themes/admin-pro',
+                ],
+            ],
+        ],
+    ],
 ];

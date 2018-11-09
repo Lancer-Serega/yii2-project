@@ -1,0 +1,53 @@
+include _mixins
+doctype html
+html(lang="ru")
+    head
+        meta(charset="utf-8")
+        
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        meta(name="theme-color" content="#000")
+        meta(name="format-detection" content="telephone=no")
+        meta(http-equiv="X-UA-Compatible" content="IE=Edge")
+
+        title= title || 'Page name'
+
+        link(rel="shortcut icon" href="/favicon.ico")
+
+        <!-- Critical CSS -->
+
+        include _loadCss
+        
+
+    body(class=bodyClass)
+
+
+        .app
+
+            // Header :: Start
+            header.header.compensate-for-scrollbar
+                block header
+                    include _header
+            // Header :: End
+
+            // Main :: Start
+            main.main
+                block main
+            
+            // Main :: End
+            
+            // Footer :: Start
+            footer.footer
+                block footer
+                    include _footer
+            // Footer :: End
+
+            // Popups :: Start
+            block popups
+                include _popups
+            // Popups :: End
+            
+
+        // Scripts :: Start
+        include _loadScripts
+        // Scripts :: End
+

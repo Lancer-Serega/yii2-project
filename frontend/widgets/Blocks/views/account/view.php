@@ -27,10 +27,10 @@ use \yii\helpers\Html;
     <div class="signin">
         <div class="signin__btn dropdown-toggle" id="dropdownUserMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <svg class="icon-signin">
-                <use xlink:href="/sprites/sprite.svg#icon-signin"></use>
+                <use xlink:href="<?= $this->theme->getUrl('/sprites/sprite.svg#icon-signin'); ?>"></use>
             </svg>
             <svg class="icon-arrow-down">
-                <use xlink:href="/sprites/sprite.svg#icon-arrow-down"></use>
+                <use xlink:href="<?= $this->theme->getUrl('/sprites/sprite.svg#icon-arrow-down'); ?>"></use>
             </svg>
         </div>
         <div class="dropdown-menu" aria-labelledby="dropdownUserMenuButton">

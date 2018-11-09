@@ -1,0 +1,119 @@
+---
+title: Blog - Proxy
+bodyClass: page-blog
+---
+extends includes/_app
+
+block main
+
+
+	
+	.container-fluid
+
+
+		.row
+			.col-content
+
+				h1 Блог 
+
+			.col-sidebar
+
+				.search
+					form(action="#")
+						input(type="search" placeholder="Поиск").search__input
+						button.search__btn
+							+sprite('icon-search')
+							
+
+		.row
+			.col-sidebar
+
+				nav.nav-aside
+					ul.nav-aside__menu
+						li
+							a(href="#").nav-aside__link Софт
+						li
+							a(href="#").nav-aside__link.is-active Новости
+						li
+							a(href="#").nav-aside__link Статьи
+						li
+							a(href="#").nav-aside__link События
+
+			.col-content
+				
+
+				// Blog :: Start
+				.blog
+
+					ul.blog__list
+						li
+							.blog__item
+
+								h2.blog__item-title
+									a(href="#") Название статьи или новости
+
+								ul.blog__item-info
+									li 28 сентября 2018
+									li
+										a(href="#") /  Статьи
+
+								.blog__item-content
+									p Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д.
+
+								a(href="#").btn.btn--37.btn--green Читать
+
+						li
+							.blog__item
+
+								h2.blog__item-title
+									a(href="#") Название статьи или новости
+
+								ul.blog__item-info
+									li 28 сентября 2018
+									li
+										a(href="#") /  Статьи
+
+								.blog__item-content
+									img(src="images/img-blog-01.jpg", alt="")
+									p Так как цель применения такого текста исключительно демонстрационная, то и смысловую нагрузку ему нести совсем необязательно. Более того, нечитабельность текста сыграет на руку при оценке качества восприятия макета.  Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами 
+
+								a(href="#").btn.btn--37.btn--green Читать
+
+						li
+							.blog__item
+
+								h2.blog__item-title
+									a(href="#") Название статьи или новости
+
+								ul.blog__item-info
+									li 28 сентября 2018
+									li
+										a(href="#") /  Статьи
+
+								.blog__item-content
+									p Каждый веб-разработчик знает, что такое текст-«рыба». Текст этот, несмотря на название, не имеет никакого отношения к обитателям водоемов. Используется он веб-дизайнерами для вставки на интернет-страницы и демонстрации внешнего вида контента, просмотра шрифтов, абзацев, отступов и т.д.
+
+								a(href="#").btn.btn--37.btn--green Читать
+
+					.pagination
+						a(href="#").pagination__link.pagination__link--prev
+							+sprite('icon-pagination-prev')
+						a(href="#").pagination__link 1
+						a(href="#").pagination__link 2
+						a(href="#").pagination__link.is-active 3
+						a(href="#").pagination__link 4
+						a(href="#").pagination__link 5
+						a(href="#").pagination__link 6
+						a(href="#").pagination__link 7
+						a(href="#").pagination__link 8
+						span.pagination__dots ...
+						a(href="#").pagination__link 14
+						a(href="#").pagination__link.pagination__link--next
+							+sprite('icon-pagination-next')
+
+				// Blog :: End
+
+
+
+
+	

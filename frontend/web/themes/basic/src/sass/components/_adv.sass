@@ -1,0 +1,48 @@
+//- --------------------------------------------------------------------------
+//- Adv
+//- --------------------------------------------------------------------------
+
+
+.adv
+	padding: 39rem 0 74rem
+
+.adv__heading
+	@extend .heading--28
+	@extend .heading--center
+
+.adv__grid
+	.row
+		margin: 0 -15rem -56rem
+		& > [class^="col-"]
+			padding: 0 15rem 56rem
+	+rmax($xl)
+		max-width: 768px
+		margin: 0 auto
+
+
+.adv__item
+	font-size: 13rem
+	line-height: 19rem
+	max-width: 220rem
+
+.adv__item-icon
+	margin: 0 0 22rem
+	height: 60rem
+	display: flex
+	align-items: center
+
+
+.adv__item-title
+	display: block
+	font-size: 18rem
+	line-height: 24rem
+	font-weight: 600
+	color: #000
+	margin: 0 0 22rem
+	a
+		color: #000
+		&:hover
+			color: #6fcf97
+
+.adv__item-text
+	margin: 0

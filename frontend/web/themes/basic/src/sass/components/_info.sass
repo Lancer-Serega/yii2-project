@@ -1,0 +1,59 @@
+//- --------------------------------------------------------------------------
+//- Info
+//- --------------------------------------------------------------------------
+
+.info
+	background: #F7FAFE
+	padding: 40rem 0 30rem
+	
+
+
+.info__grid
+	.row
+		justify-content: space-between
+	+rmax($xl)
+		max-width: 768px
+		margin: 0 auto
+
+
+.info__item
+	display: block
+	position: relative
+	z-index: 1
+	text-align: center
+	padding: 28rem 20rem
+	margin: 14rem 0
+	+rmin($sm)
+		margin: 0
+
+.info__item-image
+	margin: 0
+	position: absolute
+	top: 50%
+	left: 50%
+	transform: translate(-50%,-50%)
+	z-index: -1
+	display: flex
+	align-items: center
+	justify-content: center
+	width: 200rem
+	height: 200rem
+	img
+		display: block
+
+.info__item-number
+	display: block
+	font-size: 38rem
+	line-height: 45rem
+	font-weight: 600
+	margin: 0 0 10rem
+	color: #5080B1
+
+.info__item-text
+	font-size: 16rem
+	line-height: 21rem
+	font-weight: 200
+	color: #000
+	display: block
+	max-width: 200rem
+	margin: 0 auto

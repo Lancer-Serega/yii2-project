@@ -18,13 +18,13 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        '/css/critical.min.css',
-        '/css/theme.css',
-        '/css/app.min.css',
+        'themes/basic/css/critical.min.css',
+        'themes/basic/css/theme.css',
+        'themes/basic/css/app.min.css',
     ];
     public $js = [
-        '/js/plugins.min.js',
-        '/js/app.min.js',
+        'themes/basic/js/plugins.min.js',
+        'themes/basic/js/app.min.js',
     ];
     public $depends = [
         YiiAsset::class,
