@@ -70,18 +70,18 @@ use \yii\helpers\Url;
 <!--                            </div>-->
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
                                 <?= $form->field($loginFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
                                 <?= $form->field($loginFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 
                             <div class="ui-field">
                                 <label class="ui-check">
-                                    <?php $options = ['class' => 'ui-check__input']; ?>
+                                    <?php $options = ['class' => 'ui-check__input form-control']; ?>
                                     <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
                                     <span class="ui-check__checkbox">
                                         <svg class="icon-check">

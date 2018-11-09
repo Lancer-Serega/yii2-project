@@ -1,0 +1,127 @@
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*******************
+/*Top bar
+*******************/
+.topbar {
+  background: #fff; }
+  .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+    display: none; }
+  .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.8); }
+  .topbar .top-navbar .navbar-nav > .nav-item > span {
+    color: #398bf7; }
+  .topbar .navbar-light .navbar-nav .nav-item > a.nav-link {
+    color: #a6b7bf; }
+    .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-light .navbar-nav .nav-item > a.nav-link:focus {
+      color: #242a33 !important; }
+  .topbar .navbar-header {
+    background: #398bf7; }
+
+.logo-center .topbar .navbar-header {
+  text-align: center;
+  padding-left: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+  .logo-center .topbar .navbar-header .navbar-brand b {
+    background-color: transparent;
+    width: initial; }
+  .logo-center .topbar .navbar-header .navbar-brand span {
+    padding-left: 0; }
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+  display: none; }
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8); }
+
+/*******************
+/*General Elements
+*******************/
+a.link:hover, a.link:focus {
+  color: #398bf7 !important; }
+
+.bg-theme {
+  background-color: #398bf7 !important; }
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #398bf7;
+  border-color: #398bf7; }
+
+.right-sidebar .rpanel-title {
+  background: #398bf7; }
+
+.stylish-table tbody tr:hover, .stylish-table tbody tr.active {
+  border-left: 4px solid #398bf7; }
+
+.text-themecolor {
+  color: #398bf7 !important; }
+
+.profile-tab li a.nav-link.active,
+.customtab li a.nav-link.active {
+  border-bottom: 2px solid #398bf7;
+  color: #398bf7; }
+
+.profile-tab li a.nav-link:hover,
+.customtab li a.nav-link:hover {
+  color: #398bf7; }
+
+/*******************
+/*Buttons
+*******************/
+.btn-themecolor,
+.btn-themecolor.disabled {
+  background: #398bf7;
+  color: #ffffff;
+  border: 1px solid #398bf7; }
+  .btn-themecolor:hover,
+  .btn-themecolor.disabled:hover {
+    background: #398bf7;
+    opacity: 0.7;
+    border: 1px solid #398bf7; }
+  .btn-themecolor.active, .btn-themecolor:focus,
+  .btn-themecolor.disabled.active,
+  .btn-themecolor.disabled:focus {
+    background: #028ee1; }
+
+/*******************
+    sidebar
+*******************/
+.side-mini-panel {
+  background: #1e242c; }
+  .side-mini-panel ul.mini-nav li .sidebarmenu {
+    background: #242a33; }
+  .side-mini-panel ul.mini-nav li.selected > a {
+    background: #242a33; }
+    .side-mini-panel ul.mini-nav li.selected > a i {
+      color: #ffffff; }
+  .side-mini-panel ul.mini-nav li.selected h3 {
+    color: #ffffff; }
+
+.sidebar-menu > li.active > a {
+  color: #398bf7; }
+
+.sidebar-menu > li > a:hover {
+  color: #398bf7; }

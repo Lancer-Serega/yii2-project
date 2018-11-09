@@ -963,7 +963,7 @@ mark {
   border-radius: 4rem;
   font: 400 14rem/18rem "Segoe UI", Helvetica, Arial, sans-serif;
   color: #4F4F4F;
-  padding: 15rem 21rem;
+  padding: 8rem 15rem;
   margin: 0 0 20rem;
   transition: 0.25s; }
   .ui-input::-webkit-search-cancel-button, .ui-textarea::-webkit-search-cancel-button, .ui-select .jq-selectbox__select::-webkit-search-cancel-button, .search__input::-webkit-search-cancel-button {
@@ -1075,7 +1075,7 @@ mark {
     background: #fff;
     font: 400 14rem/18rem "Segoe UI", Helvetica, Arial, sans-serif;
     border: 1px solid #E0E0E0;
-    padding: 10rem 0;
+    padding: 3rem 0;
     margin: 10rem 0 0;
     box-shadow: 0 30rem 40rem rgba(54, 88, 115, 0.15);
     z-index: 200;

@@ -15,10 +15,10 @@ use \yii\widgets\Breadcrumbs;
 use \frontend\models\SigninForm;
 use \frontend\widgets\LanguageCheck;
 use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignIn};
-use \frontend\assets\AppAsset;
+use \frontend\assets\BasicThemeAsset;
 use \common\widgets\Alert;
 
-AppAsset::register($this);
+BasicThemeAsset::register($this);
 
 ?>
 <?php $this->beginPage(); ?>

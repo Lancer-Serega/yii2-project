@@ -116,12 +116,12 @@ return [
 
     'view' => [
         'theme' => [
-            'basePath' => '@app/themes/basic',
-            'baseUrl' => '@web/themes/basic',
+            'basePath' => '@frontend/themes/admin-pro',
+            'baseUrl' => '@web/themes/admin-pro',
             'pathMap' => [
                 '@app/views' => [
-                    '@app/views/themes/basic',
-                    '@app/views/themes/admin-pro',
+                    '@frontend/views/themes/admin-pro',
+                    '@frontend/views/themes/basic',
                 ],
             ],
         ],

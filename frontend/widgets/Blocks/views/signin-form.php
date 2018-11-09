@@ -52,22 +52,22 @@ use \yii\helpers\Html;
                             </span>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Your name'), 'autocomplete' => 'username']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Your name'), 'autocomplete' => 'username']; ?>
                                 <?= $form->field($signinFormModel, 'username')->textInput($options)->label(Yii::t('form', 'Your name')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Email'), 'autocomplete' => 'email']; ?>
                                 <?= $form->field($signinFormModel, 'email')->textInput($options)->label(Yii::t('form', 'Email')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Password'), 'autocomplete' => 'password']; ?>
                                 <?= $form->field($signinFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
                             </div>
 
                             <div class="ui-field">
-                                <?php $options = ['class' => 'ui-input', 'placeholder' => Yii::t('form', 'Password repeat'), 'autocomplete' => 'password_repeat']; ?>
+                                <?php $options = ['class' => 'ui-input form-control', 'placeholder' => Yii::t('form', 'Password repeat'), 'autocomplete' => 'password_repeat']; ?>
                                 <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options)->label(Yii::t('form', 'Password repeat')); ?>
                             </div>
 

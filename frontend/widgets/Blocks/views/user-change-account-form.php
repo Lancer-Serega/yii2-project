@@ -38,7 +38,7 @@ $user = Yii::$app->user->getIdentity();
 // Username
 $options = [
     'value' => $user->username,
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'Your name'),
     'autocomplete' => 'username',
 ];
@@ -48,7 +48,7 @@ $field['username'] = $form->field($userChangeAccountForm, 'username')
 
 // New password
 $options = [
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'New password'),
     'autocomplete' => 'new_password',
 ];
@@ -58,7 +58,7 @@ $field['new_password'] = $form->field($userChangeAccountForm, 'new_password')
 
 // Password repeat
 $options = [
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'Password repeat'),
     'autocomplete' => 'password_repeat',
 ];
@@ -75,7 +75,7 @@ $field['lang'] = $form->field($userChangeAccountForm, 'language')
 // Your phone
 $options = [
     'value' => $user->phone,
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'Your phone'),
     'autocomplete' => 'phone',
 ];
@@ -86,7 +86,7 @@ $field['phone'] = $form->field($userChangeAccountForm, 'phone')
 // Your skype
 $options = [
     'value' => $user->skype,
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'Your skype'),
     'autocomplete' => 'skype',
 ];
@@ -97,7 +97,7 @@ $field['skype'] = $form->field($userChangeAccountForm, 'skype')
 // Your telegram
 $options = [
     'value' => $user->telegram,
-    'class' => 'ui-input',
+    'class' => 'ui-input form-control',
     'placeholder' => Yii::t('form', 'Your telegram'),
     'autocomplete' => 'telegram',
 ];
