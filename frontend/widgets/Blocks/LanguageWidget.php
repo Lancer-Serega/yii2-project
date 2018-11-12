@@ -6,17 +6,15 @@
  * Time: 12:52
  */
 
-namespace frontend\widgets;
+namespace frontend\widgets\Blocks;
 
 use frontend\models\Lang as LangModel;
-use yii\bootstrap\Widget;
+use frontend\widgets\BaseWidget;
 
-class LanguageCheck extends Widget
+class LanguageWidget extends BaseWidget
 {
-    public $app;
-
     public function run() {
-        return $this->render('lang/view', [
+        return $this->render('/language', [
             'currentLang' => LangModel::getCurrent(),
             'langs' => LangModel::find()
                 ->where('id != :current_id', [':current_id' => LangModel::getCurrent()->id])

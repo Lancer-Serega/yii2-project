@@ -59,7 +59,7 @@ File: scss
   -webkit-transition: 0.2s ease all; }
 
 .floating-labels .focused label {
-  top: -20px;
+  top: 0;
   font-size: 12px;
   color: #263238; }
 

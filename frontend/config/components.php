@@ -106,22 +106,17 @@ return [
         'enablePrettyUrl' => true,
         'showScriptName' => false,
         'suffix' => '',
-        // 'normalizer' => [
-        //     'class' => UrlNormalizer::class,
-        //     'collapseSlashes' => true,
-        //     'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY, // Use a temporary redirect instead of permanent
-        // ],
         'rules' => require __DIR__ . '/route.php',
     ],
 
     'view' => [
         'theme' => [
-            'basePath' => '@frontend/themes/admin-pro',
+            'basePath' => '@app/themes/admin-pro',
             'baseUrl' => '@web/themes/admin-pro',
             'pathMap' => [
                 '@app/views' => [
-                    '@frontend/views/themes/admin-pro',
-                    '@frontend/views/themes/basic',
+                    '@app/views/themes/admin-pro',
+                    '@app/views/themes/basic',
                 ],
             ],
         ],

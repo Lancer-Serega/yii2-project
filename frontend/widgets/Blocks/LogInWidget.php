@@ -2,9 +2,9 @@
 namespace frontend\widgets\Blocks;
 
 use frontend\models\LoginForm;
-use yii\bootstrap\Widget;
+use frontend\widgets\BaseWidget;
 
-class LogIn extends Widget
+class LogInWidget extends BaseWidget
 {
     public $formUrl;
 
@@ -13,7 +13,7 @@ class LogIn extends Widget
      */
     public function run()
     {
-        return $this->render('login-form', [
+        return $this->render('/login-form', [
             'loginFormModel' => new LoginForm(),
             'formUrl' => $this->formUrl,
         ]);

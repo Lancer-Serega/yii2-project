@@ -13,8 +13,8 @@ use \yii\helpers\Url;
 use \yii\web\View;
 use \yii\widgets\Breadcrumbs;
 use \frontend\models\SigninForm;
-use \frontend\widgets\LanguageCheck;
-use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignIn};
+use \frontend\widgets\LanguageWidget;
+use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignInWidget};
 use \frontend\assets\BasicThemeAsset;
 use \common\widgets\Alert;
 
@@ -48,7 +48,7 @@ BasicThemeAsset::register($this);
                 </a>
             </div>
             <?= HeaderMenu::widget(['route' => $this->context->route]); ?>
-            <?= LanguageCheck::widget(['app' => Yii::$app]); ?>
+            <?= LanguageWidget::widget(['app' => Yii::$app]); ?>
             <?= AccountMenu::widget(['user' => Yii::$app->getUser()->getIdentity()]); ?>
         </div>
     </header>
@@ -138,7 +138,7 @@ BasicThemeAsset::register($this);
     <?php if (Yii::$app->user->isGuest): ?>
     <!-- Popups widgets :: Start -->
     <?= LogIn::widget(['formUrl' => Url::to(['/login'])]); ?>
-    <?= SignIn::widget(['formUrl' => Url::to(['/signin'])]); ?>
+    <?= SignInWidget::widget(['formUrl' => Url::to(['/signin'])]); ?>
     <!-- Popups widgets :: END -->
     <?php endif; ?>
 

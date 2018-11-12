@@ -9,6 +9,7 @@
 namespace frontend\components;
 
 use yii\base\InvalidConfigException;
+use yii\web\Cookie;
 use yii\web\Request;
 use frontend\models\Lang;
 
@@ -27,10 +28,15 @@ class LangRequest extends Request
 
     public function prepareDefaultLang()
     {
-        $this->_lang_url = $this->getUrl();
-        $url_list = explode('/', $this->_lang_url);
-        $lang_url = $url_list[1] ?? null;
-        Lang::setCurrent($lang_url);
+        switch (true) {
+            case $lang_url = $this->prepareLangByCookie():
+            break;
+
+            case $lang_url = $this->prepareLangByDB():
+            break;
+
+            default: $lang_url = $this->prepareLangByUrl();
+        }
 
         if(
             null !== $lang_url
@@ -84,5 +90,39 @@ class LangRequest extends Request
         }
 
         return (string) $pathInfo;
+    }
+
+    private function prepareLangByUrl()
+    {
+        $this->_lang_url = $this->getUrl();
+        $url_list = explode('/', $this->_lang_url);
+        $lang_url = $url_list[1] ?? null;
+        Lang::setCurrent($lang_url);
+
+        $cookie = new Cookie([
+            'name' => 'language',
+            'value' => $lang_url,
+        ]);
+        \Yii::$app->response->cookies->add($cookie);
+
+        return $lang_url;
+    }
+
+    private function prepareLangByCookie()
+    {
+        if ($language = \Yii::$app->request->cookies->getValue('language')) {
+            return $language;
+        }
+
+        return null;
+    }
+
+    private function prepareLangByDB()
+    {
+        if (!\Yii::$app->user->getIdentity()) {
+            return false;
+        }
+
+        return \Yii::$app->user->getIdentity()->getLanguage();
     }
 }
