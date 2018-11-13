@@ -54,7 +54,6 @@ class IdentityController extends BaseController
      */
     public function actionLogin()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
         $this->responseStatus = self::RESPONSE_STATUS_ERROR;
 
         $loginForm = new LoginForm();
@@ -63,21 +62,21 @@ class IdentityController extends BaseController
                 if ($loginForm->login()) {
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['redirect'] = Yii::$app->getUser()->getReturnUrl();
-                    return $this->jsonData;
+                    return $this->asJson($this->jsonData);
                 }
 
-                $this->jsonData['flash']['error'][] = Yii::t('form', 'Not a valid email or password.');
+                $this->jsonData['flash']['error'] = $loginForm->getErrorSummary(true);
             } catch (\DomainException $e) {
                 $msg = Yii::t('error', 'Excuse me.');
                 $msg .= Yii::t('error', 'An authorization failed.');
                 $msg .= Yii::t('error', 'Our development team is already trying to fix this problem.');
                 $msg .= Yii::t('error', 'Soon we will fix it.');
                 $this->jsonData['flash']['error'][] = Yii::t('error', $msg);
-                return $this->jsonData;
+                return $this->asJson($this->jsonData);
             }
         }
 
-        return $this->jsonData;
+        return $this->asJson($this->jsonData);
     }
 
     /**

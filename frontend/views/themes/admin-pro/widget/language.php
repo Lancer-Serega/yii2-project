@@ -17,7 +17,7 @@ use \yii\helpers\Html;
  */
 
 $request = \Yii::$app->getRequest();
-$langUrl = $request->getLangUrl();
+//$langUrl = $request->getLangUrl();
 ?>
 
 <!-- ============================================================== -->
@@ -30,7 +30,8 @@ $langUrl = $request->getLangUrl();
     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
         <?php foreach ($langs as $lang): ?>
             <?php $text = '<i class="flag-icon flag-icon-' . $lang->url . '"></i>' . $lang->name; ?>
-            <?= Html::a($text, "/{$lang->url}{$langUrl}", ['class' => 'dropdown-item']); ?>
+            <?= Html::a($text, "/{$lang->url}", ['class' => 'dropdown-item']); ?>
+<!--            --><?//= Html::a($text, "/{$lang->url}{$langUrl}", ['class' => 'dropdown-item']); ?>
         <?php endforeach; ?>
     </div>
 </li>

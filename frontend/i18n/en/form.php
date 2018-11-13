@@ -4,8 +4,10 @@ return [
     // Form
     'Log In' => 'Log In',
     'Log Out' => 'Log Out',
+    'Logout' => 'Logout',
     'Sign In' => 'Sign In',
     'Remember me' => 'Remember me',
+    'Account Setting' => 'Account Setting',
     'Registration form' => 'Registration form',
     'Create account' => 'Create account',
     'Email' => 'Email',
@@ -32,6 +34,7 @@ return [
     'Interface language' => 'Interface language',
     'Select interface language' => 'Select interface language',
     'Save' => 'Save',
+    'Search & enter' => 'Search & enter',
 
     // Form messages
     'There is no user with this email address.' => 'There is no user with this email address.',

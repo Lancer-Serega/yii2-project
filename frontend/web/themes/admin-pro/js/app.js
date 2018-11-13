@@ -50,8 +50,10 @@ $(function() {
      */
     function prepareFlash(flashList) {
         Object.keys(flashList).forEach((flashType) => {
-            flashList[flashType].forEach((flashMsg) => {
-                $('.alert-block').bs_alert(flashType, flashMsg);
+            Object.keys(flashList[flashType]).forEach(k => {
+                for(let i = 0; i < flashList[flashType][k].length; i++) {
+                    $('.alert-block').bs_alert(flashType, flashList[flashType][k][i]);
+                }
             });
         });
     }

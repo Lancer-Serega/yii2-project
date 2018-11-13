@@ -3,9 +3,9 @@ namespace frontend\widgets\Blocks;
 
 use frontend\models\Lang;
 use frontend\models\UserChangeAccountForm;
-use yii\bootstrap\Widget;
+use frontend\widgets\BaseWidget;
 
-class UserChangeAccount extends Widget
+class UserChangeAccount extends BaseWidget
 {
     public $formUrl;
 
@@ -15,7 +15,7 @@ class UserChangeAccount extends Widget
     public function run()
     {
         $langList = Lang::prepareForDropdown(Lang::find()->asArray()->all(), 'id', 'name');
-        return $this->render('user-change-account-form', [
+        return $this->render('/user-change-account-form', [
             'userChangeAccountForm' => new UserChangeAccountForm(),
             'formUrl' => $this->formUrl,
             'langList' => $langList,

@@ -21,9 +21,9 @@ class AdminProThemeAsset extends AssetBundle
     public $css = [
         '/themes/admin-pro/assets/plugins/bootstrap/css/bootstrap.min.css',
         '/themes/admin-pro/assets/plugins/prism/prism.css',
-        '/themes/admin-pro/css/style.css',
         '/themes/admin-pro/css/colors/blue.css',
         '/themes/admin-pro/css/pages/floating-label.css',
+        '/themes/admin-pro/css/style.css',
     ];
 
     public $js = [

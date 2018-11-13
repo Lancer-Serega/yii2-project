@@ -31,8 +31,6 @@ class LangUrlManager extends UrlManager
 
         $url = parent::createUrl($params);
 
-        return $url === '/'
-            ? "/{$lang->url}"
-            : "/{$lang->url}$url";
+        return $url === '/' ? "/{$lang->url}/" : "/{$lang->url}$url/";
     }
 }

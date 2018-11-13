@@ -7,6 +7,7 @@
  */
 
 use frontend\widgets\Alert;
+use \yii\helpers\Url;
 use \yii\widgets\Breadcrumbs;
 ?>
 
@@ -52,7 +53,7 @@ use \yii\widgets\Breadcrumbs;
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title" id="1">Index::index</h4>
+                    <h2>Hello faq page!</h2>
                 </div>
             </div>
         </div>

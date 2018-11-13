@@ -29,7 +29,7 @@ AdminProThemeAsset::register($this);
 
     <?= Html::csrfMetaTags(); ?>
     <title><?= Html::encode($this->title); ?></title>
-    <link rel="shortcut icon" href="<?= Url::to($this->theme->getUrl('/favicon.ico'), true); ?>">
+    <link rel="shortcut icon" href="<?= Url::to($this->theme->getUrl('/images/favicon.ico'), true); ?>">
     <?php $this->head(); ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

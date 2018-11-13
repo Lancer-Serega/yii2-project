@@ -11,6 +11,7 @@ use yii\log\FileTarget;
 use yii\caching\FileCache;
 use yii\web\AssetManager;
 use yii\rbac\DbManager;
+use yii\web\UrlManager;
 
 return [
     'assetManager' => [
@@ -68,7 +69,7 @@ return [
         'csrfParam' => '_csrf',
         'enableCsrfValidation' => true,
         'cookieValidationKey' => 'vBo8qtDGBBJqHjQrrCRbiqYGkuHKEXU2',
-        'class' => LangRequest::class
+//        'class' => LangRequest::class
     ],
 
     'session' => [
@@ -102,11 +103,17 @@ return [
     ],
 
     'urlManager' => [
-        'class'=> LangUrlManager::class,
+        'class'=> UrlManager::class,
         'enablePrettyUrl' => true,
         'showScriptName' => false,
         'suffix' => '',
-        'rules' => require __DIR__ . '/route.php',
+        'rules' => [
+            'settings' => 'cabinet/settings',
+            '<action:(login|logout|signin|request-password-reset|reset-password|signin-confirm|resend-email)>' => 'identity/<action>',
+            '<controller:(cabinet|blog|tariff)>' => '<controller>/index',
+            '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
+            'robots.txt' => 'seo/manage/get-robots',
+        ],
     ],
 
     'view' => [

@@ -33,6 +33,8 @@ use \yii\helpers\Html;
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="alert-block"></div>
+
                                         <?php $form = ActiveForm::begin([
                                             'id' => 'signin-form',
                                             'action' => $formUrl,

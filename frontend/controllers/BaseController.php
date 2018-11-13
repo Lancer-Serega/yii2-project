@@ -42,12 +42,6 @@ class BaseController extends Controller
             'redirect' => '',
         ];
 
-        if (!Yii::$app->user->isGuest) {
-            if (Yii::$app->user->getIdentity()->email_status === User::EMAIL_NOT_CONFIRMED) {
-                $this->response;
-            }
-        }
-
         if (parent::beforeAction($action)) {
 //            if (!\Yii::$app->user->can($action->id)) {
 //                throw new ForbiddenHttpException(Yii::t('error', 'Access denied'));

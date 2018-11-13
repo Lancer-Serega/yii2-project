@@ -29,6 +29,7 @@ class CabinetController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
+                    'settings' => ['GET'],
                     'settings-save' => ['POST'],
                 ],
             ],

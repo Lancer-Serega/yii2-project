@@ -4,8 +4,10 @@ return [
     // Form
     'Log In' => 'Войти',
     'Log Out' => 'Выйти',
+    'Logout' => 'Выйти',
     'Sign In' => 'Зарегистрироваться',
     'Remember me' => 'Запомнить меня',
+    'Account Setting' => 'Настройки аккаунта',
     'Registration form' => 'Форма регистрации',
     'Authorization form' => 'Форма авторизации',
     'Create account' => 'Зарегистрироваться',
@@ -32,6 +34,7 @@ return [
     'Interface language' => 'Язык интерфейса',
     'Select interface language' => 'Выбирете язык интерфейса',
     'Save' => 'Сохранить',
+    'Search & enter' => 'Найти',
 
     // Form messages
     'There is no user with this email address.' => 'Пользователь с текущем Email адресом не найден!',

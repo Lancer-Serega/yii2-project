@@ -46,8 +46,10 @@ use \yii\helpers\Html;
                         <?php $options = ['class' => 'form-control', 'autocomplete' => 'password']; ?>
                         <?= $form->field($loginFormModel, 'password')->passwordInput($options)->label(Yii::t('form', 'Password')); ?>
 
-                        <?php $options = ['class' => 'form-control']; ?>
-                        <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
+                        <div class="form-group">
+                            <input type="checkbox" id="remember_checkbox" class="form-control" checked="">
+                            <label for="remember_checkbox"><?= Yii::t('form', 'Remember me'); ?></label>
+                        </div>
 
                         <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green']); ?>
                         <?php ActiveForm::end(); ?>
