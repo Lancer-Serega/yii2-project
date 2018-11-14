@@ -241,10 +241,21 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * @return Lang|null
+     * @return Language|null
      */
     public function getLanguage()
     {
-        return Lang::findOne(['id' => $this->language]);
+        return Language::findOne(['id' => $this->language]);
+    }
+
+    /**
+     * @param Language $language
+     * @return User
+     */
+    public function switchLanguage(Language $language): User
+    {
+        $this->language = $language->id;
+        $this->save();
+        return $this;
     }
 }

@@ -113,13 +113,10 @@ class CabinetController extends BaseController
     }
 
     /**
-     * @return array
      * @throws \Throwable
      */
-    public function actionSettingsSave(): array
+    public function actionSettingsSave()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $form = new UserChangeAccountForm();
         $service = new IdentityService();
         if ($form->load(Yii::$app->request->post(), 'UserChangeAccountForm')) {
@@ -132,16 +129,18 @@ class CabinetController extends BaseController
                         'user_email' => $user->email,
                     ];
                     $this->jsonData['flash']['success'][] = Yii::t('form', 'Information saved successfully');
+                } else {
+                    $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
                 }
-                $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
             } catch (\Exception $e) {
                 Yii::$app->errorHandler->logException($e);
                 $this->responseStatus = self::RESPONSE_STATUS_ERROR;
                 $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
+                return $this->asJson($this->jsonData);
             }
         }
 
-        return $this->jsonData;
+        return $this->asJson($this->jsonData);
     }
 
     public function actionSecurity(): string

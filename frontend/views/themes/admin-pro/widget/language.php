@@ -7,17 +7,16 @@
  */
 
 use frontend\components\LangRequest;
-use frontend\models\Lang;
+use frontend\models\Language;
 use \yii\helpers\Html;
 
 /**
  * @var LangRequest $request
- * @var Lang $currentLang
- * @var Lang[] $langs
+ * @var Language $currentLang
+ * @var Language[] $langs
  */
 
 $request = \Yii::$app->getRequest();
-//$langUrl = $request->getLangUrl();
 ?>
 
 <!-- ============================================================== -->
@@ -29,9 +28,9 @@ $request = \Yii::$app->getRequest();
     </a>
     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
         <?php foreach ($langs as $lang): ?>
-            <?php $text = '<i class="flag-icon flag-icon-' . $lang->url . '"></i>' . $lang->name; ?>
-            <?= Html::a($text, "/{$lang->url}", ['class' => 'dropdown-item']); ?>
-<!--            --><?//= Html::a($text, "/{$lang->url}{$langUrl}", ['class' => 'dropdown-item']); ?>
+            <?php $code = $lang->url === 'en' ? 'us' : $lang->url; ?>
+            <?php $text = '<i class="flag-icon flag-icon-' . $code . '"></i>' . $lang->name; ?>
+            <?= Html::a($text, "/language/switch/{$lang->url}", ['class' => 'dropdown-item']); ?>
         <?php endforeach; ?>
     </div>
 </li>

@@ -8,7 +8,7 @@
 
 namespace frontend\widgets\Blocks;
 
-use frontend\models\Lang as LangModel;
+use frontend\models\Language as LangModel;
 use frontend\widgets\BaseWidget;
 
 class LanguageWidget extends BaseWidget

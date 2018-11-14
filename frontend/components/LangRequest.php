@@ -11,7 +11,7 @@ namespace frontend\components;
 use yii\base\InvalidConfigException;
 use yii\web\Cookie;
 use yii\web\Request;
-use frontend\models\Lang;
+use frontend\models\Language;
 
 class LangRequest extends Request
 {
@@ -40,10 +40,10 @@ class LangRequest extends Request
 
         if(
             null !== $lang_url
-            && $lang_url === Lang::getCurrent()->url
-            && 1 === strpos($this->_lang_url, Lang::getCurrent()->url)
+            && $lang_url === Language::getCurrent()->url
+            && 1 === strpos($this->_lang_url, Language::getCurrent()->url)
         ) {
-            $this->_lang_url = substr($this->_lang_url, \strlen(Lang::getCurrent()->url) + 1);
+            $this->_lang_url = substr($this->_lang_url, \strlen(Language::getCurrent()->url) + 1);
         }
     }
 
@@ -97,7 +97,7 @@ class LangRequest extends Request
         $this->_lang_url = $this->getUrl();
         $url_list = explode('/', $this->_lang_url);
         $lang_url = $url_list[1] ?? null;
-        Lang::setCurrent($lang_url);
+        Language::setCurrent($lang_url);
 
         $cookie = new Cookie([
             'name' => 'language',

@@ -108,6 +108,7 @@ return [
         'showScriptName' => false,
         'suffix' => '',
         'rules' => [
+            '<controller:(language)>/<action:(switch)>/<lang:(en|ru)>' => '<controller>/<action>',
             'settings' => 'cabinet/settings',
             '<action:(login|logout|signin|request-password-reset|reset-password|signin-confirm|resend-email)>' => 'identity/<action>',
             '<controller:(cabinet|blog|tariff)>' => '<controller>/index',

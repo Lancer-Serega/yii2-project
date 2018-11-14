@@ -8,13 +8,13 @@
  */
 
 use frontend\components\LangRequest;
-use frontend\models\Lang;
+use frontend\models\Language;
 use yii\helpers\Html;
 
 /**
  * @var LangRequest $request
- * @var Lang $currentLang
- * @var Lang[] $langs
+ * @var Language $currentLang
+ * @var Language[] $langs
  */
 
 $request = \Yii::$app->getRequest();

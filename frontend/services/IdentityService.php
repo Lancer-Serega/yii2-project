@@ -8,6 +8,7 @@
 
 namespace frontend\services;
 
+use frontend\models\Language;
 use frontend\models\UserChangeAccountForm;
 use Yii;
 use frontend\models\SigninForm;
@@ -122,12 +123,16 @@ class IdentityService
          * @var User $user
          */
         $user = Yii::$app->user->getIdentity();
-        $user->language = $form->language;
+        $user->language = (int)$form->language;
         !$form->username ?: $user->username = $form->username;
         !$form->phone ?: $user->phone = $form->phone;
         !$form->skype ?: $user->skype = $form->skype;
         !$form->telegram ?: $user->telegram = $form->telegram;
         !$form->new_password ?: $user->setPassword($form->new_password);
+
+        if ($form->language) {
+            Language::setCurrentById($user->language);
+        }
 
         try {
             if ($user->save()) {

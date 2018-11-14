@@ -17,23 +17,34 @@ use yii\behaviors\TimestampBehavior;
  * @property string $date_update Update date (in unix timestamp)
  * @property string $date_create Creation date (in unix timestamp)
  */
-class Lang extends ActiveRecord
+class Language extends ActiveRecord
 {
     /**
      * Property to store the current language object
-     * @var Lang
+     * @var Language
      */
     public static $current;
 
     /**
      * Getting the current language object
-     * @return Lang
+     * @return Language
+     * @throws \Throwable
      */
-    public static function getCurrent(): Lang
+    public static function getCurrent(): Language
     {
-        if( self::$current === null ){
+        /**
+         * @var User $user
+         */
+        if (self::$current === null) {
+            if ($user = \Yii::$app->user->getIdentity()) {
+                self::$current = self::getLangById($user->language);
+            }
+        }
+
+        if (self::$current === null) {
             self::$current = self::getDefaultLang();
         }
+
         return self::$current;
     }
 
@@ -49,8 +60,19 @@ class Lang extends ActiveRecord
     }
 
     /**
+     * Setting the current language object and user locale
+     * @param int $id
+     */
+    public static function setCurrentById($id = null): void
+    {
+        $language = self::getLangById($id);
+        self::$current = $language ?? self::getDefaultLang();
+        Yii::$app->language = self::$current->local;
+    }
+
+    /**
      * Getting the default language object
-     * @return Lang|ActiveRecord|array|null
+     * @return Language|ActiveRecord|array|null
      */
     public static function getDefaultLang()
     {
@@ -58,9 +80,18 @@ class Lang extends ActiveRecord
     }
 
     /**
+     * @param int $languageId
+     * @return Language
+     */
+    public static function getLangById(int $languageId): Language
+    {
+        return self::findOne($languageId);
+    }
+
+    /**
      * Receipt of language object by letter identifier
      * @param string $url
-     * @return Lang|array|null|ActiveRecord
+     * @return Language|array|null|ActiveRecord
      */
     public static function getLangByUrl($url = null)
     {
@@ -69,7 +100,7 @@ class Lang extends ActiveRecord
         }
 
         $language = self::findOne(['url' => $url]);
-        if ( $language === null ) {
+        if ($language === null) {
             return null;
         }
 

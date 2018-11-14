@@ -64,7 +64,7 @@ $field['password_repeat'] = $form->field($userChangeAccountForm, 'password_repea
     ->label(Yii::t('form', 'Password repeat'));
 
 // Interface language
-$options = ['class' => 'form-control'];
+$options = ['class' => 'form-control', 'options' => [$user->language => ['Selected' => true]]];
 $field['lang'] = $form->field($userChangeAccountForm, 'language')
     ->dropDownList($langList, $options)
     ->label(Yii::t('form', 'Interface language'));
