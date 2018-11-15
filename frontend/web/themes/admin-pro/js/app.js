@@ -1,31 +1,31 @@
 $(function() {
     "use strict";
 
-    $('form').on('submit', function (event) {
-        if ($(this).attr('method') === 'post') {
-            event.preventDefault();
-            let data = $(this).serialize();
-
-            $.ajax({
-                type: $(this).attr('method'),
-                url: $(this).attr('action') || '#',
-                data: data,
-                success: function (response) {
-                    prepareResponse(response);
-                },
-                error: function (xhr, status, error) {
-                    console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                    console.log("Response text: " + xhr.responseText);
-                    alert('error');
-                },
-                fail: function (xhr, status, error) {
-                    console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
-                    console.log("Response text: " + xhr.responseText);
-                    alert('fail');
-                }
-            });
-        }
-    });
+    // $('form').on('beforeSubmit', function (event) {
+    //     if ($(this).attr('method') === 'post') {
+    //         event.preventDefault();
+    //         let data = $(this).serialize();
+    //
+    //         $.ajax({
+    //             type: $(this).attr('method'),
+    //             url: $(this).attr('action') || '#',
+    //             data: data,
+    //             success: function (response) {
+    //                 prepareResponse(response);
+    //             },
+    //             error: function (xhr, status, error) {
+    //                 console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+    //                 console.log("Response text: " + xhr.responseText);
+    //                 alert('error');
+    //             },
+    //             fail: function (xhr, status, error) {
+    //                 console.log("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+    //                 console.log("Response text: " + xhr.responseText);
+    //                 alert('fail');
+    //             }
+    //         });
+    //     }
+    // });
 
     $.fn.extend({
         bs_alert: function (type, message, title) {
@@ -51,8 +51,14 @@ $(function() {
     function prepareFlash(flashList) {
         Object.keys(flashList).forEach((flashType) => {
             Object.keys(flashList[flashType]).forEach(k => {
-                for(let i = 0; i < flashList[flashType][k].length; i++) {
-                    $('.alert-block').bs_alert(flashType, flashList[flashType][k][i]);
+                if (typeof flashList[flashType][0] === 'string') {
+                    flashList[flashType].forEach(msg => {
+                        $('.alert-block').bs_alert(flashType, msg);
+                    })
+                } else {
+                    for(let i = 0; i < flashList[flashType][k].length; i++) {
+                        $('.alert-block').bs_alert(flashType, flashList[flashType][k][i]);
+                    }
                 }
             });
         });

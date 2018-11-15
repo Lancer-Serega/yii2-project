@@ -1,7 +1,7 @@
 <?php
 namespace frontend\widgets\Blocks;
 
-use frontend\models\SearchForm;
+use frontend\models\Form\SearchForm;
 use frontend\widgets\BaseWidget;
 
 class SearchWidget extends BaseWidget

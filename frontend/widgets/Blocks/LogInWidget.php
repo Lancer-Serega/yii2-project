@@ -1,7 +1,7 @@
 <?php
 namespace frontend\widgets\Blocks;
 
-use frontend\models\LoginForm;
+use frontend\models\Form\LoginForm;
 use frontend\widgets\BaseWidget;
 
 class LogInWidget extends BaseWidget

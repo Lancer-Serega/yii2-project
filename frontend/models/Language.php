@@ -7,7 +7,7 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "lang".
+ * This is the model class for table "language".
  *
  * @property int $id
  * @property string $url Alphabetic identifier of the language to display in the URL (ru, en, de, ...)
@@ -37,7 +37,7 @@ class Language extends ActiveRecord
          */
         if (self::$current === null) {
             if ($user = \Yii::$app->user->getIdentity()) {
-                self::$current = self::getLangById($user->language);
+                self::$current = self::getById($user->getConfig()->getLanguage()->id);
             }
         }
 
@@ -65,7 +65,7 @@ class Language extends ActiveRecord
      */
     public static function setCurrentById($id = null): void
     {
-        $language = self::getLangById($id);
+        $language = self::getById($id);
         self::$current = $language ?? self::getDefaultLang();
         Yii::$app->language = self::$current->local;
     }
@@ -83,9 +83,9 @@ class Language extends ActiveRecord
      * @param int $languageId
      * @return Language
      */
-    public static function getLangById(int $languageId): Language
+    public static function getById(int $languageId): Language
     {
-        return self::findOne($languageId);
+        return self::findOne(['id' => $languageId]);
     }
 
     /**
@@ -108,7 +108,7 @@ class Language extends ActiveRecord
     }
 
     /**
-     * Prepare lang list for html select/option tag
+     * Prepare language list for html select/option tag
      * ```html
      *    <select>
      *        <option value="$key">$value</option>
@@ -139,7 +139,7 @@ class Language extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return 'lang';
+        return 'language';
     }
 
     /**

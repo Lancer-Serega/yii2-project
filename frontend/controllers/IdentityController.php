@@ -12,14 +12,14 @@ namespace frontend\controllers;
 use frontend\models\User;
 use frontend\services\IdentityService;
 use \Yii;
-use frontend\models\SigninForm;
+use frontend\models\Form\SigninForm;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
-use frontend\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
+use frontend\models\Form\LoginForm;
+use frontend\models\Form\PasswordResetRequestForm;
+use frontend\models\Form\ResetPasswordForm;
 use yii\web\Response;
 
 /**
@@ -38,7 +38,7 @@ class IdentityController extends BaseController
                 'actions' => [
                     'login' => ['POST'],
                     'logout' => ['GET'],
-                    'signin' => ['POST'],
+                    'signin' => ['GET', 'POST'],
                     'signin-confirm' => ['GET'],
                     'resend-email' => ['GET'],
                     'request-password-resend' => ['GET', 'POST'],
@@ -62,7 +62,11 @@ class IdentityController extends BaseController
                 if ($loginForm->login()) {
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['redirect'] = Yii::$app->getUser()->getReturnUrl();
-                    return $this->asJson($this->jsonData);
+                    if (\Yii::$app->getRequest()->isAjax) {
+                        return $this->asJson($this->jsonData);
+                    }
+
+                    return $this->render('@app/views/themes/admin-pro/index/index');
                 }
 
                 $this->jsonData['flash']['error'] = $loginForm->getErrorSummary(true);
@@ -72,11 +76,19 @@ class IdentityController extends BaseController
                 $msg .= Yii::t('error', 'Our development team is already trying to fix this problem.');
                 $msg .= Yii::t('error', 'Soon we will fix it.');
                 $this->jsonData['flash']['error'][] = Yii::t('error', $msg);
-                return $this->asJson($this->jsonData);
+                if (\Yii::$app->getRequest()->isAjax) {
+                    return $this->asJson($this->jsonData);
+                }
+
+                return $this->render('@app/views/themes/admin-pro/index/index');
             }
         }
 
-        return $this->asJson($this->jsonData);
+        if (\Yii::$app->getRequest()->isAjax) {
+            return $this->asJson($this->jsonData);
+        }
+
+        return $this->render('@app/views/themes/admin-pro/index/index');
     }
 
     /**
@@ -97,8 +109,6 @@ class IdentityController extends BaseController
      */
     public function actionSignin()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
         $signinForm = new SigninForm();
         $service = new IdentityService();
         if ($signinForm->load(Yii::$app->request->post(), 'SigninForm')) {
@@ -124,7 +134,11 @@ class IdentityController extends BaseController
         }
         $this->jsonData['status'] = $this->responseStatus;
 
-        return $this->jsonData;
+        if (\Yii::$app->getRequest()->isAjax) {
+            return $this->asJson($this->jsonData);
+        }
+
+        return $this->goHome();
     }
 
     /**

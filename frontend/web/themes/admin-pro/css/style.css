@@ -7787,3 +7787,21 @@ File: scss
 .tab-pane {
     padding: 10px 5px;
 }
+
+i[class^="ti-"], i[class*=" ti-"],
+i[class^="fa-"], i[class*=" fa-"],
+i[class^="fas-"], i[class*=" fas-"] {
+    margin-right: 5px;
+}
+
+.switch label .lever {
+    background-color: #9e2626;
+}
+
+.switch label .lever:after {
+    background-color: #ff1414;
+}
+
+.switch label input[type=checkbox]:checked + .lever:after {
+
+}

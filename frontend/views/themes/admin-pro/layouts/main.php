@@ -9,10 +9,11 @@
 
 use frontend\assets\AdminProThemeAsset;
 use \frontend\models\User;
+use frontend\widgets\Alert;
 use \yii\helpers\Html;
 use \yii\helpers\Url;
 use \yii\web\View;
-use \frontend\models\SigninForm;
+use \frontend\models\Form\SigninForm;
 
 AdminProThemeAsset::register($this);
 
@@ -59,6 +60,20 @@ AdminProThemeAsset::register($this);
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
+
+            <div class="alert-block">
+                <?php if (count(Yii::$app->session->getAllFlashes())): ?>
+                    <!-- ============================================================== -->
+                    <!-- Alerts -->
+                    <!-- ============================================================== -->
+                    <div class="container-fluid">
+                        <?= Alert::widget(['options' => ['class' => 'show']]) . '<br/>'; ?>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- END Alerts -->
+                    <!-- ============================================================== -->
+                <?php endif; ?>
+            </div>
 
             <?= $content; ?>
 

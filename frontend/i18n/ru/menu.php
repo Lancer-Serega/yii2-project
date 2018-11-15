@@ -26,4 +26,8 @@ return [
     'Settings' => 'Настройки',
     'Security' => 'Безопасность',
     'Finance operations' => 'Финансовые операции',
+    'My Profile' => 'Профиль',
+    'My Balance' => 'Баланс',
+    'Inbox' => 'Сообщения',
+    'View Profile' => 'Мой профиль',
 ];

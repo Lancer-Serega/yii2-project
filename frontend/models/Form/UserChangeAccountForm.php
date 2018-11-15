@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\models\Form;
 
-use borales\extensions\phoneInput\PhoneInputBehavior;
+use frontend\models\User;
 use Yii;
 use yii\base\Model;
 

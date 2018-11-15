@@ -12,9 +12,9 @@ use \yii\helpers\Html;
 use \yii\helpers\Url;
 use \yii\web\View;
 use \yii\widgets\Breadcrumbs;
-use \frontend\models\SigninForm;
-use \frontend\widgets\LanguageWidget;
-use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogIn, SignInWidget};
+use \frontend\models\Form\SigninForm;
+use \frontend\widgets\Blocks\LanguageWidget;
+use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogInWidget, SignInWidget};
 use \frontend\assets\BasicThemeAsset;
 use \common\widgets\Alert;
 
@@ -137,7 +137,7 @@ BasicThemeAsset::register($this);
 
     <?php if (Yii::$app->user->isGuest): ?>
     <!-- Popups widgets :: Start -->
-    <?= LogIn::widget(['formUrl' => Url::to(['/login'])]); ?>
+    <?= LogInWidget::widget(['formUrl' => Url::to(['/login'])]); ?>
     <?= SignInWidget::widget(['formUrl' => Url::to(['/signin'])]); ?>
     <!-- Popups widgets :: END -->
     <?php endif; ?>

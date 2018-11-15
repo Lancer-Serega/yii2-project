@@ -26,4 +26,8 @@ return [
     'Settings' => 'Settings',
     'Security' => 'Security',
     'Finance operations' => 'Finance operations',
+    'My Profile' => 'My Profile',
+    'My Balance' => 'My Balance',
+    'Inbox' => 'Inbox',
+    'View Profile' => 'View Profile',
 ];

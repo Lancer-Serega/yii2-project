@@ -9,7 +9,7 @@
  */
 
 use \frontend\models\User;
-use \frontend\models\UserChangeAccountForm;
+use \frontend\models\Form\UserChangeAccountForm;
 use \yii\web\View;
 use \yii\widgets\ActiveForm;
 use \yii\helpers\Html;
@@ -64,8 +64,8 @@ $field['password_repeat'] = $form->field($userChangeAccountForm, 'password_repea
     ->label(Yii::t('form', 'Password repeat'));
 
 // Interface language
-$options = ['class' => 'form-control', 'options' => [$user->language => ['Selected' => true]]];
-$field['lang'] = $form->field($userChangeAccountForm, 'language')
+$options = ['class' => 'form-control', 'options' => [$user->getLanguage()->id => ['Selected' => true]]];
+$field['language'] = $form->field($userChangeAccountForm, 'language')
     ->dropDownList($langList, $options)
     ->label(Yii::t('form', 'Interface language'));
 
@@ -107,7 +107,7 @@ $field['telegram'] = $form->field($userChangeAccountForm, 'telegram')
                 <span class="hidden-sm-up">
                     <i class="ti-home"></i>
                 </span>
-                <span class="hidden-xs-down"><?= Yii::t('content', 'Basic'); ?></span>
+                <span class="hidden-xs-down"><i class="mdi mdi-clipboard-account mr-2"></i><?= Yii::t('content', 'Basic'); ?></span>
             </a>
         </li>
         <li class="nav-item">
@@ -115,7 +115,7 @@ $field['telegram'] = $form->field($userChangeAccountForm, 'telegram')
                 <span class="hidden-sm-up">
                     <i class="ti-user"></i>
                 </span>
-                <span class="hidden-xs-down"><?= Yii::t('content', 'Notifications'); ?></span>
+                <span class="hidden-xs-down"><i class="mdi mdi-bell-ring-outline mr-2"></i><?= Yii::t('content', 'Notifications'); ?></span>
             </a>
         </li>
         <li class="nav-item">
@@ -123,7 +123,7 @@ $field['telegram'] = $form->field($userChangeAccountForm, 'telegram')
                 <span class="hidden-sm-up">
                     <i class="ti-email"></i>
                 </span>
-                <span class="hidden-xs-down">Empty tab</span>
+                <span class="hidden-xs-down"><i class="mdi mdi-incognito mr-2"></i>Empty tab</span>
             </a>
         </li>
     </ul>
@@ -133,15 +133,87 @@ $field['telegram'] = $form->field($userChangeAccountForm, 'telegram')
             <div class="ui-field"><?= $field['username']; ?></div>
             <div class="ui-field"><?= $field['new_password']; ?></div>
             <div class="ui-field"><?= $field['password_repeat']; ?></div>
-            <div class="ui-field"><?= $field['lang']; ?></div>
+            <div class="ui-field"><?= $field['language']; ?></div>
             <div class="ui-field"><?= $field['phone']; ?></div>
             <div class="ui-field"><?= $field['skype']; ?></div>
             <div class="ui-field"><?= $field['telegram']; ?></div>
         </div>
-        <div class="tab-pane p-20" id="settings-notifications" role="tabpanel"></div>
-        <div class="tab-pane p-20" id="#settings-empty" role="tabpanel"><h2>Empty tab content!</h2></div>
+        
+        <div class="tab-pane p-20" id="settings-notifications" role="tabpanel">
+            <span class="text-info">
+                <?= Yii::t('content', 'All notifications are sent to your email:'); ?>
+                <strong><?= \Yii::$app->user->getIdentity()->email; ?></strong>
+            </span>
+            <hr>
+
+            <table class="table table-hover">
+                <tr>
+                    <td>
+                        <div class="switch">
+                            <label style="display:inline-flex; position:relative;">
+                                <span class="text-danger">OFF</span>
+                                <input type="checkbox" checked>
+                                <span class="lever"></span>
+                                <span class="text-success">ON</span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <?= Yii::t('content', 'Tariff extension reminder'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="switch">
+                            <label style="display:inline-flex; position:relative;">
+                                <span class="text-danger">OFF</span>
+                                <input type="checkbox" checked>
+                                <span class="lever"></span>
+                                <span class="text-success">ON</span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <?= Yii::t('content', 'Banking Notification'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="switch">
+                            <label style="display:inline-flex; position:relative;">
+                                <span class="text-danger">OFF</span>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                <span class="text-success">ON</span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <?= Yii::t('content', 'Notice of a response from the system ticket'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="switch">
+                            <label style="display:inline-flex; position:relative;">
+                                <span class="text-danger">OFF</span>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                <span class="text-success">ON</span>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <?= Yii::t('content', 'Notification of entry from an unknown IP device'); ?>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="tab-pane p-20" id="settings-empty" role="tabpanel"><h2>Empty tab content!</h2></div>
     </div>
 </div>
+
 
 <?= Html::submitButton(Yii::t('form', 'Save'), ['class' => 'btn btn--block btn--green', 'style' => 'max-width:180px; margin:auto']); ?>
 

@@ -49,8 +49,9 @@ class BaseController extends Controller
          * @var User $user
          */
         if ($user = \Yii::$app->user->identity) {
-            $language = $user->language;
-            $language = Language::getLangById($language)->url;
+            $userConfig = $user->getConfig($user->user_config_id);
+            $language = $userConfig->getLanguage($userConfig->language_id);
+            $language = $language->url;
         } elseif (\Yii::$app->request->cookies->getValue('language')) {
             $language = \Yii::$app->request->cookies->getValue('language');
         } else {

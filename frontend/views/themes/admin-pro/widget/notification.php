@@ -6,7 +6,7 @@
  * Time: 14:21
  */
 
-use frontend\models\SearchForm;
+use frontend\models\Form\SearchForm;
 
 /**
  * @var string $action

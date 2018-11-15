@@ -9,9 +9,10 @@
 namespace frontend\services;
 
 use frontend\models\Language;
-use frontend\models\UserChangeAccountForm;
+use frontend\models\Form\UserChangeAccountForm;
+use frontend\models\UserConfig;
 use Yii;
-use frontend\models\SigninForm;
+use frontend\models\Form\SigninForm;
 use frontend\models\User;
 
 class IdentityService
@@ -20,8 +21,8 @@ class IdentityService
      * Create a new user in the database
      * @param SigninForm $form
      * @return User|null
+     * @throws \Throwable
      * @throws \yii\base\Exception
-     * @throws \Exception
      */
     public function signin(SigninForm $form): ?User
     {
@@ -29,12 +30,17 @@ class IdentityService
             return null;
         }
 
+        $userConfig = new UserConfig();
+        $userConfig->language_id = Language::getCurrent()->id;
+        $userConfig->save();
+
         $user = new User();
         $user->username = $form->username;
         $user->email = $form->email;
         $user->email_confirm_token = Yii::$app->security->generateRandomString(32);
         $user->email_status = User::EMAIL_NOT_CONFIRMED;
         $user->status = User::STATUS_ACTIVE;
+        $user->user_config_id = $userConfig->getId();
 
         $user->setPassword($form->password);
         $user->generateAuthKey();
@@ -123,20 +129,24 @@ class IdentityService
          * @var User $user
          */
         $user = Yii::$app->user->getIdentity();
-        $user->language = (int)$form->language;
+        $userConfig = $user->getConfig();
+        $userConfig->language_id = (int)$form->language;
+
         !$form->username ?: $user->username = $form->username;
         !$form->phone ?: $user->phone = $form->phone;
         !$form->skype ?: $user->skype = $form->skype;
         !$form->telegram ?: $user->telegram = $form->telegram;
         !$form->new_password ?: $user->setPassword($form->new_password);
 
-        if ($form->language) {
-            Language::setCurrentById($user->language);
-        }
+        $user->switchLanguage(Language::getById($form->language));
 
         try {
-            if ($user->save()) {
-                return $user;
+            if ($userConfig->save()) {
+                $user->config = $userConfig;
+                $user->user_config_id = $userConfig->id;
+                if ($user->save()) {
+                    return $user;
+                }
             }
         } catch (\Exception $e) {
             return null;

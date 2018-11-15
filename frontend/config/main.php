@@ -1,5 +1,8 @@
 <?php
 
+use frontend\models\User;
+use frontend\models\UserConfig;
+
 $db = require __DIR__ . '/db.php';
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -15,5 +18,12 @@ return [
     'defaultRoute' => 'index',
     'controllerNamespace' => 'frontend\controllers',
     'components' => require __DIR__ . '/components.php',
+    'container' => [
+        'definitions' => [
+            User::class => [
+                'config' => UserConfig::class
+            ]
+        ]
+    ],
     'params' => $params,
 ];

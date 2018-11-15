@@ -4,9 +4,9 @@ use yii\db\Expression;
 use yii\db\Migration;
 
 /**
- * Class m181025_154130_create_table_lang
+ * Class m181025_154130_create_table_language
  */
-class m181025_154130_create_table_lang extends Migration
+class m181025_154130_create_table_language extends Migration
 {
     /**
      * {@inheritdoc}
@@ -30,7 +30,7 @@ class m181025_154130_create_table_lang extends Migration
             'date_create' => 'Creation date (in unix timestamp)',
         ];
 
-        $this->createTable('{{%lang}}', [
+        $this->createTable('{{%language}}', [
             'id' => $this->primaryKey(11)->notNull()->unsigned(),
             'url' => $this->string(255)->notNull()->unique()->comment($comments['url']),
             'local' => $this->string(255)->notNull()->unique()->comment($comments['local']),
@@ -40,22 +40,22 @@ class m181025_154130_create_table_lang extends Migration
             'date_create' => $this->timestamp()->notNull()->defaultValue(new Expression('NOW()'))->comment($comments['date_create']),
         ], $tableOptions);
 
-        $this->addCommentOnTable('{{%lang}}', $comments['table']);
+        $this->addCommentOnTable('{{%language}}', $comments['table']);
 
-        $this->createIndex('lang_idx1', 'lang', 'url');
-        $this->createIndex('lang_idx2', 'lang', 'local');
-        $this->createIndex('lang_idx3', 'lang', 'name');
-        $this->createIndex('lang_idx4', 'lang', 'default');
-        $this->createIndex('lang_idx5', 'lang', 'date_update');
-        $this->createIndex('lang_idx6', 'lang', 'date_create');
+        $this->createIndex('lang_idx1', '{{%language}}', 'url');
+        $this->createIndex('lang_idx2', '{{%language}}', 'local');
+        $this->createIndex('lang_idx3', '{{%language}}', 'name');
+        $this->createIndex('lang_idx4', '{{%language}}', 'default');
+        $this->createIndex('lang_idx5', '{{%language}}', 'date_update');
+        $this->createIndex('lang_idx6', '{{%language}}', 'date_create');
 
-        $this->insert('lang',[
+        $this->insert('{{%language}}',[
             'url' => 'en',
             'local' => 'en-US',
             'name' => 'English',
             'default' => 1,
         ]);
-        $this->insert('lang',[
+        $this->insert('{{%language}}',[
             'url' => 'ru',
             'local' => 'ru-RU',
             'name' => 'Русский',
@@ -70,16 +70,16 @@ class m181025_154130_create_table_lang extends Migration
      */
     public function safeDown()
     {
-        $this->delete('{{%lang}}');
+        $this->delete('{{%language}}');
 
-        $this->dropIndex('lang_idx1', 'lang');
-        $this->dropIndex('lang_idx2', 'lang');
-        $this->dropIndex('lang_idx3', 'lang');
-        $this->dropIndex('lang_idx4', 'lang');
-        $this->dropIndex('lang_idx5', 'lang');
-        $this->dropIndex('lang_idx6', 'lang');
+        $this->dropIndex('lang_idx1', '{{%language}}');
+        $this->dropIndex('lang_idx2', '{{%language}}');
+        $this->dropIndex('lang_idx3', '{{%language}}');
+        $this->dropIndex('lang_idx4', '{{%language}}');
+        $this->dropIndex('lang_idx5', '{{%language}}');
+        $this->dropIndex('lang_idx6', '{{%language}}');
 
-        $this->dropTable('{{%lang}}');
+        $this->dropTable('{{%language}}');
 
         return true;
     }

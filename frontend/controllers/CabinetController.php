@@ -8,7 +8,7 @@
 
 namespace frontend\controllers;
 
-use frontend\models\UserChangeAccountForm;
+use frontend\models\Form\UserChangeAccountForm;
 use frontend\services\IdentityService;
 use Yii;
 use yii\filters\VerbFilter;
@@ -30,6 +30,7 @@ class CabinetController extends BaseController
                 'class' => VerbFilter::class,
                 'actions' => [
                     'settings' => ['GET'],
+                    'security' => ['GET'],
                     'settings-save' => ['POST'],
                 ],
             ],
@@ -112,6 +113,11 @@ class CabinetController extends BaseController
         return $this->render('settings');
     }
 
+    public function actionSecurity(): string
+    {
+        return $this->render('security');
+    }
+
     /**
      * @throws \Throwable
      */
@@ -136,16 +142,19 @@ class CabinetController extends BaseController
                 Yii::$app->errorHandler->logException($e);
                 $this->responseStatus = self::RESPONSE_STATUS_ERROR;
                 $this->jsonData['flash']['error'][] = Yii::t('form', 'Information was not saved due to server error.');
-                return $this->asJson($this->jsonData);
+                if (\Yii::$app->getRequest()->isAjax) {
+                    return $this->asJson($this->jsonData);
+                }
+
+                return $this->render('@app/views/themes/admin-pro/cabinet/settings');
             }
         }
 
-        return $this->asJson($this->jsonData);
-    }
+        if (\Yii::$app->getRequest()->isAjax) {
+            return $this->asJson($this->jsonData);
+        }
 
-    public function actionSecurity(): string
-    {
-        return $this->render('security');
+        return $this->render('@app/views/themes/admin-pro/cabinet/settings');
     }
 
     public function actionFinanceOperations(): string

@@ -11,7 +11,7 @@
  * @var string $formUrl
  */
 
-use frontend\models\LoginForm;
+use frontend\models\Form\LoginForm;
 use yii\widgets\ActiveForm;
 use \yii\helpers\Html;
 use \yii\helpers\Url;

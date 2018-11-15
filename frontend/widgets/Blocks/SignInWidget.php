@@ -2,7 +2,7 @@
 
 namespace frontend\widgets\Blocks;
 
-use frontend\models\SigninForm;
+use frontend\models\Form\SigninForm;
 use frontend\widgets\BaseWidget;
 
 class SignInWidget extends BaseWidget

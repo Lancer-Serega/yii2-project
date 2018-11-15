@@ -11,7 +11,7 @@
  * @var string $formUrl
  */
 
-use \frontend\models\SigninForm;
+use \frontend\models\Form\SigninForm;
 use \yii\widgets\ActiveForm;
 use \yii\helpers\Html;
 ?>

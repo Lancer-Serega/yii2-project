@@ -19,9 +19,53 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- Settings :: Start-->
 <div class="settings">
     <div class="container-fluid">
-        <h2 class="settings__heading"><?= Yii::t('menu', 'Settings'); ?></h2>
-        <div class="settings__grid">
-            <?= UserChangeAccount::widget(['formUrl' => Url::to(['/cabinet/settings-save'])]); ?>
+        <!-- ============================================================== -->
+        <!-- Alerts -->
+        <!-- ============================================================== -->
+        <div class="alert-block">
+            <?php if (count(Yii::$app->session->getAllFlashes())) {
+                echo \frontend\widgets\Alert::widget() . '<br/>';
+            } ?>
+        </div>
+        <!-- ============================================================== -->
+        <!-- END Alerts -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor"><?= Yii::t('menu', 'Settings'); ?></h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <?= \yii\widgets\Breadcrumbs::widget([
+                    'activeItemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
+                    'itemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
+                    'links' => $this->params['breadcrumbs'] ?? [],
+                ]);
+                ?>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Security :: Start-->
+                        <div class="security">
+                            <div class="container-fluid">
+                                <div class="settings__grid">
+                                    <?= UserChangeAccount::widget(['formUrl' => Url::to(['/cabinet/settings-save'])]); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

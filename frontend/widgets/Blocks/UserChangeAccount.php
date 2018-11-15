@@ -2,7 +2,7 @@
 namespace frontend\widgets\Blocks;
 
 use frontend\models\Language;
-use frontend\models\UserChangeAccountForm;
+use frontend\models\Form\UserChangeAccountForm;
 use frontend\widgets\BaseWidget;
 
 class UserChangeAccount extends BaseWidget

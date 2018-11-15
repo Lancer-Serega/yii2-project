@@ -17,7 +17,7 @@ class LanguageController extends BaseController
      */
     public function actionSwitch()
     {
-        $language = \Yii::$app->getRequest()->getQueryParam('lang');
+        $language = \Yii::$app->getRequest()->getQueryParam('language');
         $language = Language::getLangByUrl(['url' => $language]);
         if (!$language) {
             $language = Language::getDefaultLang();

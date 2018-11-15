@@ -1,8 +1,7 @@
 <?php
 
+use frontend\components\DoctrineComponent;
 use frontend\models\User;
-use frontend\components\LangUrlManager;
-use frontend\components\LangRequest;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -56,7 +55,7 @@ return [
         // for the mailer to send real emails.
         'useFileTransport' => true,
         'transport' => [
-            'class' => 'Swift_SmtpTransport',
+            'class' => Swift_SmtpTransport::class,
             'host' => '127.0.0.1',
             'username' => '',
             'password' => '',
@@ -108,8 +107,10 @@ return [
         'showScriptName' => false,
         'suffix' => '',
         'rules' => [
-            '<controller:(language)>/<action:(switch)>/<lang:(en|ru)>' => '<controller>/<action>',
+            '<controller:(language)>/<action:(switch)>/<language:(en|ru)>' => '<controller>/<action>',
             'settings' => 'cabinet/settings',
+            'security' => 'cabinet/security',
+            'support' => 'cabinet/support',
             '<action:(login|logout|signin|request-password-reset|reset-password|signin-confirm|resend-email)>' => 'identity/<action>',
             '<controller:(cabinet|blog|tariff)>' => '<controller>/index',
             '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',

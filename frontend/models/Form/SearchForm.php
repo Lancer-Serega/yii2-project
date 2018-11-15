@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\models\Form;
 
 use Yii;
 use yii\db\ActiveRecord;

@@ -9,7 +9,7 @@
  */
 
 use \frontend\models\User;
-use \frontend\models\UserChangeAccountForm;
+use \frontend\models\Form\UserChangeAccountForm;
 use \yii\web\View;
 use \yii\widgets\ActiveForm;
 use \yii\helpers\Html;
@@ -68,7 +68,7 @@ $field['password_repeat'] = $form->field($userChangeAccountForm, 'password_repea
 
 // Interface language
 $options = ['class' => 'ui-select'];
-$field['lang'] = $form->field($userChangeAccountForm, 'language')
+$field['language'] = $form->field($userChangeAccountForm, 'language')
     ->dropDownList($langList, $options)
     ->label(Yii::t('form', 'Interface language'));
 
@@ -122,7 +122,7 @@ $field['telegram'] = $form->field($userChangeAccountForm, 'telegram', $template)
                             <div class="ui-field"><?= $field['username']; ?></div>
                             <div class="ui-field"><?= $field['new_password']; ?></div>
                             <div class="ui-field"><?= $field['password_repeat']; ?></div>
-                            <div class="ui-field"><?= $field['lang']; ?></div>
+                            <div class="ui-field"><?= $field['language']; ?></div>
                             <div class="ui-field"><?= $field['phone']; ?></div>
                             <div class="ui-field"><?= $field['skype']; ?></div>
                             <div class="ui-field"><?= $field['telegram']; ?></div>

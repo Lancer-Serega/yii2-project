@@ -1,7 +1,8 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\models\Form;
 
+use frontend\models\User;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
@@ -110,10 +111,6 @@ class LoginForm extends Model
             return true;
         }
 
-        if ($this->validate()) {
-            return Yii::$app->user->login($user, $this->remember ? 3600 * 24 * 30 : 0);
-        }
-
-        return false;
+        return Yii::$app->user->login($user, $this->remember ? 3600 * 24 * 30 : 0);
     }
 }

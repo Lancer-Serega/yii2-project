@@ -24,7 +24,8 @@ use yii\web\IdentityInterface;
  * @property int $phone [int(22) unsigned]  User phone
  * @property string $skype [varchar(255)]  User skype
  * @property string $telegram [varchar(32)]  User telegram
- * @property int $language [int(11) unsigned]  User language interface
+ * @property string $login [varchar(255)]  User login
+ * @property int $user_config_id
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -33,6 +34,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public const EMAIL_NOT_CONFIRMED = 0;
     public const EMAIL_CONFIRMED = 1;
+
+    /**
+     * @var UserConfig
+     */
+    public $config;
 
     /**
      * @inheritdoc
@@ -245,7 +251,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getLanguage()
     {
-        return Language::findOne(['id' => $this->language]);
+        $userConfig = $this->getConfig();
+        return Language::findOne(['id' => $userConfig->language_id]);
     }
 
     /**
@@ -254,8 +261,33 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function switchLanguage(Language $language): User
     {
-        $this->language = $language->id;
-        $this->save();
+        $userConfig = $this->getConfig();
+        $userConfig->language_id = $language->id;
+        $userConfig->save();
+        Language::setCurrentById($userConfig->language_id);
         return $this;
+    }
+
+    /**
+     * @param null $configId
+     * @return UserConfig
+     */
+    public function getConfig($configId = null): UserConfig
+    {
+        if (!$configId) {
+            $configId = $this->user_config_id;
+        }
+
+        $this->config = UserConfig::getById($configId);
+        $this->user_config_id = $this->config->id;
+        return $this->config;
+    }
+
+    /**
+     * @param UserConfig $config
+     */
+    public function setConfig(UserConfig $config): void
+    {
+        $this->config = $config;
     }
 }
