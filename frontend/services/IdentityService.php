@@ -8,12 +8,12 @@
 
 namespace frontend\services;
 
-use frontend\models\Language;
+use frontend\models\Entity\Language;
 use frontend\models\Form\UserChangeAccountForm;
-use frontend\models\UserConfig;
+use frontend\models\Entity\UserConfig;
 use Yii;
 use frontend\models\Form\SigninForm;
-use frontend\models\User;
+use frontend\models\Entity\User;
 
 class IdentityService
 {
@@ -129,7 +129,7 @@ class IdentityService
          * @var User $user
          */
         $user = Yii::$app->user->getIdentity();
-        $userConfig = $user->getConfig();
+        $userConfig = $user->getUserConfig();
         $userConfig->language_id = (int)$form->language;
 
         !$form->username ?: $user->username = $form->username;
@@ -142,7 +142,7 @@ class IdentityService
 
         try {
             if ($userConfig->save()) {
-                $user->config = $userConfig;
+                $user->userConfig = $userConfig;
                 $user->user_config_id = $userConfig->id;
                 if ($user->save()) {
                     return $user;

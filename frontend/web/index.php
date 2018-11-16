@@ -24,7 +24,11 @@ try {
     $app->run();
 } catch (InvalidConfigException $e) {
     if (YII_DEBUG) {
-        echo $e->getMessage() . PHP_EOL;
+        echo $e->getMessage() . PHP_EOL . PHP_EOL;
+        echo $e->getFile() . PHP_EOL . PHP_EOL;
+        echo $e->getLine() . PHP_EOL . PHP_EOL;
+        echo $e->getCode() . PHP_EOL . PHP_EOL;
+        echo $e->getTraceAsString() . PHP_EOL . PHP_EOL;
     }
     exit('Error application!');
 }

@@ -6,11 +6,7 @@
  * Time: 19:47
  */
 
-namespace frontend\models;
-
-
-use yii\db\ActiveRecord;
-use yii\db\ActiveRecordInterface;
+namespace frontend\models\Entity;
 
 /**
  * Class UserConfig
@@ -18,7 +14,7 @@ use yii\db\ActiveRecordInterface;
  * @property int $language_id [int(11) unsigned]  ID language on language table
  * @package frontend\models
  */
-class UserConfig extends ActiveRecord
+class UserConfig extends BaseEntity
 {
     /**
      * @var Language

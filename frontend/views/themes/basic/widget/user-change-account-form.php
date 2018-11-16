@@ -8,7 +8,7 @@
  * Time: 14:00
  */
 
-use \frontend\models\User;
+use \frontend\models\Entity\User;
 use \frontend\models\Form\UserChangeAccountForm;
 use \yii\web\View;
 use \yii\widgets\ActiveForm;

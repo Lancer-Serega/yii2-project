@@ -1,14 +1,13 @@
 <?php
 namespace frontend\models\Form;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use Yii;
-use yii\base\Model;
 
 /**
  * Signin form
  */
-class SigninForm extends Model
+class SigninForm extends BaseForm
 {
     public $username;
     public $email;

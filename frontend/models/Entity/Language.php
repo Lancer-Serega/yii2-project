@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace frontend\models\Entity;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -17,13 +17,69 @@ use yii\behaviors\TimestampBehavior;
  * @property string $date_update Update date (in unix timestamp)
  * @property string $date_create Creation date (in unix timestamp)
  */
-class Language extends ActiveRecord
+class Language extends BaseEntity
 {
     /**
      * Property to store the current language object
      * @var Language
      */
     public static $current;
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName(): string
+    {
+        return '{{%language}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules(): array
+    {
+        return [
+            [['url', 'local', 'name'], 'required'],
+            [['default'], 'integer'],
+            [['date_update', 'date_create'], 'safe'],
+            [['url', 'local', 'name'], 'string', 'max' => 255],
+            [['url'], 'unique'],
+            [['local'], 'unique'],
+            [['name'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels(): array
+    {
+        return [
+            'id' => 'ID',
+            'url' => 'Alphabetic identifier of the language to display in the URL (ru, en, de, ...)',
+            'local' => 'User language (locale)',
+            'name' => 'Name (English, Русский, ...)',
+            'default' => 'Lag indicating the default language (1 - default language)',
+            'date_update' => 'Update date (in unix timestamp)',
+            'date_create' => 'Creation date (in unix timestamp)',
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors(): array
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date_update'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * Getting the current language object
@@ -37,7 +93,7 @@ class Language extends ActiveRecord
          */
         if (self::$current === null) {
             if ($user = \Yii::$app->user->getIdentity()) {
-                self::$current = self::getById($user->getConfig()->getLanguage()->id);
+                self::$current = self::getById($user->getUserConfig()->getLanguage()->id);
             }
         }
 
@@ -132,61 +188,5 @@ class Language extends ActiveRecord
         }
 
         return $prepareLangList;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName(): string
-    {
-        return 'language';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules(): array
-    {
-        return [
-            [['url', 'local', 'name'], 'required'],
-            [['default'], 'integer'],
-            [['date_update', 'date_create'], 'safe'],
-            [['url', 'local', 'name'], 'string', 'max' => 255],
-            [['url'], 'unique'],
-            [['local'], 'unique'],
-            [['name'], 'unique'],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels(): array
-    {
-        return [
-            'id' => 'ID',
-            'url' => 'Alphabetic identifier of the language to display in the URL (ru, en, de, ...)',
-            'local' => 'User language (locale)',
-            'name' => 'Name (English, Русский, ...)',
-            'default' => 'Lag indicating the default language (1 - default language)',
-            'date_update' => 'Update date (in unix timestamp)',
-            'date_create' => 'Creation date (in unix timestamp)',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors(): array
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::class,
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['date_create', 'date_update'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['date_update'],
-                ],
-            ],
-        ];
     }
 }

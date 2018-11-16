@@ -1,15 +1,14 @@
 <?php
 namespace frontend\models\Form;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use Yii;
 use yii\base\Exception;
-use yii\base\Model;
 
 /**
  * Password reset request form
  */
-class PasswordResetRequestForm extends Model
+class PasswordResetRequestForm extends BaseForm
 {
     public $email;
 

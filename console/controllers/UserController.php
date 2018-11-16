@@ -1,7 +1,7 @@
 <?php
 namespace console\controllers;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\helpers\Console;

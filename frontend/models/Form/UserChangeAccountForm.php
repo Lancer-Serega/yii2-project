@@ -2,17 +2,12 @@
 
 namespace frontend\models\Form;
 
-use frontend\models\User;
 use Yii;
-use yii\base\Model;
 
 /**
  * LoginForm is the model behind the login form.
- *
- * @property User|null $user This property is read-only.
- *
  */
-class UserChangeAccountForm extends Model
+class UserChangeAccountForm extends BaseForm
 {
     public $username;
     public $new_password;

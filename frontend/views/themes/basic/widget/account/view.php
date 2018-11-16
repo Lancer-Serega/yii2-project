@@ -10,7 +10,7 @@
  * @var User $user
  */
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use \yii\helpers\Url;
 use \yii\helpers\Html;
 ?>

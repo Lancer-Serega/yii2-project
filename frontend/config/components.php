@@ -1,12 +1,10 @@
 <?php
 
-use frontend\components\DoctrineComponent;
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
 use yii\swiftmailer\Mailer;
-use yii\log\FileTarget;
 use yii\caching\FileCache;
 use yii\web\AssetManager;
 use yii\rbac\DbManager;
@@ -15,7 +13,11 @@ use yii\web\UrlManager;
 return [
     'assetManager' => [
         'class' => AssetManager::class,
-        'forceCopy' => true,
+        'forceCopy' => t
+            * @property string $user_agent User agent info of user
+
+* @property string $user_agent User agent info of user
+        rue,
     ],
 
     'authManager' => [
@@ -93,12 +95,6 @@ return [
             ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
         ],
         'value' => new Expression('CURRENT_TIMESTAMP'),
-    ],
-
-    'formatter' => [
-        'dateFormat' => 'YYYY-MM-DD',
-        'timeFormat' => 'HH:ii:ss',
-        'datetimeFormat' => 'YYYY-MM-DD HH:ii:ss',
     ],
 
     'urlManager' => [

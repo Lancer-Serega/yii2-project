@@ -11,7 +11,7 @@ namespace frontend\components;
 use yii\base\InvalidConfigException;
 use yii\web\Cookie;
 use yii\web\Request;
-use frontend\models\Language;
+use frontend\models\Entity\Language;
 
 class LangRequest extends Request
 {

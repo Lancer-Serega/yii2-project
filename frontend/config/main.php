@@ -1,9 +1,11 @@
 <?php
 
-use frontend\models\User;
-use frontend\models\UserConfig;
+use frontend\models\Entity\User;
+use frontend\models\Entity\UserConfig;
 
 $db = require __DIR__ . '/db.php';
+$log = require __DIR__ . '/log.php';
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',

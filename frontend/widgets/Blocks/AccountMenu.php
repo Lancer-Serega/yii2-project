@@ -1,7 +1,7 @@
 <?php
 namespace frontend\widgets\Blocks;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\bootstrap\Widget;
 
 class AccountMenu extends Widget

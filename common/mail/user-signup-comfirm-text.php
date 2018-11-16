@@ -6,7 +6,7 @@
  * Time: 15:55
  */
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\helpers\Html;
 
 /* @var $user User */

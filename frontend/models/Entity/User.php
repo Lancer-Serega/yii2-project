@@ -1,10 +1,9 @@
 <?php
-namespace frontend\models;
+namespace frontend\models\Entity;
 
 use Yii;
 use yii\base\Exception;
 use yii\base\NotSupportedException;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
@@ -27,7 +26,7 @@ use yii\web\IdentityInterface;
  * @property string $login [varchar(255)]  User login
  * @property int $user_config_id
  */
-class User extends ActiveRecord implements IdentityInterface
+class User extends BaseEntity implements IdentityInterface
 {
     public const STATUS_DELETED = 0;
     public const STATUS_ACTIVE = 1;
@@ -38,7 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @var UserConfig
      */
-    public $config;
+    public $userConfig;
 
     /**
      * @inheritdoc
@@ -251,7 +250,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getLanguage()
     {
-        $userConfig = $this->getConfig();
+        $userConfig = $this->getUserConfig();
         return Language::findOne(['id' => $userConfig->language_id]);
     }
 
@@ -261,7 +260,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function switchLanguage(Language $language): User
     {
-        $userConfig = $this->getConfig();
+        $userConfig = $this->getUserConfig();
         $userConfig->language_id = $language->id;
         $userConfig->save();
         Language::setCurrentById($userConfig->language_id);
@@ -272,22 +271,22 @@ class User extends ActiveRecord implements IdentityInterface
      * @param null $configId
      * @return UserConfig
      */
-    public function getConfig($configId = null): UserConfig
+    public function getUserConfig($configId = null): UserConfig
     {
         if (!$configId) {
             $configId = $this->user_config_id;
         }
 
-        $this->config = UserConfig::getById($configId);
-        $this->user_config_id = $this->config->id;
-        return $this->config;
+        $this->userConfig = UserConfig::getById($configId);
+        $this->user_config_id = $this->userConfig->id;
+        return $this->userConfig;
     }
 
     /**
-     * @param UserConfig $config
+     * @param UserConfig $userConfig
      */
-    public function setConfig(UserConfig $config): void
+    public function setUserConfig(UserConfig $userConfig): void
     {
-        $this->config = $config;
+        $this->userConfig = $userConfig;
     }
 }

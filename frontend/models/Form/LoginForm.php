@@ -2,9 +2,8 @@
 
 namespace frontend\models\Form;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use Yii;
-use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -14,7 +13,7 @@ use yii\helpers\Url;
  * @property User|null $user This property is read-only.
  *
  */
-class LoginForm extends Model
+class LoginForm extends BaseForm
 {
     public $email;
     public $password;

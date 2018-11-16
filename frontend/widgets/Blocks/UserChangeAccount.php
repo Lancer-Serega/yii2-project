@@ -1,7 +1,7 @@
 <?php
 namespace frontend\widgets\Blocks;
 
-use frontend\models\Language;
+use frontend\models\Entity\Language;
 use frontend\models\Form\UserChangeAccountForm;
 use frontend\widgets\BaseWidget;
 

@@ -1,8 +1,8 @@
 <?php
 namespace frontend\controllers;
 
-use frontend\models\Language;
-use frontend\models\User;
+use frontend\models\Entity\Language;
+use frontend\models\Entity\User;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -49,7 +49,7 @@ class BaseController extends Controller
          * @var User $user
          */
         if ($user = \Yii::$app->user->identity) {
-            $userConfig = $user->getConfig($user->user_config_id);
+            $userConfig = $user->getUserConfig($user->user_config_id);
             $language = $userConfig->getLanguage($userConfig->language_id);
             $language = $language->url;
         } elseif (\Yii::$app->request->cookies->getValue('language')) {

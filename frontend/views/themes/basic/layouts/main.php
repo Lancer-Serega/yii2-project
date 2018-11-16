@@ -7,7 +7,7 @@
  * @var SigninForm $signinFormModel
  */
 
-use \frontend\models\User;
+use \frontend\models\Entity\User;
 use \yii\helpers\Html;
 use \yii\helpers\Url;
 use \yii\web\View;

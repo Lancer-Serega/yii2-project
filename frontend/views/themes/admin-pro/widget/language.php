@@ -7,7 +7,7 @@
  */
 
 use frontend\components\LangRequest;
-use frontend\models\Language;
+use frontend\models\Entity\Language;
 use \yii\helpers\Html;
 
 /**

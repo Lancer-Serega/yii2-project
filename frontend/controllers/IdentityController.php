@@ -9,7 +9,7 @@
 
 namespace frontend\controllers;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use frontend\services\IdentityService;
 use \Yii;
 use frontend\models\Form\SigninForm;
@@ -105,7 +105,7 @@ class IdentityController extends BaseController
     /**
      * Signs user up.
      * @return mixed
-     * @throws \Exception
+     * @throws \Throwable
      */
     public function actionSignin()
     {

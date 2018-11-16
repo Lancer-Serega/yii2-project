@@ -8,7 +8,7 @@
  */
 
 use frontend\assets\AdminProThemeAsset;
-use \frontend\models\User;
+use \frontend\models\Entity\User;
 use frontend\widgets\Alert;
 use \yii\helpers\Html;
 use \yii\helpers\Url;

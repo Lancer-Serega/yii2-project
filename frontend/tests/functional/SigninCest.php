@@ -3,7 +3,7 @@
 namespace frontend\tests\functional;
 
 use frontend\tests\FunctionalTester;
-use frontend\models\User;
+use frontend\models\Entity\User;
 
 class SigninCest
 {

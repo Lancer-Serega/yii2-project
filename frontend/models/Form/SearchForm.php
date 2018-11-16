@@ -3,9 +3,8 @@
 namespace frontend\models\Form;
 
 use Yii;
-use yii\db\ActiveRecord;
 
-class SearchForm extends ActiveRecord
+class SearchForm extends BaseForm
 {
     public static $search;
 

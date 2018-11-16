@@ -8,12 +8,12 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Entity\LogUserAuth;
 use frontend\models\Form\UserChangeAccountForm;
 use frontend\services\IdentityService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
-use yii\web\Response;
 
 /**
  * Cabinet controller

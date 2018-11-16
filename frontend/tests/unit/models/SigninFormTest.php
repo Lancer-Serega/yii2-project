@@ -3,7 +3,7 @@ namespace frontend\tests\unit\models;
 
 use common\fixtures\UserFixture;
 use frontend\models\Form\SigninForm;
-use frontend\models\User;
+use frontend\models\Entity\User;
 
 class SigninFormTest extends \Codeception\Test\Unit
 {

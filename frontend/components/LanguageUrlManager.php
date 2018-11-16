@@ -2,7 +2,7 @@
 
 namespace frontend\components;
 
-use frontend\models\Language;
+use frontend\models\Entity\Language;
 use yii\web\UrlManager;
 
 class LanguageUrlManager extends UrlManager

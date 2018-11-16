@@ -2,8 +2,8 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Language;
-use frontend\models\User;
+use frontend\models\Entity\Language;
+use frontend\models\Entity\User;
 use yii\web\Cookie;
 
 /**

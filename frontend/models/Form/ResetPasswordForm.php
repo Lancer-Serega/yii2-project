@@ -1,15 +1,14 @@
 <?php
 namespace frontend\models\Form;
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
-use yii\base\Model;
 
 /**
  * Password reset form
  */
-class ResetPasswordForm extends Model
+class ResetPasswordForm extends BaseForm
 {
     public $password;
 
