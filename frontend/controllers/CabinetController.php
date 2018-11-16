@@ -115,7 +115,10 @@ class CabinetController extends BaseController
 
     public function actionSecurity(): string
     {
-        return $this->render('security');
+        $userAuthHistoryList = LogUserAuth::findAll(['user_id' => \Yii::$app->user->getIdentity()->id]);
+        return $this->render('security', [
+            'userAuthHistoryList' => $userAuthHistoryList,
+        ]);
     }
 
     /**

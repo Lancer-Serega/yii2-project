@@ -6,6 +6,11 @@
  * Time: 15:37
  */
 
+/**
+ * @var LogUserAuth[] $userAuthHistoryList
+ */
+
+use frontend\models\Entity\LogUserAuth;
 use yii\helpers\Url;
 
 $this->title = Yii::t('menu', 'Account');
@@ -108,150 +113,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                     <div class="tab-pane p-20" id="security-auth-history" role="tabpanel">
                                         <table class="table table-hover">
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <span class="history-auth-date">
-                                                        <?= date('F jS, Y h:i:s', strtotime(time())); ?>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span class="history-auth-browser">
-                                                        <?= $_SERVER['HTTP_USER_AGENT']; ?>
-                                                    </span>
-                                                </td>
-                                            </tr>
+                                            <?php foreach($userAuthHistoryList as $userAuthHistory):
+                                                $date = new \DateTime($userAuthHistory->timestamp);
+                                                $authDate = \Yii::$app->formatter->asDatetime($date, 'long');
+                                                [$date, $time] = explode(' at ', $authDate);
+                                                if (!empty($date) ||!empty($time)) {
+                                                    $authDate = "<span class=\"date\">{$date}</span><br><span class=\"time\">{$time}</span>";
+                                                }
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <span class="history-auth-date">
+                                                            <span class="datetime">
+                                                                <?= $authDate; ?>
+                                                            </span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="history-auth-browser">
+                                                            <?= $userAuthHistory->user_agent; ?>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </table>
                                     </div>
                                     <div class="tab-pane p-20" id="security-empty-tab" role="tabpanel"><h2>security-empty-tab</h2></div>

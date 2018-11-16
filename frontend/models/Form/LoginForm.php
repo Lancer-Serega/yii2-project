@@ -110,6 +110,13 @@ class LoginForm extends BaseForm
             return true;
         }
 
-        return Yii::$app->user->login($user, $this->remember ? 3600 * 24 * 30 : 0);
+        $loggedIn = Yii::$app->user->login($user, $this->remember ? 3600 * 24 * 30 : 0);
+        if ($loggedIn) {
+            \Yii::info("[success] Is login User: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
+        } else {
+            \Yii::error("[error] Is login User: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
+        }
+
+        return $loggedIn;
     }
 }

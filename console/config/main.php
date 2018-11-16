@@ -1,6 +1,6 @@
 <?php
 
-use yii\log\FileTarget;
+use yii\log\DbTarget;
 use yii\console\controllers\FixtureController;
 use yii\rbac\DbManager;
 
@@ -31,10 +31,16 @@ return [
         'db' => $db,
 
         'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'flushInterval' => YII_DEBUG ? 1 : 500,
+
             'targets' => [
                 [
-                    'class' => FileTarget::class,
-                    'levels' => ['error', 'warning'],
+                    'class' => DbTarget::class, // Send in database
+                    'levels' => ['error', 'warning', 'info'],
+                    'db' => 'db',
+                    'logTable' => '{{%log}}',
+                    'logVars' => [],
                 ],
             ],
         ],

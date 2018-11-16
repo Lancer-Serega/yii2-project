@@ -13,11 +13,7 @@ use yii\web\UrlManager;
 return [
     'assetManager' => [
         'class' => AssetManager::class,
-        'forceCopy' => t
-            * @property string $user_agent User agent info of user
-
-* @property string $user_agent User agent info of user
-        rue,
+        'forceCopy' => true,
     ],
 
     'authManager' => [
@@ -40,15 +36,20 @@ return [
         'errorAction' => 'index/error',
     ],
 
-    'log' => [
-        'traceLevel' => YII_DEBUG ? 3 : 0,
-        'targets' => [
-            [
-                'class' => FileTarget::class,
-                'levels' => ['error', 'warning'],
-            ],
-        ],
+    'formatter' => [
+        'dateFormat' => 'YYYY-MM-DD',
+        'timeFormat' => 'HH:ii:ss',
+        'datetimeFormat' => 'YYYY-MM-DD HH:ii:ss',
+        'decimalSeparator' => ',',
+        'thousandSeparator' => ' ',
+        'currencyCode' => 'USD',
+        'numberFormatterOptions' => [
+            NumberFormatter::MIN_FRACTION_DIGITS => 0,
+            NumberFormatter::MAX_FRACTION_DIGITS => 2,
+        ]
     ],
+
+    'log' => $log,
 
     'mailer' => [
         'class' => Mailer::class,

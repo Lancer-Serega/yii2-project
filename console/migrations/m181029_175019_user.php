@@ -1,6 +1,6 @@
 <?php
 
-use frontend\models\User;
+use frontend\models\Entity\User;
 use yii\db\Migration;
 
 /**
