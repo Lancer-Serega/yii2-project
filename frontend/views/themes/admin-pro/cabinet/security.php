@@ -7,16 +7,24 @@
  */
 
 /**
+ * @var View $this
  * @var LogUserAuth[] $userAuthHistoryList
+ * @var array $userConfig
  */
 
-use frontend\models\Entity\LogUserAuth;
-use yii\helpers\Url;
+use \frontend\models\Entity\LogUserAuth;
+use \frontend\widgets\Alert;
+use \yii\helpers\Url;
+use \yii\web\View;
+use \yii\web\YiiAsset;
+use \yii\widgets\Breadcrumbs;
 
 $this->title = Yii::t('menu', 'Account');
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => [Url::to('/cabinet')]];
 $this->title = Yii::t('menu', 'Security');
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile($this->theme->getBaseUrl() . '/js/switch.js', ['position' => $this::POS_END, 'depends' => YiiAsset::class]);
 ?>
 
 
@@ -29,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- ============================================================== -->
     <div class="alert-block">
         <?php if (count(Yii::$app->session->getAllFlashes())) {
-            echo \frontend\widgets\Alert::widget() . '<br/>';
+            echo Alert::widget() . '<br/>';
         } ?>
     </div>
     <!-- ============================================================== -->
@@ -44,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="text-themecolor"><?= Yii::t('menu', 'Security'); ?></h3>
         </div>
         <div class="col-md-7 align-self-center">
-            <?= \yii\widgets\Breadcrumbs::widget([
+            <?= Breadcrumbs::widget([
                 'activeItemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
                 'itemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
                 'links' => $this->params['breadcrumbs'] ?? [],
@@ -100,7 +108,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <td>
                                                     <div class="col-md-4">
                                                         <div class="switch">
-                                                            <label style="display: inline-flex;"><span class="text-danger">OFF</span><input type="checkbox" checked><span class="lever"></span><span class="text-success">ON</span></label>
+                                                            <label style="display: inline-flex;">
+                                                                <span class="text-danger">OFF</span>
+                                                                <input type="checkbox" data-type="switch-checkbox" data-url="<?= Url::to(['user-security/change-two-factor-auth']); ?>" id="security-two-factor-switch"<?= $userConfig['two_factor_auth'] ? ' checked' : ''; ?>>
+                                                                <span class="lever"></span>
+                                                                <span class="text-success">ON</span>
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </td>

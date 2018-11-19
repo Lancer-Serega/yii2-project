@@ -10,7 +10,7 @@ class m181116_125114_create_table_log_user_auth extends Migration
     /**
      * @return bool
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Create table
         $tableOptions = null;
@@ -48,7 +48,10 @@ class m181116_125114_create_table_log_user_auth extends Migration
         return true;
     }
 
-    public function safeDown()
+    /**
+     * @return bool
+     */
+    public function safeDown(): bool
     {
         $this->dropForeignKey('log_user_auth_fk1', '{{%log_user_auth}}');
         $this->dropTable('{{%log_user_auth}}');

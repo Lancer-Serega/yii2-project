@@ -12,6 +12,8 @@ namespace frontend\models\Entity;
  * Class UserConfig
  * @property int $id
  * @property int $language_id [int(11) unsigned]  ID language on language table
+ * @property bool $two_factor_auth [tinyint(1)]  Check two-factor authorization
+ * @property string $two_factor_auth_key [varchar(32)]  Key for two-factor authorization
  * @package frontend\models
  */
 class UserConfig extends BaseEntity

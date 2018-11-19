@@ -5,12 +5,12 @@ use yii\db\Migration;
 /**
  * Class m181114_155916_add_table_user_notification
  */
-class m181114_155916_add_table_user_notification extends Migration
+class m181114_155916_create_table_user_notification extends Migration
 {
     /**
      * @return bool
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Create table
         $tableOptions = null;
@@ -44,7 +44,10 @@ class m181114_155916_add_table_user_notification extends Migration
         return true;
     }
 
-    public function safeDown()
+    /**
+     * @return bool
+     */
+    public function safeDown(): bool
     {
         $this->dropTable('{{%user_notification}}');
         return true;

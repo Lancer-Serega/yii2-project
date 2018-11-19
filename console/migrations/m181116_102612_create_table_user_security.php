@@ -13,7 +13,7 @@ class m181116_102612_create_table_user_security extends Migration
      * @return bool
      * @throws Exception
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Create table
         $tableOptions = null;
@@ -65,7 +65,10 @@ class m181116_102612_create_table_user_security extends Migration
         return true;
     }
 
-    public function safeDown()
+    /**
+     * @return bool
+     */
+    public function safeDown(): bool
     {
         $this->dropForeignKey('user_security_fk1', '{{%user_security}}');
         $this->dropTable('{{%user_security}}');

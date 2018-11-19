@@ -1,5 +1,6 @@
 <?php
 
+use frontend\components\View;
 use frontend\models\Entity\User;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -53,9 +54,6 @@ return [
 
     'mailer' => [
         'class' => Mailer::class,
-        // send all mails to a file by default. You have to set
-        // 'useFileTransport' to false and configure a transport
-        // for the mailer to send real emails.
         'useFileTransport' => true,
         'transport' => [
             'class' => Swift_SmtpTransport::class,
@@ -71,11 +69,9 @@ return [
         'csrfParam' => '_csrf',
         'enableCsrfValidation' => true,
         'cookieValidationKey' => 'vBo8qtDGBBJqHjQrrCRbiqYGkuHKEXU2',
-//        'class' => LangRequest::class
     ],
 
     'session' => [
-        // this is the name of the session cookie used for login on the frontend
         'name' => 'session',
     ],
 
@@ -116,6 +112,7 @@ return [
     ],
 
     'view' => [
+        'class' => View::class,
         'theme' => [
             'basePath' => '@app/themes/admin-pro',
             'baseUrl' => '@web/themes/admin-pro',

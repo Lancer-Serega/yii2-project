@@ -2,7 +2,9 @@
 
 namespace frontend\models\Form;
 
+use frontend\controllers\BaseController;
 use frontend\models\Entity\User;
+use frontend\models\Repository\UserConfigRepository;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -85,9 +87,10 @@ class LoginForm extends BaseForm
 
     /**
      * Logs in a user using the provided username and password.
+     * @param BaseController $controller
      * @return bool whether the user is logged in successfully
      */
-    public function login()
+    public function login(BaseController $controller): bool
     {
         if (!$this->validate()) {
             return false;
@@ -107,6 +110,11 @@ class LoginForm extends BaseForm
             $flashMsg .= '<br/> Или нажмите на ' . Html::a('эту временную ссылку', $confirmLink) . ' для активации =)'; // FIXME: delete before deploy in production!
 
             Yii::$app->session->setFlash('warning', $flashMsg);
+            return true;
+        }
+
+        if (UserConfigRepository::getTwoFactorAuth(['two_factor_auth'], $user->getId())) {
+            $controller->redirect('identity/accept-two-factor-auth')->send();
             return true;
         }
 

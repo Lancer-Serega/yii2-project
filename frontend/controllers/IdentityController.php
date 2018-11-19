@@ -10,6 +10,7 @@
 namespace frontend\controllers;
 
 use frontend\models\Entity\User;
+use frontend\models\Form\UserConfigForm;
 use frontend\services\IdentityService;
 use \Yii;
 use frontend\models\Form\SigninForm;
@@ -49,7 +50,7 @@ class IdentityController extends BaseController
     }
 
     /**
-     * Logs in a user.
+     * Login a user.
      * @return mixed
      */
     public function actionLogin()
@@ -59,7 +60,7 @@ class IdentityController extends BaseController
         $loginForm = new LoginForm();
         if ($loginForm->load(Yii::$app->request->post())) {
             try {
-                if ($loginForm->login()) {
+                if ($loginForm->login($this)) {
                     $this->responseStatus = self::RESPONSE_STATUS_SUCCESS;
                     $this->jsonData['redirect'] = Yii::$app->getUser()->getReturnUrl();
                     if (\Yii::$app->getRequest()->isAjax) {
@@ -92,10 +93,29 @@ class IdentityController extends BaseController
     }
 
     /**
-     * Logs out the current user.
-     * @return mixed
+     * Accept user two factor auth after login
+     * @return string
      */
-    public function actionLogout()
+    public function actionAcceptTwoFactorAuth(): string
+    {
+        $msg = 'You have two-factor authentication enabled. ';
+        $msg .= 'To continue logging in, you need to verify your email address provided during registration. ';
+        $msg .= 'In the letter you will see a token, copy it in the box below or follow the link in the letter.';
+        \Yii::$app->session->setFlash('info', Yii::t('form', $msg));
+
+        $userConfigForm = new UserConfigForm();
+
+        return $this->render('accept-two-factor-auth', [
+            'userConfigForm' => $userConfigForm,
+            'twoFactorAuthKey' => Yii::$app->request->get('key'),
+        ]);
+    }
+
+    /**
+     * Logout the current user.
+     * @return Response
+     */
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 
@@ -104,10 +124,10 @@ class IdentityController extends BaseController
 
     /**
      * Signs user up.
-     * @return mixed
+     * @return Response
      * @throws \Throwable
      */
-    public function actionSignin()
+    public function actionSignin(): Response
     {
         $signinForm = new SigninForm();
         $service = new IdentityService();
@@ -165,8 +185,9 @@ class IdentityController extends BaseController
     /**
      * Resend email confirm user
      * @param $token
+     * @return Response
      */
-    public function actionResendEmail($token): void
+    public function actionResendEmail($token): Response
     {
         /**
          * @var User $user
@@ -175,7 +196,7 @@ class IdentityController extends BaseController
         $service = new IdentityService();
         $service->sendEmailConfirm($user);
         Yii::$app->session->setFlash('success', Yii::t('form', 'To complete the registration, confirm your email. Check your email.'));
-        $this->goHome();
+        return $this->goHome();
     }
 
     /**

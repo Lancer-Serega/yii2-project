@@ -29,7 +29,6 @@ class AdminProThemeAsset extends AssetBundle
     ];
 
     public $js = [
-//        '/themes/admin-pro/assets/plugins/jquery/jquery.min.js',
         '/themes/admin-pro/assets/plugins/bootstrap/js/popper.min.js',
         '/themes/admin-pro/assets/plugins/bootstrap/js/bootstrap.min.js',
         '/themes/admin-pro/assets/plugins/bootstrap-switch/bootstrap-switch.min.js',
@@ -45,7 +44,6 @@ class AdminProThemeAsset extends AssetBundle
 
     public $depends = [
         YiiAsset::class,
-//        BootstrapPluginAsset::class,
     ];
 
     public function init()
@@ -55,14 +53,12 @@ class AdminProThemeAsset extends AssetBundle
         \Yii::$app->view->on(View::EVENT_AFTER_RENDER, function () {
             unset(
                 \Yii::$app->view->assetBundles[BootstrapAsset::class]
-//                \Yii::$app->view->assetBundles[BootstrapPluginAsset::class],
             );
         });
 
         \Yii::$app->view->on(View::EVENT_BEGIN_BODY, function (){
             unset(
                 \Yii::$app->view->assetBundles[BootstrapAsset::class]
-//                \Yii::$app->view->assetBundles[BootstrapPluginAsset::class],
             );
         });
     }

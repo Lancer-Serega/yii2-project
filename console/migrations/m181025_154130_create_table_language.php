@@ -9,9 +9,9 @@ use yii\db\Migration;
 class m181025_154130_create_table_language extends Migration
 {
     /**
-     * {@inheritdoc}
+     * @return bool
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         // Create table
         $tableOptions = null;
@@ -66,9 +66,9 @@ class m181025_154130_create_table_language extends Migration
     }
 
     /**
-     * {@inheritdoc}
+     * @return bool
      */
-    public function safeDown()
+    public function safeDown(): bool
     {
         $this->delete('{{%language}}');
 

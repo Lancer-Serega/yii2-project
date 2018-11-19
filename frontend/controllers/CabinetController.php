@@ -10,6 +10,7 @@ namespace frontend\controllers;
 
 use frontend\models\Entity\LogUserAuth;
 use frontend\models\Form\UserChangeAccountForm;
+use frontend\models\Repository\UserConfigRepository;
 use frontend\services\IdentityService;
 use Yii;
 use yii\filters\VerbFilter;
@@ -113,10 +114,18 @@ class CabinetController extends BaseController
         return $this->render('settings');
     }
 
+    /**
+     * @return string
+     * @throws \Throwable
+     */
     public function actionSecurity(): string
     {
+        $user = \Yii::$app->getUser()->getIdentity();
+        $userConfig['two_factor_auth'] = UserConfigRepository::getTwoFactorAuth(['two_factor_auth'], (int)$user->getId());
         $userAuthHistoryList = LogUserAuth::findAll(['user_id' => \Yii::$app->user->getIdentity()->id]);
+
         return $this->render('security', [
+            'userConfig' => $userConfig,
             'userAuthHistoryList' => $userAuthHistoryList,
         ]);
     }

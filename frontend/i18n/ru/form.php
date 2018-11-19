@@ -35,6 +35,7 @@ return [
     'Select interface language' => 'Выбирете язык интерфейса',
     'Save' => 'Сохранить',
     'Search & enter' => 'Найти',
+    'Two factor key' => 'Ключ авторизации',
 
     // Form messages
     'There is no user with this email address.' => 'Пользователь с текущем Email адресом не найден!',
@@ -70,4 +71,5 @@ return [
     'Not a valid email or password.' => 'Не правильный email или пароль.',
     'Information saved successfully' => 'Информация успешно сохранена',
     'Information was not saved due to server error.' => 'Информация не была сохранена из за ошибки на сервере',
+    'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.' => 'У вас включена двухфакторная авторизация. Для продолжения входа Вам нужно проверить свой адрес электронной почты указанный при регистрации. В письме вы увидите токен, скопируйте его в поле ниже или перейдите по ссылке в письме.',
 ];

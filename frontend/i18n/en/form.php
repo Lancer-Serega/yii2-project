@@ -35,6 +35,7 @@ return [
     'Select interface language' => 'Select interface language',
     'Save' => 'Save',
     'Search & enter' => 'Search & enter',
+    'Two factor key' => 'Two factor key',
 
     // Form messages
     'There is no user with this email address.' => 'There is no user with this email address.',
@@ -70,4 +71,5 @@ return [
     'Not a valid email or password.' => 'Not a valid email or password.',
     'Information saved successfully' => 'Information saved successfully',
     'Information was not saved due to server error.' => 'Information was not saved due to server error.',
+    'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.' => 'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.',
 ];

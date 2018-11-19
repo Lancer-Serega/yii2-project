@@ -4,13 +4,13 @@ use frontend\models\Entity\User;
 use yii\db\Migration;
 
 /**
- * Class m181029_175019_user
+ * Class m181029_175019_createtableusercreatetable_userConfig
  */
-class m181029_175019_user extends Migration
+class m181029_175019_create_table_user_create_table_user_config extends Migration
 {
     public static $errors = [];
 
-    public static function hasErrors()
+    public static function hasErrors(): bool
     {
         return (bool)count(self::$errors);
     }
@@ -19,7 +19,7 @@ class m181029_175019_user extends Migration
      * @return bool
      * @throws \yii\base\Exception
      */
-    public function safeUp()
+    public function safeUp(): bool
     {
         $this->createTableUserConfig();
         $this->insertInTableUserConfig();
@@ -30,7 +30,10 @@ class m181029_175019_user extends Migration
         return true;
     }
 
-    public function safeDown()
+    /**
+     * @return bool
+     */
+    public function safeDown(): bool
     {
         $this->dropRbacTables();
         $this->dropUserTable();
@@ -38,13 +41,13 @@ class m181029_175019_user extends Migration
         return true;
     }
 
-    private function dropUserTable()
+    private function dropUserTable(): void
     {
         $this->delete('{{%user}}');
         $this->dropTable('{{%user}}');
     }
 
-    private function dropRbacTables()
+    private function dropRbacTables(): void
     {
         $this->delete('{{%auth_assignment}}');
         $this->delete('{{%auth_item_child}}');
@@ -56,7 +59,7 @@ class m181029_175019_user extends Migration
         $this->dropTable('{{%auth_rule}}');
     }
 
-    private function createTableUserConfig()
+    private function createTableUserConfig(): void
     {
         // Create table
         $tableOptions = null;
@@ -84,7 +87,7 @@ class m181029_175019_user extends Migration
         $this->addForeignKey('user_config_fk1', '{{%user_config}}', 'language_id', '{{%language}}', 'id', 'CASCADE', 'CASCADE');
     }
 
-    private function insertInTableUserConfig()
+    private function insertInTableUserConfig(): void
     {
         $this->insert('{{%user_config}}', [
             'language_id' => 1,
@@ -107,7 +110,7 @@ class m181029_175019_user extends Migration
         ]);
     }
 
-    private function createTableUser()
+    private function createTableUser(): void
     {
         // Create table
         $tableOptions = null;
@@ -169,13 +172,12 @@ class m181029_175019_user extends Migration
 
         // Create foreign keys
         $this->addForeignKey('user_fk1', '{{%user}}', 'user_config_id', '{{%user_config}}', 'id', 'CASCADE', 'CASCADE');
-
     }
 
     /**
      * @throws \yii\base\Exception
      */
-    private function insertInTableUser()
+    private function insertInTableUser(): void
     {
         $user = new User();
         $user->generateAuthKey();

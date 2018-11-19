@@ -2,16 +2,15 @@
 /**
  * Created by PhpStorm.
  * User: sergey
- * Date: 16.11.18
- * Time: 13:38
+ * Date: 19.11.18
+ * Time: 12:54
  */
 
 namespace frontend\models\Repository;
 
+use yii\base\Model;
 
-use frontend\models\BaseModel;
-
-class BaseRepository extends BaseModel
+class BaseRepository extends Model
 {
 
 }
