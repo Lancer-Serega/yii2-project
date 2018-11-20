@@ -10,7 +10,7 @@ $(function() {
 
             $.ajax({
                 type: 'post',
-                url: $(el).data('url') || localtion.href,
+                url: $(el).data('url') || localtion.pathname,
                 dataType: 'json',
                 data: data,
                 success: function (data) {

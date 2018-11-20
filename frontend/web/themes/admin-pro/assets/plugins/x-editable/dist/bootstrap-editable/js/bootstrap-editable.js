@@ -6743,11 +6743,11 @@ Depending on `source` format typeahead operates in two modes:
 
 * **strings**:  
   When `source` defined as array of strings, e.g. `['text1', 'text2', 'text3' ...]`.  
-  User can submit one of these strings or any text entered in input (even if it is not matching source).
+  UserEntity can submit one of these strings or any text entered in input (even if it is not matching source).
   
 * **objects**:  
   When `source` defined as array of objects, e.g. `[{value: 1, text: "text1"}, {value: 2, text: "text2"}, ...]`.  
-  User can submit only values that are in source (otherwise `null` is submitted). This is more like *dropdown* behavior.
+  UserEntity can submit only values that are in source (otherwise `null` is submitted). This is more like *dropdown* behavior.
 
 @class typeahead
 @extends list

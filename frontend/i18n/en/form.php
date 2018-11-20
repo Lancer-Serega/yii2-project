@@ -35,6 +35,7 @@ return [
     'Select interface language' => 'Select interface language',
     'Save' => 'Save',
     'Search & enter' => 'Search & enter',
+    'Login confirmation' => 'Login confirmation',
     'Two factor key' => 'Two factor key',
 
     // Form messages
@@ -72,4 +73,8 @@ return [
     'Information saved successfully' => 'Information saved successfully',
     'Information was not saved due to server error.' => 'Information was not saved due to server error.',
     'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.' => 'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.',
+    'Please fill out the following fields to login:' => 'Please fill out the following fields to login:',
+    'If you for some reason did not receive a letter, then check the spam folder.' => 'If you for some reason did not receive a letter, then check the spam folder.',
+    'Otherwise, you can resend the letter.' => 'Otherwise, you can resend the letter.',
+    'Authorisation Error!' => 'Authorisation Error!',
 ];

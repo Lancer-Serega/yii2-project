@@ -1,6 +1,6 @@
 <?php
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use yii\db\Migration;
 
 /**
@@ -69,7 +69,7 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
         }
 
         $comments = [
-            'table' => 'User configuration table',
+            'table' => 'UserEntity configuration table',
             'language_id' => 'ID language on language table',
         ];
 
@@ -120,21 +120,21 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
         }
 
         $comments = [
-            'table' => 'User table',
-            'user_config_id' => 'User config table ID `user_config`.`id`',
-            'username' => 'User name',
+            'table' => 'UserEntity table',
+            'user_config_id' => 'UserEntity config table ID `user_config`.`id`',
+            'username' => 'UserEntity name',
             'auth_key' => 'Authorization key',
             'password_hash' => 'Hash user password',
             'password_reset_token' => 'Password reset token',
-            'email' => 'User Email',
-            'email_confirm_token' => 'User Email confirm token. Need to confirm user email',
-            'email_status' => 'User Email status (0 => EMAIL_NOT_CONFIRMED, 1 => EMAIL_CONFIRMED). See the full list in the User model.',
-            'status' => 'User status (active or deleted)',
-            'created_at' => 'User register date',
-            'updated_at' => 'User update date',
-            'phone' => 'User phone',
-            'skype' => 'User skype',
-            'telegram' => 'User telegram',
+            'email' => 'UserEntity Email',
+            'email_confirm_token' => 'UserEntity Email confirm token. Need to confirm user email',
+            'email_status' => 'UserEntity Email status (0 => EMAIL_NOT_CONFIRMED, 1 => EMAIL_CONFIRMED). See the full list in the UserEntity model.',
+            'status' => 'UserEntity status (active or deleted)',
+            'created_at' => 'UserEntity register date',
+            'updated_at' => 'UserEntity update date',
+            'phone' => 'UserEntity phone',
+            'skype' => 'UserEntity skype',
+            'telegram' => 'UserEntity telegram',
         ];
 
         $this->createTable('{{%user}}', [
@@ -179,7 +179,7 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
      */
     private function insertInTableUser(): void
     {
-        $user = new User();
+        $user = new UserEntity();
         $user->generateAuthKey();
         $user->setPassword('This is Supper - puper password!');
 
@@ -189,8 +189,8 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
             'password_hash' => $user->password_hash,
             'email' => 'root@email.com',
             'email_confirm_token' => null,
-            'email_status' => User::EMAIL_CONFIRMED,
-            'status' => User::STATUS_ACTIVE,
+            'email_status' => UserEntity::EMAIL_CONFIRMED,
+            'status' => UserEntity::STATUS_ACTIVE,
             'user_config_id' => 1,
         ]);
 
@@ -200,8 +200,8 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
             'password_hash' => $user->password_hash,
             'email' => 'admin@email.com',
             'email_confirm_token' => null,
-            'email_status' => User::EMAIL_CONFIRMED,
-            'status' => User::STATUS_ACTIVE,
+            'email_status' => UserEntity::EMAIL_CONFIRMED,
+            'status' => UserEntity::STATUS_ACTIVE,
             'user_config_id' => 2,
         ]);
 
@@ -211,8 +211,8 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
             'password_hash' => $user->password_hash,
             'email' => 'user@email.com',
             'email_confirm_token' => null,
-            'email_status' => User::EMAIL_CONFIRMED,
-            'status' => User::STATUS_ACTIVE,
+            'email_status' => UserEntity::EMAIL_CONFIRMED,
+            'status' => UserEntity::STATUS_ACTIVE,
             'user_config_id' => 3,
         ]);
 
@@ -222,8 +222,8 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
             'password_hash' => $user->password_hash,
             'email' => 'user_delete_status@email.com',
             'email_confirm_token' => null,
-            'email_status' => User::EMAIL_CONFIRMED,
-            'status' => User::STATUS_DELETED,
+            'email_status' => UserEntity::EMAIL_CONFIRMED,
+            'status' => UserEntity::STATUS_DELETED,
             'user_config_id' => 4,
         ]);
 
@@ -233,8 +233,8 @@ class m181029_175019_create_table_user_create_table_user_config extends Migratio
             'password_hash' => $user->password_hash,
             'email' => 'user_email_not_confirmed@email.com',
             'email_confirm_token' => Yii::$app->security->generateRandomString(32),
-            'email_status' => User::EMAIL_NOT_CONFIRMED,
-            'status' => User::STATUS_ACTIVE,
+            'email_status' => UserEntity::EMAIL_NOT_CONFIRMED,
+            'status' => UserEntity::STATUS_ACTIVE,
             'user_config_id' => 5,
         ]);
     }

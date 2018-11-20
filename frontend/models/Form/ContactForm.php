@@ -6,6 +6,9 @@ use Yii;
 
 /**
  * ContactForm is the model behind the contact form.
+ *
+ * Class ContactForm
+ * @package frontend\models\Form
  */
 class ContactForm extends BaseForm
 {
@@ -17,9 +20,9 @@ class ContactForm extends BaseForm
 
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             // name, email, subject and body are required
@@ -32,22 +35,12 @@ class ContactForm extends BaseForm
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'verifyCode' => 'Verification Code',
-        ];
-    }
-
-    /**
      * Sends an email to the specified email address using the information collected by this model.
      *
      * @param string $email the target email address
      * @return bool whether the email was sent
      */
-    public function sendEmail($email)
+    public function sendEmail($email): bool
     {
         return Yii::$app->mailer->compose()
             ->setTo($email)

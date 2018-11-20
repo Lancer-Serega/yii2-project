@@ -1,23 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 02.11.18
  * Time: 15:37
  */
 
 /**
  * @var View $this
- * @var LogUserAuth[] $userAuthHistoryList
+ * @var LogUserAuthEntity[] $userAuthHistoryList
  * @var array $userConfig
  */
 
-use \frontend\models\Entity\LogUserAuth;
-use \frontend\widgets\Alert;
+use \frontend\models\Entity\LogUserAuthEntity;
+use \frontend\widgets\AlertWidget;
 use \yii\helpers\Url;
 use \yii\web\View;
 use \yii\web\YiiAsset;
-use \yii\widgets\Breadcrumbs;
+use \frontend\widgets\BreadcrumbsWidget;
 
 $this->title = Yii::t('menu', 'Account');
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => [Url::to('/cabinet')]];
@@ -37,7 +37,7 @@ $this->registerJsFile($this->theme->getBaseUrl() . '/js/switch.js', ['position' 
     <!-- ============================================================== -->
     <div class="alert-block">
         <?php if (count(Yii::$app->session->getAllFlashes())) {
-            echo Alert::widget() . '<br/>';
+            echo AlertWidget::widget() . '<br/>';
         } ?>
     </div>
     <!-- ============================================================== -->
@@ -52,12 +52,7 @@ $this->registerJsFile($this->theme->getBaseUrl() . '/js/switch.js', ['position' 
             <h3 class="text-themecolor"><?= Yii::t('menu', 'Security'); ?></h3>
         </div>
         <div class="col-md-7 align-self-center">
-            <?= Breadcrumbs::widget([
-                'activeItemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
-                'itemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
-                'links' => $this->params['breadcrumbs'] ?? [],
-            ]);
-            ?>
+            <?= BreadcrumbsWidget::widget(['links' => $this->params['breadcrumbs'] ?? []]); ?>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -129,7 +124,8 @@ $this->registerJsFile($this->theme->getBaseUrl() . '/js/switch.js', ['position' 
                                             <?php foreach($userAuthHistoryList as $userAuthHistory):
                                                 $date = new \DateTime($userAuthHistory->timestamp);
                                                 $authDate = \Yii::$app->formatter->asDatetime($date, 'long');
-                                                [$date, $time] = explode(' at ', $authDate);
+                                                $time = \Yii::$app->formatter->asTime($date, 'long');
+                                                $date = \Yii::$app->formatter->asDate($date, 'long');
                                                 if (!empty($date) ||!empty($time)) {
                                                     $authDate = "<span class=\"date\">{$date}</span><br><span class=\"time\">{$time}</span>";
                                                 }

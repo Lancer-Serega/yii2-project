@@ -23,7 +23,7 @@ class m181025_154130_create_table_language extends Migration
         $comments = [
             'table' => 'Language storage table. Taking into account that the number of languages ​​is unlimited and the default language should be indicated, it was decided to store this list in a separate database table.',
             'url' => 'Alphabetic identifier of the language to display in the URL (ru, en, de, ...)',
-            'local' => 'User language (locale)',
+            'local' => 'UserEntity language (locale)',
             'name' => 'Name (English, Русский, ...)',
             'default' => 'Lag indicating the default language (1 - default language)',
             'date_update' => 'Update date (in unix timestamp)',

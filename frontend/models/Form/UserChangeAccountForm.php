@@ -6,21 +6,52 @@ use Yii;
 
 /**
  * LoginForm is the model behind the login form.
+ *
+ * Class UserChangeAccountForm
+ * @package frontend\models\Form
  */
 class UserChangeAccountForm extends BaseForm
 {
+    /**
+     * @var string
+     */
     public $username;
+
+    /**
+     * @var string
+     */
     public $new_password;
+
+    /**
+     * @var string
+     */
     public $password_repeat;
+
+    /**
+     * @var string
+     */
     public $language;
+
+    /**
+     * @var int
+     */
     public $phone;
+
+    /**
+     * @var string
+     */
     public $skype;
+
+    /**
+     * @var string
+     */
     public $telegram;
+
 
     /**
      * @return array the validation rules.
      */
-    public function rules()
+    public function rules(): array
     {
         $msg = [
             'required' => Yii::t('form', '"{field_name}" field is required', ['field_name' => Yii::t('form', 'Your name')]),

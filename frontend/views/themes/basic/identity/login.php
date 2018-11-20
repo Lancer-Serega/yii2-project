@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 26.10.18
  * Time: 20:07
  */
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p><?= \Yii::t('form', 'Please fill out the following fields to login:'); ?></p>
 
     <div class="row">
         <div class="col-lg-5">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($loginForm, 'remember')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a(Yii::t('form', 'reset it'), ['site/request-password-reset']) ?>.
+                    <?= \Yii::t('form', '<?= \Yii::t('form', 'If you forgot your password you can'); ?>'); ?> <?= Html::a(Yii::t('form', 'reset it'), ['site/request-password-reset']) ?>.
                 </div>
 
                 <div class="form-group">

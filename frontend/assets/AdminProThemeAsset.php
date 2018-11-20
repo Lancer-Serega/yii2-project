@@ -46,7 +46,10 @@ class AdminProThemeAsset extends AssetBundle
         YiiAsset::class,
     ];
 
-    public function init()
+    /**
+     * @return void
+     */
+    public function init(): void
     {
         parent::init();
 

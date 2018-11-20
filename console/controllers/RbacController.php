@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 29.10.18
  * Time: 18:24
  */
@@ -30,7 +30,7 @@ class RbacController extends Controller
         $auth->add($permitCabinetView);
 
         $roleUser = $auth->createRole(RbacService::ROLE_USER);
-        $roleUser->description = 'Role - User';
+        $roleUser->description = 'Role - UserEntity';
         $auth->add($roleUser);
         $auth->addChild($roleUser, $permitCabinetView);
 

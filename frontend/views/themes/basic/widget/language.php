@@ -2,19 +2,19 @@
 
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 26.10.18
  * Time: 12:53
  */
 
 use frontend\components\LangRequest;
-use frontend\models\Entity\Language;
+use frontend\models\Entity\LanguageEntity;
 use yii\helpers\Html;
 
 /**
  * @var LangRequest $request
- * @var Language $currentLang
- * @var Language[] $langs
+ * @var LanguageEntity $currentLang
+ * @var LanguageEntity[] $langs
  */
 
 $request = \Yii::$app->getRequest();

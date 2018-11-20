@@ -1,6 +1,6 @@
 <?php
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use frontend\models\Repository\UserRepository;
 use yii\db\Migration;
 
@@ -23,11 +23,11 @@ class m181116_102612_create_table_user_security extends Migration
         }
 
         $comments = [
-            'table' => 'User security table (two factor authorization)',
-            'user_id' => 'User ID unique identifier',
-            'key' => 'User security unique key',
-            'name' => 'User security name',
-            'value' => 'User security value',
+            'table' => 'UserEntity security table (two factor authorization)',
+            'user_id' => 'UserEntity ID unique identifier',
+            'key' => 'UserEntity security unique key',
+            'name' => 'UserEntity security name',
+            'value' => 'UserEntity security value',
         ];
 
         $this->createTable('{{%user_security}}', [
@@ -49,7 +49,7 @@ class m181116_102612_create_table_user_security extends Migration
         // Insert in table
         $userIds = UserRepository::getAll(['id']);
         foreach ($userIds as $userId) {
-            $user = User::findIdentity($userId);
+            $user = UserEntity::findIdentity($userId);
             if ($user) {
                 $user->generateAuthKey(32);
                 $data = [

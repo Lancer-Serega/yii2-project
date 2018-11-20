@@ -1,14 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 01.11.18
  * Time: 19:31
  */
 
 namespace frontend\controllers;
 
-use frontend\models\Entity\LogUserAuth;
+use frontend\models\Entity\LogUserAuthEntity;
 use frontend\models\Form\UserChangeAccountForm;
 use frontend\models\Repository\UserConfigRepository;
 use frontend\services\IdentityService;
@@ -17,7 +17,10 @@ use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 
 /**
- * Cabinet controller
+ * Cabinet controller.
+ *
+ * Class CabinetController
+ * @package frontend\controllers
  */
 class CabinetController extends BaseController
 {
@@ -62,6 +65,9 @@ class CabinetController extends BaseController
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex(): string
     {
         return $this->render('index', [
@@ -69,6 +75,11 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render account.
+     *
+     * @return string
+     */
     public function actionAccount(): string
     {
         return $this->render('account', [
@@ -76,6 +87,11 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render active tariffs
+     *
+     * @return string
+     */
     public function actionActiveTariffs(): string
     {
         return $this->render('active-tariffs', [
@@ -83,11 +99,21 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render tariffs.
+     *
+     * @return string
+     */
     public function actionTariffs(): string
     {
         return $this->render('tariffs');
     }
 
+    /**
+     * Action render trial period.
+     *
+     * @return string
+     */
     public function actionTrialPeriod(): string
     {
         return $this->render('trial-period', [
@@ -95,6 +121,11 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render support.
+     *
+     * @return string
+     */
     public function actionSupport(): string
     {
         return $this->render('support', [
@@ -102,6 +133,10 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render FAQ.
+     * @return string
+     */
     public function actionFaq(): string
     {
         return $this->render('faq', [
@@ -109,12 +144,19 @@ class CabinetController extends BaseController
         ]);
     }
 
+    /**
+     * Action render settings.
+     *
+     * @return string
+     */
     public function actionSettings(): string
     {
         return $this->render('settings');
     }
 
     /**
+     * Action render security.
+     *
      * @return string
      * @throws \Throwable
      */
@@ -122,7 +164,7 @@ class CabinetController extends BaseController
     {
         $user = \Yii::$app->getUser()->getIdentity();
         $userConfig['two_factor_auth'] = UserConfigRepository::getTwoFactorAuth(['two_factor_auth'], (int)$user->getId());
-        $userAuthHistoryList = LogUserAuth::findAll(['user_id' => \Yii::$app->user->getIdentity()->id]);
+        $userAuthHistoryList = LogUserAuthEntity::findAll(['user_id' => \Yii::$app->user->getIdentity()->id]);
 
         return $this->render('security', [
             'userConfig' => $userConfig,
@@ -131,9 +173,12 @@ class CabinetController extends BaseController
     }
 
     /**
+     * Action saving settings.
+     *
+     * @return string
      * @throws \Throwable
      */
-    public function actionSettingsSave()
+    public function actionSettingsSave(): string
     {
         $form = new UserChangeAccountForm();
         $service = new IdentityService();
@@ -169,6 +214,11 @@ class CabinetController extends BaseController
         return $this->render('@app/views/themes/admin-pro/cabinet/settings');
     }
 
+    /**
+     * Action render finance operations.
+     *
+     * @return string
+     */
     public function actionFinanceOperations(): string
     {
         return $this->render('finance-operations');

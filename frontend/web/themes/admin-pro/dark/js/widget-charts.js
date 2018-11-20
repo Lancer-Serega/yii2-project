@@ -32,7 +32,7 @@ $(function() {
         }
     });
     // ============================================================== 
-    // User analytics
+    // UserEntity analytics
     // ============================================================== 
     new Chartist.Line('.user-analytics', {
         labels: ['10 jan', '15 jan', '20 jan', '25 jan', '30 jan', '05 Feb', '10 Feb'],

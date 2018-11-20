@@ -2,14 +2,14 @@
 
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 31.10.18
  * Time: 12:31
  */
 
 namespace frontend\controllers;
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use frontend\models\Form\UserConfigForm;
 use frontend\services\IdentityService;
 use \Yii;
@@ -17,6 +17,7 @@ use frontend\models\Form\SigninForm;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use frontend\models\Form\LoginForm;
 use frontend\models\Form\PasswordResetRequestForm;
@@ -25,6 +26,9 @@ use yii\web\Response;
 
 /**
  * IdentityController controller
+ *
+ * Class IdentityController
+ * @package frontend\controllers
  */
 class IdentityController extends BaseController
 {
@@ -51,7 +55,9 @@ class IdentityController extends BaseController
 
     /**
      * Login a user.
+     *
      * @return mixed
+     * @throws \Exception
      */
     public function actionLogin()
     {
@@ -93,15 +99,33 @@ class IdentityController extends BaseController
     }
 
     /**
-     * Accept user two factor auth after login
-     * @return string
+     * Accept user two factor auth after login.
+     *
+     * @return string|null
      */
-    public function actionAcceptTwoFactorAuth(): string
+    public function actionAcceptTwoFactorAuth(): ?string
     {
+        $session = Yii::$app->session;
+        $userId = $session->get('user_id');
+        if (!$userId) {
+            $msg = '<strong class="bold text-danger">' . \Yii::t('error', 'Authorization key expired!') . '</strong><br>';
+            $msg .= \Yii::t('error', 'You can regenerate the key again (it will be sent to the email you provided during registration).');
+            $session->setFlash('error', $msg);
+            $this->redirect('index')->send();
+            return null;
+        }
+
+        $user = UserEntity::findIdentity($userId);
+        $key = $user->getUserConfig()->getTwoFactorAuthKey();
         $msg = 'You have two-factor authentication enabled. ';
         $msg .= 'To continue logging in, you need to verify your email address provided during registration. ';
         $msg .= 'In the letter you will see a token, copy it in the box below or follow the link in the letter.';
-        \Yii::$app->session->setFlash('info', Yii::t('form', $msg));
+
+        // FIXME: remove before deploy in production!
+        $msgTemporary = "<hr><span class='text-danger'>&gt;&gt;TEMPORARY&lt;&lt;</span> "
+            . "Или скопируйте этот ключ <span class='text-danger bold'><code>$key</code></span><br>"
+            . 'Или перейдите <span class=\'text-danger\'><a href="/accept-two-factor-auth?key=' . $key . '">по этой временной ссылке =)</a></span>';
+        \Yii::$app->session->setFlash('info', Yii::t('form', $msg) . $msgTemporary);
 
         $userConfigForm = new UserConfigForm();
 
@@ -112,7 +136,29 @@ class IdentityController extends BaseController
     }
 
     /**
+     * Two-factor authentication key verification.
+     *
+     * @return Response
+     */
+    public function actionCheckTwoFactorAuth(): Response
+    {
+        $userId = \Yii::$app->session->get('user_id');
+        $userConfigForm = new UserConfigForm();
+        if ($userId && $userConfigForm->load(Yii::$app->request->get())) {
+            $service = new IdentityService();
+            if ($service->checkTwoFactorAuthKey($userId, $userConfigForm->twoFactorAuthKey)) {
+                return $this->redirect(Url::to('cabinet/account'));
+            }
+        }
+
+        \Yii::$app->session->setFlash('error', Yii::t('form', 'Authorisation Error!'));
+        
+        return $this->redirect(Yii::$app->getUser()->getReturnUrl());
+    }
+
+    /**
      * Logout the current user.
+     *
      * @return Response
      */
     public function actionLogout(): Response
@@ -124,6 +170,7 @@ class IdentityController extends BaseController
 
     /**
      * Signs user up.
+     *
      * @return Response
      * @throws \Throwable
      */
@@ -164,10 +211,11 @@ class IdentityController extends BaseController
     /**
      * Used to verify the token when the user clicks the confirmation link
      * (the link will contain this parameter, which will be found in the database).
-     * @param $token
+     *
+     * @param string $token
      * @return Response
      */
-    public function actionSigninConfirm($token): Response
+    public function actionSigninConfirm(string $token): Response
     {
         $identityService = new IdentityService();
 
@@ -183,16 +231,17 @@ class IdentityController extends BaseController
     }
 
     /**
-     * Resend email confirm user
-     * @param $token
+     * Resend email confirm user.
+     *
+     * @param string $token
      * @return Response
      */
-    public function actionResendEmail($token): Response
+    public function actionResendEmail(string $token): Response
     {
         /**
-         * @var User $user
+         * @var UserEntity $user
          */
-        $user = User::findIdentityByEmailConfirmToken($token);
+        $user = UserEntity::findIdentityByEmailConfirmToken($token);
         $service = new IdentityService();
         $service->sendEmailConfirm($user);
         Yii::$app->session->setFlash('success', Yii::t('form', 'To complete the registration, confirm your email. Check your email.'));
@@ -201,7 +250,8 @@ class IdentityController extends BaseController
 
     /**
      * Requests password reset.
-     * @return mixed
+     *
+     * @return string|Response
      * @throws Exception
      */
     public function actionRequestPasswordReset()
@@ -224,12 +274,13 @@ class IdentityController extends BaseController
 
     /**
      * Resets password.
+     *
      * @param string $token
-     * @return mixed
+     * @return string|Response
      * @throws BadRequestHttpException
      * @throws Exception
      */
-    public function actionResetPassword($token)
+    public function actionResetPassword(string $token)
     {
         try {
             $model = new ResetPasswordForm($token);

@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models\Entity;
 
 use Yii;
@@ -10,23 +11,23 @@ use yii\web\IdentityInterface;
  * This is the model class for table "user".
  *
  * @property int $id
- * @property string $username User name
+ * @property string $username UserEntity name
  * @property string $auth_key
  * @property string $password_hash Hash user password
  * @property string $password_reset_token Password reset token
- * @property string $email User Email
- * @property string $email_confirm_token User Email confirm token. Need to confirm user email
- * @property int $email_status User Email status (0 => EMAIL_NOT_CONFIRMED, 1 => EMAIL_CONFIRMED). See the full list in the User model.
- * @property int $status User status (active or deleted)
- * @property string $created_at User register date
- * @property string $updated_at User update date
- * @property int $phone [int(22) unsigned]  User phone
- * @property string $skype [varchar(255)]  User skype
- * @property string $telegram [varchar(32)]  User telegram
- * @property string $login [varchar(255)]  User login
+ * @property string $email UserEntity Email
+ * @property string $email_confirm_token UserEntity Email confirm token. Need to confirm user email
+ * @property int $email_status UserEntity Email status (0 => EMAIL_NOT_CONFIRMED, 1 => EMAIL_CONFIRMED). See the full list in the UserEntity model.
+ * @property int $status UserEntity status (active or deleted)
+ * @property string $created_at UserEntity register date
+ * @property string $updated_at UserEntity update date
+ * @property int $phone [int(22) unsigned]  UserEntity phone
+ * @property string $skype [varchar(255)]  UserEntity skype
+ * @property string $telegram [varchar(32)]  UserEntity telegram
+ * @property string $login [varchar(255)]  UserEntity login
  * @property int $user_config_id
  */
-class User extends BaseEntity implements IdentityInterface
+class UserEntity extends BaseEntity implements IdentityInterface
 {
     public const STATUS_DELETED = 0;
     public const STATUS_ACTIVE = 1;
@@ -35,22 +36,22 @@ class User extends BaseEntity implements IdentityInterface
     public const EMAIL_CONFIRMED = 1;
 
     /**
-     * @var UserConfig
+     * @var UserConfigEntity
      */
     public $userConfig;
 
     /**
-     * @inheritdoc
+     * @return string
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return '{{%user}}';
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['username', 'auth_key', 'password_hash', 'email'], 'required'],
@@ -69,43 +70,32 @@ class User extends BaseEntity implements IdentityInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Find identity
+     *
+     * @param int|string $id
+     * @param int $status
+     * @return UserEntity|null|IdentityInterface
      */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'email_confirm_token' => 'Email Confirm Token',
-            'email_status' => 'Email Status',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentity($id, $status = self::STATUS_ACTIVE)
+    public static function findIdentity($id, int $status = self::STATUS_ACTIVE): ?UserEntity
     {
         return static::findOne(['id' => $id, 'status' => $status]);
     }
 
     /**
-     * @inheritdoc
+     * Find identity by email confirm token
+     *
+     * @param $token
+     * @param int $status
+     * @return UserEntity|null
      */
-    public static function findIdentityByEmailConfirmToken($token, $status = self::STATUS_ACTIVE)
+    public static function findIdentityByEmailConfirmToken(string $token, int $status = self::STATUS_ACTIVE): ?UserEntity
     {
         return static::findOne(['email_confirm_token' => $token, 'status' => $status]);
     }
 
     /**
-     * @inheritdoc
+     * Find identity by access token
+     *
      * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null)
@@ -120,7 +110,7 @@ class User extends BaseEntity implements IdentityInterface
      * @param int $status
      * @return static|null
      */
-    public static function findByUsername($username, $status = self::STATUS_ACTIVE)
+    public static function findByUsername(string $username, int $status = self::STATUS_ACTIVE): ?UserEntity
     {
         return static::findOne(['username' => $username, 'status' => $status]);
     }
@@ -130,15 +120,17 @@ class User extends BaseEntity implements IdentityInterface
      *
      * @param $email
      * @param int $status
-     * @return static|null
+     * @return UserEntity|null
      */
-    public static function findByEmail($email, $status = self::STATUS_ACTIVE)
+    public static function findByEmail(string $email, int $status = self::STATUS_ACTIVE): ?UserEntity
     {
         return static::findOne(['email' => $email, 'status' => $status]);
     }
 
     /**
-     * @inheritdoc
+     * Get user ID
+     *
+     * @return mixed
      */
     public function getId()
     {
@@ -146,17 +138,22 @@ class User extends BaseEntity implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * Get user auth key
+     *
+     * @return string
      */
-    public function getAuthKey()
+    public function getAuthKey(): string
     {
         return $this->auth_key;
     }
 
     /**
-     * @inheritdoc
+     * Validate user auth key
+     *
+     * @param string $authKey
+     * @return bool
      */
-    public function validateAuthKey($authKey)
+    public function validateAuthKey($authKey): bool
     {
         return $this->getAuthKey() === $authKey;
     }
@@ -167,7 +164,7 @@ class User extends BaseEntity implements IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
+    public function validatePassword(string $password): bool
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
@@ -176,30 +173,36 @@ class User extends BaseEntity implements IdentityInterface
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @return UserEntity
      * @throws Exception
      */
-    public function setPassword($password)
+    public function setPassword(string $password): UserEntity
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        return $this;
     }
 
     /**
      * Generates "remember me" authentication key
+     *
      * @param int $length
+     * @return string
      * @throws Exception
      */
-    public function generateAuthKey($length = 32)
+    public function generateAuthKey(int $length = 32): string
     {
         $this->auth_key = Yii::$app->security->generateRandomString($length);
+        return $this->auth_key;
     }
 
     /**
      * Find by password reset token and user status
+     *
      * @param string $token
      * @param int $status
-     * @return User|null
+     * @return UserEntity|null
      */
-    public static function findByPasswordResetToken($token, $status = self::STATUS_ACTIVE)
+    public static function findByPasswordResetToken(string $token, int $status = self::STATUS_ACTIVE): ?UserEntity
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
@@ -213,10 +216,11 @@ class User extends BaseEntity implements IdentityInterface
 
     /**
      * Check password reset token for validity
+     *
      * @param string $token
      * @return bool
      */
-    public static function isPasswordResetTokenValid($token)
+    public static function isPasswordResetTokenValid(string $token): bool
     {
 
         if (empty($token)) {
@@ -230,62 +234,73 @@ class User extends BaseEntity implements IdentityInterface
 
     /**
      * Generate password reset token
+     *
+     * @return string
      * @throws Exception
      */
-    public function generatePasswordResetToken()
+    public function generatePasswordResetToken(): string
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        return $this->password_reset_token;
     }
 
     /**
      * Remove password reset token
      */
-    public function removePasswordResetToken()
+    public function removePasswordResetToken(): void
     {
         $this->password_reset_token = null;
     }
 
     /**
-     * @return Language|null
+     * Get user language interface
+     *
+     * @return LanguageEntity|null
      */
-    public function getLanguage()
+    public function getLanguage(): ?LanguageEntity
     {
         $userConfig = $this->getUserConfig();
-        return Language::findOne(['id' => $userConfig->language_id]);
+        return LanguageEntity::findOne(['id' => $userConfig->language_id]);
     }
 
     /**
-     * @param Language $language
-     * @return User
+     * Switch user language interface
+     *
+     * @param LanguageEntity $language
+     * @return UserEntity
      */
-    public function switchLanguage(Language $language): User
+    public function switchLanguage(LanguageEntity $language): UserEntity
     {
         $userConfig = $this->getUserConfig();
         $userConfig->language_id = $language->id;
         $userConfig->save();
-        Language::setCurrentById($userConfig->language_id);
+        LanguageEntity::setCurrentById($userConfig->language_id);
         return $this;
     }
 
     /**
-     * @param null $configId
-     * @return UserConfig
+     * Get user config model
+     *
+     * @param int|null $configId
+     * @return UserConfigEntity
      */
-    public function getUserConfig($configId = null): UserConfig
+    public function getUserConfig(int $configId = null): UserConfigEntity
     {
         if (!$configId) {
             $configId = $this->user_config_id;
         }
 
-        $this->userConfig = UserConfig::getById($configId);
+        $this->userConfig = UserConfigEntity::getById($configId);
         $this->user_config_id = $this->userConfig->id;
         return $this->userConfig;
     }
 
     /**
-     * @param UserConfig $userConfig
+     * Set user config model
+     *
+     * @param UserConfigEntity $userConfig
      */
-    public function setUserConfig(UserConfig $userConfig): void
+    public function setUserConfig(UserConfigEntity $userConfig): void
     {
         $this->userConfig = $userConfig;
     }

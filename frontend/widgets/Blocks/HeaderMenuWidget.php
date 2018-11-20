@@ -5,7 +5,7 @@ use Yii;
 use yii\bootstrap\Widget;
 use yii\helpers\Url;
 
-class HeaderMenu extends Widget
+class HeaderMenuWidget extends Widget
 {
     /**
      * @var string 
@@ -14,7 +14,7 @@ class HeaderMenu extends Widget
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function run(): string
     {
         $class = [
             'index'    => $this->route === 'index/index'     ? ' is-active' : '',

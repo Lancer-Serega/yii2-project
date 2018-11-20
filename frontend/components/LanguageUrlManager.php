@@ -2,32 +2,38 @@
 
 namespace frontend\components;
 
-use frontend\models\Entity\Language;
+use frontend\models\Entity\LanguageEntity;
 use yii\web\UrlManager;
 
+/**
+ * Class LanguageUrlManager
+ * @package frontend\components
+ * @deprecated
+ */
 class LanguageUrlManager extends UrlManager
 {
     /**
-     * Prepare url for internationalization (/index/about --> /en/index/about)
+     * Prepare url for internationalization (/index/about --> /en/index/about).
+     *
      * @param array|string $params
      * @return string
      * @throws \Throwable
      */
-    public function createUrl($params)
+    public function createUrl($params): string
     {
         if (isset($params['lang_id'])) {
             // If the language identifier is specified,
             // then we try to find the language in the database,
             // otherwise we work with the default language.
-            $lang = Language::findOne($params['lang_id']);
+            $lang = LanguageEntity::findOne($params['lang_id']);
             if ($lang === null) {
-                $lang = Language::getDefaultLang();
+                $lang = LanguageEntity::getDefaultLang();
             }
 
             unset($params['lang_id']);
         } else {
             // If the language parameter is not specified, then we work with the current language.
-            $lang = Language::getCurrent();
+            $lang = LanguageEntity::getCurrent();
         }
 
         $url = parent::createUrl($params);

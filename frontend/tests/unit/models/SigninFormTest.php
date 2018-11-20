@@ -3,7 +3,7 @@ namespace frontend\tests\unit\models;
 
 use common\fixtures\UserFixture;
 use frontend\models\Form\SigninForm;
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 
 class SigninFormTest extends \Codeception\Test\Unit
 {
@@ -33,7 +33,7 @@ class SigninFormTest extends \Codeception\Test\Unit
 
         $user = $model->signin();
 
-        expect($user)->isInstanceOf(User::class);
+        expect($user)->isInstanceOf(UserEntity::class);
 
         expect($user->username)->equals('some_username');
         expect($user->email)->equals('some_email@example.com');

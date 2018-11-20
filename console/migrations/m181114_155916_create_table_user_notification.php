@@ -20,8 +20,8 @@ class m181114_155916_create_table_user_notification extends Migration
         }
 
         $comments = [
-            'table' => 'User notifications table',
-            'user_id' => 'User unique identifier',
+            'table' => 'UserEntity notifications table',
+            'user_id' => 'UserEntity unique identifier',
             'name' => 'Notification name',
             'value' => 'Notification value',
         ];

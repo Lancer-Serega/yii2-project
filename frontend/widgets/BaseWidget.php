@@ -6,7 +6,7 @@ use yii\bootstrap\Widget;
 
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 12.11.18
  * Time: 15:46
  */

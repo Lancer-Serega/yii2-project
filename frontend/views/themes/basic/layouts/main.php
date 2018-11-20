@@ -3,18 +3,18 @@
 /**
  * @var View $this
  * @var string $content
- * @var User $user
+ * @var UserEntity $user
  * @var SigninForm $signinFormModel
  */
 
-use \frontend\models\Entity\User;
+use \frontend\models\Entity\UserEntity;
 use \yii\helpers\Html;
 use \yii\helpers\Url;
 use \yii\web\View;
-use \yii\widgets\Breadcrumbs;
+use \frontend\widgets\BreadcrumbsWidget;
 use \frontend\models\Form\SigninForm;
 use \frontend\widgets\Blocks\LanguageWidget;
-use \frontend\widgets\Blocks\{AccountMenu, HeaderMenu, LogInWidget, SignInWidget};
+use \frontend\widgets\Blocks\{AccountMenuWidget, HeaderMenuWidget, LogInWidget, SignInWidget};
 use \frontend\assets\BasicThemeAsset;
 use \common\widgets\Alert;
 
@@ -47,9 +47,9 @@ BasicThemeAsset::register($this);
                     <img src="<?= Url::to($this->theme->getUrl('/images/logo.png'), true); ?>" alt="ProxyServers" />
                 </a>
             </div>
-            <?= HeaderMenu::widget(['route' => $this->context->route]); ?>
+            <?= HeaderMenuWidget::widget(['route' => $this->context->route]); ?>
             <?= LanguageWidget::widget(['app' => Yii::$app]); ?>
-            <?= AccountMenu::widget(['user' => Yii::$app->getUser()->getIdentity()]); ?>
+            <?= AccountMenuWidget::widget(['user' => Yii::$app->getUser()->getIdentity()]); ?>
         </div>
     </header>
     <!-- Header :: End-->
@@ -66,7 +66,10 @@ BasicThemeAsset::register($this);
     <main class="main">
         <div id="breadcrumps">
             <div class="container-fluid">
-                <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs'] ?? [],]); ?>
+                <?= BreadcrumbsWidget::widget([
+                    'links' => $this->params['breadcrumbs'] ?? [],
+                ]);
+                ?>
             </div>
         </div>
 

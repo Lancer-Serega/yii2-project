@@ -11,7 +11,7 @@ class LogInWidget extends BaseWidget
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function run(): string
     {
         return $this->render('/login-form', [
             'loginFormModel' => new LoginForm(),

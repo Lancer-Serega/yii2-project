@@ -11,22 +11,27 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property int $id
  * @property string $url Alphabetic identifier of the language to display in the URL (ru, en, de, ...)
- * @property string $local User language (locale)
+ * @property string $local UserEntity language (locale)
  * @property string $name Name (English, Русский, ...)
  * @property int $default Lag indicating the default language (1 - default language)
  * @property string $date_update Update date (in unix timestamp)
  * @property string $date_create Creation date (in unix timestamp)
  */
-class Language extends BaseEntity
+class LanguageEntity extends BaseEntity
 {
     /**
      * Property to store the current language object
-     * @var Language
+     * @var LanguageEntity
      */
     public static $current;
 
     /**
-     * {@inheritdoc}
+     * @var array
+     */
+    public static $languageList = ['en', 'ru'];
+
+    /**
+     * @return string
      */
     public static function tableName(): string
     {
@@ -34,7 +39,7 @@ class Language extends BaseEntity
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
     public function rules(): array
     {
@@ -50,23 +55,7 @@ class Language extends BaseEntity
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels(): array
-    {
-        return [
-            'id' => 'ID',
-            'url' => 'Alphabetic identifier of the language to display in the URL (ru, en, de, ...)',
-            'local' => 'User language (locale)',
-            'name' => 'Name (English, Русский, ...)',
-            'default' => 'Lag indicating the default language (1 - default language)',
-            'date_update' => 'Update date (in unix timestamp)',
-            'date_create' => 'Creation date (in unix timestamp)',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
+     * @return array
      */
     public function behaviors(): array
     {
@@ -82,14 +71,15 @@ class Language extends BaseEntity
     }
 
     /**
-     * Getting the current language object
-     * @return Language
+     * Getting the current language object.
+     *
+     * @return LanguageEntity
      * @throws \Throwable
      */
-    public static function getCurrent(): Language
+    public static function getCurrent(): LanguageEntity
     {
         /**
-         * @var User $user
+         * @var UserEntity $user
          */
         if (self::$current === null) {
             if ($user = \Yii::$app->user->getIdentity()) {
@@ -105,10 +95,11 @@ class Language extends BaseEntity
     }
 
     /**
-     * Setting the current language object and user locale
+     * Setting the current language object and user locale.
+     *
      * @param string $url
      */
-    public static function setCurrent($url = null): void
+    public static function setCurrent(string $url = null): void
     {
         $language = self::getLangByUrl($url);
         self::$current = $language ?? self::getDefaultLang();
@@ -116,10 +107,11 @@ class Language extends BaseEntity
     }
 
     /**
-     * Setting the current language object and user locale
+     * Setting the current language object and user locale.
+     *
      * @param int $id
      */
-    public static function setCurrentById($id = null): void
+    public static function setCurrentById(int $id = null): void
     {
         $language = self::getById($id);
         self::$current = $language ?? self::getDefaultLang();
@@ -127,29 +119,32 @@ class Language extends BaseEntity
     }
 
     /**
-     * Getting the default language object
-     * @return Language|ActiveRecord|array|null
+     * Getting the default language object.
+     *
+     * @return LanguageEntity|null
      */
-    public static function getDefaultLang()
+    public static function getDefaultLang(): ?LanguageEntity
     {
         return self::findOne(['default' => 1]);
     }
 
     /**
+     * Getting the language object by ID.
      * @param int $languageId
-     * @return Language
+     * @return LanguageEntity
      */
-    public static function getById(int $languageId): Language
+    public static function getById(int $languageId): ?LanguageEntity
     {
         return self::findOne(['id' => $languageId]);
     }
 
     /**
-     * Receipt of language object by letter identifier
+     * Receipt of language object by letter identifier.
+     *
      * @param string $url
-     * @return Language|array|null|ActiveRecord
+     * @return LanguageEntity|null
      */
-    public static function getLangByUrl($url = null)
+    public static function getLangByUrl(string $url = null): ?LanguageEntity
     {
         if ($url === null) {
             return null;
@@ -172,11 +167,11 @@ class Language extends BaseEntity
      * ```
      *
      * @param array $langList
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param string $value
      * @return array
      */
-    public static function prepareForDropdown(array $langList, $key, $value): array
+    public static function prepareForDropdown(array $langList, string $key, string $value): array
     {
         if (!\count($langList)) {
             return $langList;

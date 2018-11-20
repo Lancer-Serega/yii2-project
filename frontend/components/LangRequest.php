@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 26.10.18
  * Time: 12:41
  */
@@ -11,13 +11,23 @@ namespace frontend\components;
 use yii\base\InvalidConfigException;
 use yii\web\Cookie;
 use yii\web\Request;
-use frontend\models\Entity\Language;
+use frontend\models\Entity\LanguageEntity;
 
+/**
+ * Class LangRequest
+ * @package frontend\components
+ */
 class LangRequest extends Request
 {
     private $_lang_url;
 
-    public function getLangUrl()
+    /**
+     * Get url of language.
+     *
+     * @return null
+     * @throws \Throwable
+     */
+    public function getLangUrl(): string
     {
         if ($this->_lang_url === null) {
             $this->prepareDefaultLang();
@@ -26,7 +36,10 @@ class LangRequest extends Request
         return $this->_lang_url;
     }
 
-    public function prepareDefaultLang()
+    /**
+     * @throws \Throwable
+     */
+    public function prepareDefaultLang(): void
     {
         switch (true) {
             case $lang_url = $this->prepareLangByCookie():
@@ -40,14 +53,21 @@ class LangRequest extends Request
 
         if(
             null !== $lang_url
-            && $lang_url === Language::getCurrent()->url
-            && 1 === strpos($this->_lang_url, Language::getCurrent()->url)
+            && $lang_url === LanguageEntity::getCurrent()->url
+            && 1 === strpos($this->_lang_url, LanguageEntity::getCurrent()->url)
         ) {
-            $this->_lang_url = substr($this->_lang_url, \strlen(Language::getCurrent()->url) + 1);
+            $this->_lang_url = substr($this->_lang_url, \strlen(LanguageEntity::getCurrent()->url) + 1);
         }
     }
 
-    protected function resolvePathInfo()
+    /**
+     * Resolve path info.
+     *
+     * @return string
+     * @throws InvalidConfigException
+     * @throws \Throwable
+     */
+    protected function resolvePathInfo(): string
     {
         $pathInfo = $this->getLangUrl();
 
@@ -92,12 +112,18 @@ class LangRequest extends Request
         return (string) $pathInfo;
     }
 
-    private function prepareLangByUrl()
+    /**
+     * Prepare lang by url.
+     *
+     * @return null
+     * @throws InvalidConfigException
+     */
+    private function prepareLangByUrl(): ?string
     {
         $this->_lang_url = $this->getUrl();
         $url_list = explode('/', $this->_lang_url);
         $lang_url = $url_list[1] ?? null;
-        Language::setCurrent($lang_url);
+        LanguageEntity::setCurrent($lang_url);
 
         $cookie = new Cookie([
             'name' => 'language',
@@ -108,7 +134,12 @@ class LangRequest extends Request
         return $lang_url;
     }
 
-    private function prepareLangByCookie()
+    /**
+     * Prepare lang by cookie.
+     *
+     * @return null|string
+     */
+    private function prepareLangByCookie(): ?string
     {
         if ($language = \Yii::$app->request->cookies->getValue('language')) {
             return $language;
@@ -117,7 +148,13 @@ class LangRequest extends Request
         return null;
     }
 
-    private function prepareLangByDB()
+    /**
+     * Prepare lang by database.
+     *
+     * @return bool
+     * @throws \Throwable
+     */
+    private function prepareLangByDB(): bool
     {
         if (!\Yii::$app->user->getIdentity()) {
             return false;

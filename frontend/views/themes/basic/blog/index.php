@@ -1,7 +1,5 @@
 <?php
 
-use \yii\helpers\Url;
-
 $this->title = 'Blog - Proxy';
 ?>
 

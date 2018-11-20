@@ -14,4 +14,11 @@ return [
     'An authorization failed.' => 'При авторизации произошла ошибка.',
     'Our development team is already trying to fix this problem.' => 'Наша команда разработчиков уже пытается исправить данную проблему.',
     'Soon we will fix it.' => 'Скоро все починим.',
+    'Authorization key expired!' => 'Истекло время действия ключа авторизации!',
+    'You can regenerate the key again (it will be sent to the email you provided during registration).' => 'Вы можете перегенерировать ключ заново (он будет отправлен вам на емайл указанный при регистрации).',
+    'To do this you will have to re-log in.' => 'Для этого Вам придется заново авторизоваться',
+    'Empty confirm token.' => 'Пустой флажок подтверждения.',
+    'UserEntity is not found.' => 'UserEntity не найден.',
+    'Saving error.' => 'Ошибка сохранения.',
+    'Error authentication.' => 'Ошибка аутентификации.',
 ];

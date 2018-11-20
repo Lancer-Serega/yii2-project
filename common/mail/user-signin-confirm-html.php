@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 31.10.18
  * Time: 15:55
  */
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use yii\helpers\Html;
 
-/* @var $user User */
+/* @var $user UserEntity */
 
 $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['/signin-confirm', 'token' => $user->email_confirm_token]);
 ?>

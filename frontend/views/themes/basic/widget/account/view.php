@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 02.11.18
  * Time: 13:31
  */
 
 /**
- * @var User $user
+ * @var UserEntity $user
  */
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use \yii\helpers\Url;
 use \yii\helpers\Html;
 ?>

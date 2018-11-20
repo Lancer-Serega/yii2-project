@@ -1,15 +1,19 @@
 <?php
+
 namespace frontend\controllers;
 
-use frontend\models\Entity\Language;
-use frontend\models\Entity\User;
+use frontend\models\Entity\LanguageEntity;
+use frontend\models\Entity\UserEntity;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 
 /**
- * Base controller
+ * Base controller.
+ *
+ * Class BaseController
+ * @package frontend\controllers
  */
 class BaseController extends Controller
 {
@@ -32,7 +36,7 @@ class BaseController extends Controller
      * @return bool
      * @throws \Throwable
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         if (\Yii::$app->request->isAjax) {
             $this->initJsonData();
@@ -43,10 +47,13 @@ class BaseController extends Controller
         return $this->initAccess($action);
     }
 
+    /**
+     * Initialization language
+     */
     private function initLanguage(): void
     {
         /**
-         * @var User $user
+         * @var UserEntity $user
          */
         if ($user = \Yii::$app->user->identity) {
             $userConfig = $user->getUserConfig($user->user_config_id);
@@ -55,11 +62,14 @@ class BaseController extends Controller
         } elseif (\Yii::$app->request->cookies->getValue('language')) {
             $language = \Yii::$app->request->cookies->getValue('language');
         } else {
-            $language = Language::getDefaultLang()->url;
+            $language = LanguageEntity::getDefaultLang()->url;
         }
-        Language::setCurrent($language);
+        LanguageEntity::setCurrent($language);
     }
 
+    /**
+     * Init JSON template for response (only ajax)
+     */
     private function initJsonData(): void
     {
         $this->jsonData = [
@@ -75,7 +85,6 @@ class BaseController extends Controller
      * @param $action
      * @return bool
      * @throws BadRequestHttpException
-     * @throws ForbiddenHttpException
      */
     private function initAccess($action): bool
     {

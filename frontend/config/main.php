@@ -1,10 +1,11 @@
 <?php
 
-use frontend\models\Entity\User;
-use frontend\models\Entity\UserConfig;
+use frontend\models\Entity\UserEntity;
+use frontend\models\Entity\UserConfigEntity;
 
 $db = require __DIR__ . '/db.php';
 $log = require __DIR__ . '/log.php';
+$urlManager = require __DIR__ . '/url_manager.php';
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
@@ -22,8 +23,8 @@ return [
     'components' => require __DIR__ . '/components.php',
     'container' => [
         'definitions' => [
-            User::class => [
-                'config' => UserConfig::class
+            UserEntity::class => [
+                'config' => UserConfigEntity::class
             ]
         ]
     ],

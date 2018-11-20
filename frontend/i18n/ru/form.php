@@ -35,6 +35,7 @@ return [
     'Select interface language' => 'Выбирете язык интерфейса',
     'Save' => 'Сохранить',
     'Search & enter' => 'Найти',
+    'Login confirmation' => 'Подтверждение входа',
     'Two factor key' => 'Ключ авторизации',
 
     // Form messages
@@ -72,4 +73,8 @@ return [
     'Information saved successfully' => 'Информация успешно сохранена',
     'Information was not saved due to server error.' => 'Информация не была сохранена из за ошибки на сервере',
     'You have two-factor authentication enabled. To continue logging in, you need to verify your email address provided during registration. In the letter you will see a token, copy it in the box below or follow the link in the letter.' => 'У вас включена двухфакторная авторизация. Для продолжения входа Вам нужно проверить свой адрес электронной почты указанный при регистрации. В письме вы увидите токен, скопируйте его в поле ниже или перейдите по ссылке в письме.',
+    'Please fill out the following fields to login:' => 'Пожалуйста, заполните следующие поля для входа:',
+    'If you for some reason did not receive a letter, then check the spam folder.' => 'Если Вам по каким то причинам не пришло письмо, то проверьте папку "спам".',
+    'Otherwise, you can resend the letter.' => 'В противном случае вы можете послать письмо повторно.',
+    'Authorisation Error!' => 'Ошибка авторизации!',
 ];

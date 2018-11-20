@@ -1,22 +1,27 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 19.11.18
  * Time: 12:48
  */
 
 namespace frontend\models\Repository;
 
-
-use frontend\models\Entity\User;
-use frontend\models\Entity\UserConfig;
+use frontend\models\Entity\UserEntity;
+use frontend\models\Entity\UserConfigEntity;
 use yii\db\Exception;
 use yii\db\Query;
 
+/**
+ * Class UserConfigRepository
+ * @package frontend\models\Repository
+ */
 class UserConfigRepository extends BaseRepository
 {
     /**
+     * Get all records by condition.
+     *
      * @param array $select
      * @param array $where
      * @return array
@@ -26,7 +31,7 @@ class UserConfigRepository extends BaseRepository
         $query = new Query();
         $result = $query
             ->select($select)
-            ->from(UserConfig::tableName())
+            ->from(UserConfigEntity::tableName())
             ->where($where)
             ->all();
 
@@ -34,6 +39,8 @@ class UserConfigRepository extends BaseRepository
     }
 
     /**
+     * Check whether user two-factor authentication is enabled.
+     *
      * @param array $select
      * @param int $userId
      * @return bool
@@ -43,7 +50,7 @@ class UserConfigRepository extends BaseRepository
         $query = new Query();
         $userConfig = $query
             ->select('user_config_id')
-            ->from(User::tableName())
+            ->from(UserEntity::tableName())
             ->where(['id' => $userId])
             ->one();
         if (empty($userConfig)) {
@@ -52,7 +59,7 @@ class UserConfigRepository extends BaseRepository
 
         $result = $query
             ->select($select)
-            ->from(UserConfig::tableName())
+            ->from(UserConfigEntity::tableName())
             ->where(['id' => $userConfig['user_config_id']])
             ->one();
         if (empty($result)) {
@@ -63,6 +70,8 @@ class UserConfigRepository extends BaseRepository
     }
 
     /**
+     * Set two-factor authorization.
+     *
      * @param int $userId
      * @param bool $twoFactorAuth
      * @return bool
@@ -81,24 +90,57 @@ class UserConfigRepository extends BaseRepository
         try {
             $query = new Query();
             return $query->createCommand()
-                ->update(UserConfig::tableName(), $columns, $condition, $params)
+                ->update(UserConfigEntity::tableName(), $columns, $condition, $params)
                 ->execute();
         } catch (Exception $e) {
             return false;
         }
     }
 
+
     /**
-     * Get user config ID by user ID
+     * Get user two-factor auth key.
+     *
      * @param int $userId
-     * @return int|false
+     * @param string $twoFactorKey
+     * @return string
      */
-    public static function getUserConfigId(int $userId)
+    public static function checkTwoFactorAuthKey(int $userId, string $twoFactorKey): ?string
     {
         $query = new Query();
         $userConfig = $query
             ->select('user_config_id')
-            ->from(User::tableName())
+            ->from(UserEntity::tableName())
+            ->where(['id' => $userId])
+            ->one();
+        if (empty($userConfig)) {
+            return false;
+        }
+
+        $result = $query
+            ->select('two_factor_auth_key')
+            ->from(UserConfigEntity::tableName())
+            ->where(['id' => $userConfig['user_config_id']])
+            ->one();
+        if (empty($result)) {
+            return false;
+        }
+
+        return $result['two_factor_auth_key'] === $twoFactorKey;
+    }
+
+    /**
+     * Get user config ID by user ID.
+     *
+     * @param int $userId
+     * @return int|false
+     */
+    public static function getUserConfigId(int $userId): ?int
+    {
+        $query = new Query();
+        $userConfig = $query
+            ->select('user_config_id')
+            ->from(UserEntity::tableName())
             ->where(['id' => $userId])
             ->one();
         if (empty($userConfig)) {
@@ -106,5 +148,20 @@ class UserConfigRepository extends BaseRepository
         }
 
         return (int)$userConfig['user_config_id'];
+    }
+
+    /**
+     * Generate two-factor authorization key.
+     *
+     * @return string
+     * @throws \Exception
+     */
+    public static function generateTwoFactorAuthKey(): string
+    {
+        try {
+            return bin2hex(random_bytes(16));
+        } catch (\Exception $e) {
+            throw $e;
+        }
     }
 }

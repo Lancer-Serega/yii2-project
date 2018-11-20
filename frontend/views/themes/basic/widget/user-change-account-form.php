@@ -3,12 +3,12 @@
 
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 07.11.18
  * Time: 14:00
  */
 
-use \frontend\models\Entity\User;
+use \frontend\models\Entity\UserEntity;
 use \frontend\models\Form\UserChangeAccountForm;
 use \yii\web\View;
 use \yii\widgets\ActiveForm;
@@ -19,7 +19,7 @@ use \yii\helpers\Html;
  * @var UserChangeAccountForm $userChangeAccountForm
  * @var string $formUrl
  * @var array $langList
- * @var User $user
+ * @var UserEntity $user
  */
 
 $form = ActiveForm::begin([

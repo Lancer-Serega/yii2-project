@@ -1,11 +1,15 @@
 <?php
+
 namespace frontend\models\Form;
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use Yii;
 
 /**
- * Signin form
+ * Signin form.
+ *
+ * Class SigninForm
+ * @package frontend\models\Form
  */
 class SigninForm extends BaseForm
 {
@@ -15,9 +19,9 @@ class SigninForm extends BaseForm
     public $password_repeat;
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $msg = [
             'required' => Yii::t('form', 'This field is required'),
@@ -46,16 +50,21 @@ class SigninForm extends BaseForm
 
             ['email', 'email', 'message' => $msg['email']['email']],
             ['email', 'string', 'max' => 255, 'tooLong' => $msg['email']['max']],
-            ['email', 'uniqueEmail'],
+            ['email', 'uniqueEmailValidator'],
 
             ['password', 'string', 'min' => 8, 'tooShort' => $msg['password']['min']],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'message' => $msg['password_repeat']['compare']],
         ];
     }
 
-    public function uniqueEmail($attribute)
+    /**
+     * Validator check unique email.
+     *
+     * @param $attribute
+     */
+    public function uniqueEmailValidator($attribute): void
     {
-        $user = User::findOne(['email' => $this->email]);
+        $user = UserEntity::findOne(['email' => $this->email]);
         if ($user) {
             $this->addError($attribute, Yii::t('form', 'This email address has already been taken.'));
         }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 19.11.18
  * Time: 18:08
  */
@@ -11,14 +11,15 @@
 /* @var UserConfigForm $userConfigForm */
 /* @var string $twoFactorAuthKey */
 
-use frontend\components\View;
+use \frontend\components\View;
 use \frontend\models\Form\UserConfigForm;
-use \frontend\widgets\Alert;
+use \frontend\widgets\AlertWidget;
 use \yii\helpers\Html;
 use \yii\bootstrap\ActiveForm;
-use \yii\widgets\Breadcrumbs;
+use \frontend\widgets\BreadcrumbsWidget;
+use yii\helpers\Url;
 
-$this->title = 'Login';
+$this->title = Yii::t('form', 'Login confirmation');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -31,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- Alerts -->
         <!-- ============================================================== -->
         <div class="alert-block">
-             <?= Alert::widget(); ?><br/>
+             <?= AlertWidget::widget(); ?><br/>
         </div>
         <!-- ============================================================== -->
         <!-- END Alerts -->
@@ -45,9 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="text-themecolor"><?= Yii::t('menu', 'Security'); ?></h3>
         </div>
         <div class="col-md-7 align-self-center">
-            <?= Breadcrumbs::widget([
-                'activeItemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
-                'itemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
+            <?= BreadcrumbsWidget::widget([
                 'links' => $this->params['breadcrumbs'] ?? [],
             ]);
             ?>
@@ -67,20 +66,25 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="identity-accept-two-factor-auth">
                         <h1><?= Html::encode($this->title); ?></h1>
 
-                        <p>Please fill out the following fields to login:</p>
+                        <p><?= \Yii::t('form', 'Please fill out the following fields to login:'); ?></p>
 
                         <div class="row">
                             <div class="col-lg-5">
-                                <?php $form = ActiveForm::begin(['id' => 'user-config-form']); ?>
+                                <?php $form = ActiveForm::begin(['id' => 'user-config-form', 'action' => Url::to(['/check-two-factor-auth']), 'method' => 'get']); ?>
 
-                                <?= $form->field($userConfigForm, 'twoFactorAuthKey')->textInput(['value' => $twoFactorAuthKey, 'autofocus' => true]); ?>
+                                <?= $form->field($userConfigForm, 'twoFactorAuthKey')
+                                    ->textInput(['value' => $twoFactorAuthKey, 'autofocus' => true])
+                                    ->label(\Yii::t('form', 'Two factor key'));
+                                ?>
 
                                 <div style="color:#999;margin:1em 0">
-                                    If you forgot your password you can <?= Html::a(Yii::t('form', 'reset it'), ['site/request-password-reset']); ?>.
+                                    <?= \Yii::t('form', 'If you for some reason did not receive a letter, then check the spam folder.'); ?>
+                                    <br>
+                                    <?= Html::a(Yii::t('form', 'Otherwise, you can resend the letter.'), ['/two-factor-auth-key-reset']); ?>
                                 </div>
 
                                 <div class="form-group">
-                                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']); ?>
+                                    <?= Html::submitButton(Yii::t('form', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']); ?>
                                 </div>
 
                                 <?php ActiveForm::end(); ?>

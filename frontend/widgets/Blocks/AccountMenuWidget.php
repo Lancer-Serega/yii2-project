@@ -1,20 +1,20 @@
 <?php
 namespace frontend\widgets\Blocks;
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use yii\bootstrap\Widget;
 
-class AccountMenu extends Widget
+class AccountMenuWidget extends Widget
 {
     /**
-     * @var User
+     * @var UserEntity
      */
     public $user;
 
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function run(): string
     {
         return $this->render('account/view', [
             'user' => $this->user,

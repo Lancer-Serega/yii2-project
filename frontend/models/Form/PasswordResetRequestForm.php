@@ -1,12 +1,15 @@
 <?php
 namespace frontend\models\Form;
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use Yii;
 use yii\base\Exception;
 
 /**
- * Password reset request form
+ * Password reset request form.
+ *
+ * Class PasswordResetRequestForm
+ * @package frontend\models\Form
  */
 class PasswordResetRequestForm extends BaseForm
 {
@@ -14,17 +17,17 @@ class PasswordResetRequestForm extends BaseForm
 
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => User::class,
-                'filter' => ['status' => User::STATUS_ACTIVE],
+                'targetClass' => UserEntity::class,
+                'filter' => ['status' => UserEntity::STATUS_ACTIVE],
                 'message' => Yii::t('form', 'There is no user with this email address.')
             ],
         ];
@@ -36,11 +39,11 @@ class PasswordResetRequestForm extends BaseForm
      * @return bool whether the email was send
      * @throws Exception
      */
-    public function sendEmail()
+    public function sendEmail(): bool
     {
-        /* @var $user User */
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
+        /* @var $user UserEntity */
+        $user = UserEntity::findOne([
+            'status' => UserEntity::STATUS_ACTIVE,
             'email' => $this->email,
         ]);
 
@@ -48,7 +51,7 @@ class PasswordResetRequestForm extends BaseForm
             return false;
         }
         
-        if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
+        if (!UserEntity::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
             if (!$user->save()) {
                 return false;

@@ -2,25 +2,29 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Entity\Language;
-use frontend\models\Entity\User;
+use frontend\models\Entity\LanguageEntity;
+use frontend\models\Entity\UserEntity;
 use yii\web\Cookie;
+use yii\web\Response;
 
 /**
- * Language controller
+ * Class LanguageController
+ * @package frontend\controllers
  */
 class LanguageController extends BaseController
 {
     /**
-     * @return mixed
+     * Saving switch language.
+     *
+     * @return Response
      * @throws \Throwable
      */
-    public function actionSwitch()
+    public function actionSwitch(): Response
     {
         $language = \Yii::$app->getRequest()->getQueryParam('language');
-        $language = Language::getLangByUrl(['url' => $language]);
+        $language = LanguageEntity::getLangByUrl($language);
         if (!$language) {
-            $language = Language::getDefaultLang();
+            $language = LanguageEntity::getDefaultLang();
         }
 
         $cookie = new Cookie([
@@ -30,7 +34,7 @@ class LanguageController extends BaseController
         \Yii::$app->response->cookies->add($cookie);
 
         /**
-         * @var User $user
+         * @var UserEntity $user
          */
         $user = \Yii::$app->user->getIdentity();
         if ($user) {

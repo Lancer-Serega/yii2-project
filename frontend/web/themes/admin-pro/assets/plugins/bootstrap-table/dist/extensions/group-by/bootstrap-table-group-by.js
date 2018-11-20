@@ -46,7 +46,7 @@
     };
 
     var rowAttr = function (row, index) {
-        //Call the User Defined Function
+        //Call the UserEntity Defined Function
         originalRowAttr.apply([row, index]);
 
         obj[dataTTId.toString()] = index;

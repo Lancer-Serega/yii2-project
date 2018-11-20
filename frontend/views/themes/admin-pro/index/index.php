@@ -1,13 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 12.11.18
  * Time: 12:54
  */
 
-use frontend\widgets\Alert;
-use \yii\widgets\Breadcrumbs;
+use \frontend\widgets\BreadcrumbsWidget;
+use \yii\helpers\Url;
+
 ?>
 
 <!-- ============================================================== -->
@@ -23,9 +24,10 @@ use \yii\widgets\Breadcrumbs;
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Fix-header-sidebar</li>
-                <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs'] ?? [],]); ?>
+                <?= BreadcrumbsWidget::widget([
+                    'links' => $this->params['breadcrumbs'] ?? [],
+                ]);
+                ?>
             </ol>
         </div>
     </div>

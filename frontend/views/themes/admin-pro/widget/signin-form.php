@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 12.11.18
  * Time: 15:32
  */
@@ -27,7 +27,7 @@ use \yii\helpers\Html;
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
-                <div class="signin-register" style="background-image:url(../assets/images/background/signin-register.jpg);">
+                <div class="signin-register" style="background-image:url(../assets/images/background/login-register.jpg);">
                     <div class="signin-box">
                         <div class="row">
                             <div class="col-12">

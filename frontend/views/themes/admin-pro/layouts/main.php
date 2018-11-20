@@ -3,13 +3,13 @@
 /**
  * @var View $this
  * @var string $content
- * @var User $user
+ * @var UserEntity $user
  * @var SigninForm $signinFormModel
  */
 
 use frontend\assets\AdminProThemeAsset;
-use \frontend\models\Entity\User;
-use frontend\widgets\Alert;
+use \frontend\models\Entity\UserEntity;
+use frontend\widgets\AlertWidget;
 use \yii\helpers\Html;
 use \yii\helpers\Url;
 use \yii\web\View;
@@ -67,7 +67,7 @@ AdminProThemeAsset::register($this);
                     <!-- Alerts -->
                     <!-- ============================================================== -->
                     <div class="container-fluid">
-                        <?= Alert::widget(['options' => ['class' => 'show']]) . '<br/>'; ?>
+                        <?= AlertWidget::widget(['options' => ['class' => 'show']]) . '<br/>'; ?>
                     </div>
                     <!-- ============================================================== -->
                     <!-- END Alerts -->

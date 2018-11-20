@@ -8,24 +8,29 @@ use yii\web\ErrorAction;
 use yii\captcha\CaptchaAction;
 
 /**
- * Index controller
+ * Index controller.
+ *
+ * Class IndexController
+ * @package frontend\controllers
  */
 class IndexController extends BaseController
 {
     /**
      * @inheritdoc
-     * @throws BadRequestHttpException
+     * @param $action
+     * @return bool
+     * @throws \Throwable
      */
-    public function beforeAction($action)
+    public function beforeAction($action): bool
     {
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function actions()
+    public function actions(): array
     {
         return [
             'error' => [
@@ -41,9 +46,9 @@ class IndexController extends BaseController
     /**
      * Displays homepage.
      *
-     * @return mixed
+     * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         return $this->render('index');
     }
@@ -53,7 +58,7 @@ class IndexController extends BaseController
      *
      * @return string
      */
-    public function actionFeedback()
+    public function actionFeedback(): string
     {
         return $this->render('feedback');
     }
@@ -63,7 +68,7 @@ class IndexController extends BaseController
      *
      * @return string
      */
-    public function actionFaq()
+    public function actionFaq(): string
     {
         return $this->render('faq');
     }
@@ -94,9 +99,9 @@ class IndexController extends BaseController
     /**
      * Displays about page.
      *
-     * @return mixed
+     * @return string
      */
-    public function actionAbout()
+    public function actionAbout(): string
     {
         return $this->render('about');
     }

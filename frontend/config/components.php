@@ -1,7 +1,7 @@
 <?php
 
 use frontend\components\View;
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
@@ -60,7 +60,7 @@ return [
             'host' => '127.0.0.1',
             'username' => '',
             'password' => '',
-            'port' => '25',
+            'port' => '587',
             'encryption' => 'tls',
         ],
     ],
@@ -76,7 +76,7 @@ return [
     ],
 
     'user' => [
-        'identityClass' => User::class,
+        'identityClass' => UserEntity::class,
         'enableAutoLogin' => true,
         'identityCookie' => ['name' => '_identity-cookie', 'httpOnly' => true],
     ],
@@ -94,22 +94,7 @@ return [
         'value' => new Expression('CURRENT_TIMESTAMP'),
     ],
 
-    'urlManager' => [
-        'class'=> UrlManager::class,
-        'enablePrettyUrl' => true,
-        'showScriptName' => false,
-        'suffix' => '',
-        'rules' => [
-            '<controller:(language)>/<action:(switch)>/<language:(en|ru)>' => '<controller>/<action>',
-            'settings' => 'cabinet/settings',
-            'security' => 'cabinet/security',
-            'support' => 'cabinet/support',
-            '<action:(login|logout|signin|request-password-reset|reset-password|signin-confirm|resend-email)>' => 'identity/<action>',
-            '<controller:(cabinet|blog|tariff)>' => '<controller>/index',
-            '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
-            'robots.txt' => 'seo/manage/get-robots',
-        ],
-    ],
+    'urlManager' => $urlManager,
 
     'view' => [
         'class' => View::class,

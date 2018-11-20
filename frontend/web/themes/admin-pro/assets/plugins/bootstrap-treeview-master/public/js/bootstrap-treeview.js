@@ -250,7 +250,7 @@
 
 	/*
 		Recurse the tree structure and ensure all nodes have
-		valid initial states.  User defined states will be preserved.
+		valid initial states.  UserEntity defined states will be preserved.
 		For performance we also take this opportunity to
 		index nodes in a flattened structure
 	*/

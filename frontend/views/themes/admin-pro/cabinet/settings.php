@@ -1,13 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 02.11.18
  * Time: 15:37
  */
 
 use yii\helpers\Url;
-use \frontend\widgets\Blocks\UserChangeAccount;
+use \frontend\widgets\Blocks\UserChangeAccountWidget;
+use \frontend\widgets\BreadcrumbsWidget;
 
 $this->title = Yii::t('menu', 'Account');
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => [Url::to('/cabinet')]];
@@ -24,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- ============================================================== -->
         <div class="alert-block">
             <?php if (count(Yii::$app->session->getAllFlashes())) {
-                echo \frontend\widgets\Alert::widget() . '<br/>';
+                echo \frontend\widgets\AlertWidget::widget() . '<br/>';
             } ?>
         </div>
         <!-- ============================================================== -->
@@ -39,9 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="text-themecolor"><?= Yii::t('menu', 'Settings'); ?></h3>
             </div>
             <div class="col-md-7 align-self-center">
-                <?= \yii\widgets\Breadcrumbs::widget([
-                    'activeItemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
-                    'itemTemplate' => "<li class=\"breadcrumb-item\"><i>{link}</i></li>\n",
+                <?= BreadcrumbsWidget::widget([
                     'links' => $this->params['breadcrumbs'] ?? [],
                 ]);
                 ?>
@@ -59,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="security">
                             <div class="container-fluid">
                                 <div class="settings__grid">
-                                    <?= UserChangeAccount::widget(['formUrl' => Url::to(['/cabinet/settings-save'])]); ?>
+                                    <?= UserChangeAccountWidget::widget(['formUrl' => Url::to(['/cabinet/settings-save'])]); ?>
                                 </div>
                             </div>
                         </div>

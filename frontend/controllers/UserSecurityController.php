@@ -3,9 +3,13 @@
 namespace frontend\controllers;
 
 use frontend\models\Repository\UserConfigRepository;
+use yii\web\Response;
 
 /**
  * UserSecurity controller
+ *
+ * Class UserSecurityController
+ * @package frontend\controllers
  */
 class UserSecurityController extends BaseController
 {
@@ -15,7 +19,7 @@ class UserSecurityController extends BaseController
      * @return mixed
      * @throws \Throwable
      */
-    public function actionChangeTwoFactorAuth()
+    public function actionChangeTwoFactorAuth(): Response
     {
         $userId = (int)\Yii::$app->getUser()->getIdentity()->getId();
         $twoFactorAuth = (bool)\Yii::$app->getRequest()->post('twoFactorAuth');

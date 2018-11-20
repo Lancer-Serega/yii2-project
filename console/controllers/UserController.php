@@ -1,13 +1,13 @@
 <?php
 namespace console\controllers;
 
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\helpers\Console;
 
 /**
- * User controller
+ * UserEntity controller
  */
 class UserController extends Controller
 {
@@ -17,7 +17,7 @@ class UserController extends Controller
         $status = $this->ansiFormat('[ERROR]', Console::FG_RED);
         $status = $this->ansiFormat($status, Console::BOLD);
 
-        if (User::find()->where(['username' => 'admin'])->one()) {
+        if (UserEntity::find()->where(['username' => 'admin'])->one()) {
             $message .= "$status An administrator has already been created!";
             echo $message;
             return ExitCode::UNSPECIFIED_ERROR;
@@ -25,7 +25,7 @@ class UserController extends Controller
 
         echo 'Generate Admin user...' . PHP_EOL;
 
-        $user = new User();
+        $user = new UserEntity();
         $user->id = '';
         $user->username = 'admin';
         $user->email = 'admin@admin.com';

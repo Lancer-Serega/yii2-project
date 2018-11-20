@@ -21,9 +21,9 @@ class m181116_125114_create_table_log_user_auth extends Migration
 
         $comments = [
             'table' => 'Table of logs user auth',
-            'user_id' => 'User ID unique identifier',
+            'user_id' => 'UserEntity ID unique identifier',
             'ip' => 'IP user',
-            'user_agent' => 'User agent info of user',
+            'user_agent' => 'UserEntity agent info of user',
             'msg' => 'Message log',
             'timestamp' => 'Timestamp record'
         ];

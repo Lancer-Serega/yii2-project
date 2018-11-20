@@ -1,7 +1,7 @@
 <?php
 /**
 * Created by PhpStorm.
-* User: sergey
+* UserEntity: sergey
 * Date: 12.11.18
 * Time: 12:48
 */
@@ -25,7 +25,7 @@ use \frontend\widgets\Blocks\ProfileWidget;
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?= Url::to($this->theme->getUrl('/'), true); ?>">
+            <a class="navbar-brand" href="<?= Url::to('/', true); ?>">
                 <!-- Logo icon -->
                 <b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -69,7 +69,7 @@ use \frontend\widgets\Blocks\ProfileWidget;
             </ul>
 
             <!-- ============================================================== -->
-            <!-- User profile and search -->
+            <!-- UserEntity profile and search -->
             <!-- ============================================================== -->
             <ul class="navbar-nav my-lg-0">
                 <li class="nav-item hidden-xs-down search-box">

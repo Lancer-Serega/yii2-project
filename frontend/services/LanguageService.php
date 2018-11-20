@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 14.11.18
  * Time: 13:00
  */
@@ -13,6 +13,6 @@ class LanguageService
 {
     public function switchTo($language)
     {
-
+        //
     }
 }

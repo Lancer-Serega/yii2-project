@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sergey
+ * UserEntity: sergey
  * Date: 16.11.18
  * Time: 17:58
  */
@@ -9,6 +9,8 @@
 namespace frontend\components\Logger\Target;
 
 
+use yii\base\InvalidConfigException;
+use yii\db\Exception;
 use yii\helpers\VarDumper;
 use yii\log\Logger;
 use yii\log\Target;
@@ -32,9 +34,9 @@ class UserAuthTarget extends Target
     public $logTable = '{{%log_user_auth}}';
 
     /**
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
         $this->db = Instance::ensure($this->db, Connection::class);
@@ -43,11 +45,12 @@ class UserAuthTarget extends Target
     /**
      * Exports log [[messages]] to a specific destination.
      * Child classes must implement this method.
+     *
      * @throws LogRuntimeException
      * @throws \Throwable
-     * @throws \yii\db\Exception
+     * @throws Exception
      */
-    public function export()
+    public function export(): void
     {
         if ($this->db->getTransaction()) {
             // create new database connection, if there is an open transaction
@@ -84,11 +87,15 @@ class UserAuthTarget extends Target
         }
     }
 
-    public function formatMessage($message)
+    /**
+     * Format logger message
+     * @param array $message
+     * @return string
+     */
+    public function formatMessage($message): string
     {
         list($text, $level, $category, $timestamp) = $message;
 
-        $level = Logger::getLevelName($level);
         if (!\is_string($text)) {
             // exceptions may not be serializable if in the call stack somewhere is a Closure
             if ($text instanceof \Exception) {

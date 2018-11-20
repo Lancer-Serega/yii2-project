@@ -161,7 +161,7 @@
 		};
 
 		options = getOptions(init(opts));
-		ok(options, 'User options created ok');
+		ok(options, 'UserEntity options created ok');
 		equal(options.levels, 99, 'levels set ok');
 		equal(options.expandIcon, 'glyphicon glyphicon-expand', 'expandIcon set ok');
 		equal(options.collapseIcon, 'glyphicon glyphicon-collapse', 'collapseIcon set ok');

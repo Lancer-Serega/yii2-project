@@ -3,7 +3,7 @@
 namespace frontend\tests\functional;
 
 use frontend\tests\FunctionalTester;
-use frontend\models\Entity\User;
+use frontend\models\Entity\UserEntity;
 
 class SigninCest
 {
@@ -48,7 +48,7 @@ class SigninCest
             'SigninForm[password]' => 'tester_password',
         ]);
 
-        $I->seeRecord(User::class, [
+        $I->seeRecord(UserEntity::class, [
             'username' => 'tester',
             'email' => 'tester.email@example.com',
         ]);
