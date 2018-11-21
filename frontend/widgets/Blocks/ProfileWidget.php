@@ -15,6 +15,6 @@ class ProfileWidget extends BaseWidget
      */
     public function run(): string
     {
-        return $this->render('/profile', []);
+        return $this->render('/profile');
     }
 }

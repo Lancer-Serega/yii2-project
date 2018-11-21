@@ -76,7 +76,9 @@ class IdentityController extends BaseController
 
                     return $this->render('@app/views/themes/admin-pro/index/index');
                 }
-
+                $loginForm->password = null;
+                $msg = \Yii::t('form', 'Incorrect username or password.');
+                \Yii::$app->session->setFlash('error', $msg);
                 $this->jsonData['flash']['error'] = $loginForm->getErrorSummary(true);
             } catch (\DomainException $e) {
                 $msg = Yii::t('error', 'Excuse me.');
@@ -96,7 +98,7 @@ class IdentityController extends BaseController
             return $this->asJson($this->jsonData);
         }
 
-        return $this->render('@app/views/themes/admin-pro/index/index');
+        return $this->render('@app/views/themes/admin-pro/index/index', ['loginForm' => $loginForm]);
     }
 
     /**

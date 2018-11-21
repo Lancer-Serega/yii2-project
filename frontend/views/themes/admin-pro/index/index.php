@@ -7,7 +7,6 @@
  */
 
 use \frontend\widgets\BreadcrumbsWidget;
-use \yii\helpers\Url;
 
 ?>
 
