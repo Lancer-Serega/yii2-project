@@ -27,8 +27,8 @@ class m181121_093253_create_table_notification_user extends Migration
 
         $this->createTable('{{%notification_user}}', [
             'id' => $this->primaryKey(11)->notNull()->unsigned(),
-            'user_id' => $this->integer(11)->unsigned()->unique()->notNull()->comment($comments['user_id']),
-            'notification_id' => $this->integer(11)->unsigned()->unique()->notNull()->comment($comments['notification_id']),
+            'user_id' => $this->integer(11)->unsigned()->notNull()->comment($comments['user_id']),
+            'notification_id' => $this->integer(11)->unsigned()->notNull()->comment($comments['notification_id']),
             'value' => $this->tinyInteger(1)->notNull()->defaultValue(1)->comment($comments['value']),
         ], $tableOptions);
 

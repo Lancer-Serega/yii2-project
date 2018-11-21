@@ -2,16 +2,17 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Repository\NotificationUserRepository;
 use frontend\models\Repository\UserConfigRepository;
 use yii\web\Response;
 
 /**
- * UserSecurity controller
+ * UserSettings controller
  *
- * Class UserSecurityController
+ * Class UserSettingsController
  * @package frontend\controllers
  */
-class UserSecurityController extends BaseController
+class UserSettingsController extends BaseController
 {
     /**
      * Change user security two factor auth option
@@ -19,7 +20,7 @@ class UserSecurityController extends BaseController
      * @return mixed
      * @throws \Throwable
      */
-    public function actionChangeTwoFactorAuth(): Response
+    public function actionChangeNotification(): Response
     {
         $user = \Yii::$app->getUser()->getIdentity();
         if (!$user) {
@@ -27,9 +28,10 @@ class UserSecurityController extends BaseController
             throw new \RuntimeException($msg);
         }
 
-        $settingValue = (bool)\Yii::$app->getRequest()->post('value');
+        $notificationName = \Yii::$app->getRequest()->post('name');
+        $notificationValue = (bool)\Yii::$app->getRequest()->post('value');
 
-        $this->jsonData['status'] = UserConfigRepository::changeTwoFactorAuth($user->getId(), $settingValue)
+        $this->jsonData['status'] = NotificationUserRepository::changeNotification((int)$user->getId(), $notificationName, $notificationValue)
             ? self::RESPONSE_STATUS_SUCCESS
             : self::RESPONSE_STATUS_ERROR;
 

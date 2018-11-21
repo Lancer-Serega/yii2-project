@@ -9,7 +9,7 @@
 namespace frontend\services;
 
 
-class LanguageService
+class LanguageService extends BaseService
 {
     public function switchTo($language)
     {

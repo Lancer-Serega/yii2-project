@@ -21,4 +21,6 @@ return [
     'UserEntity is not found.' => 'UserEntity is not found.',
     'Saving error.' => 'Saving error.',
     'Error authentication.' => 'Error authentication.',
+    'An error occurred while trying to identify the user!' => 'An error occurred while trying to identify the user!',
+    'Attempt to change non-existent notification!' => 'Attempt to change non-existent notification!',
 ];

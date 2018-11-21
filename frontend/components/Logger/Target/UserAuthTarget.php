@@ -12,7 +12,6 @@ namespace frontend\components\Logger\Target;
 use yii\base\InvalidConfigException;
 use yii\db\Exception;
 use yii\helpers\VarDumper;
-use yii\log\Logger;
 use yii\log\Target;
 use yii\log\LogRuntimeException;
 use yii\db\Connection;

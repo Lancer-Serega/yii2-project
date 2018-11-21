@@ -15,6 +15,9 @@ use \yii\helpers\Url;
 <!-- Container fluid  -->
 <!-- ============================================================== -->
 <div class="container-fluid">
+
+    <?php require_once __DIR__ . '/../layouts/alert.php'; ?>
+
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->

@@ -16,22 +16,4 @@ use yii\db\Query;
  */
 class UserRepository extends BaseRepository
 {
-    /**
-     * Get all users data.
-     *
-     * @param array $select
-     * @return array
-     */
-    public static function getAll(array $select): array
-    {
-        $query = new Query();
-        $result = $query->select($select)->from('{{%user}}')->all();
-        if (\count($select) === 1) {
-            reset($select);
-            $key = key($select);
-            $result = array_column($result, $select[$key]);
-        }
-
-        return $result;
-    }
 }

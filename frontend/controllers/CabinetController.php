@@ -8,10 +8,9 @@
 
 namespace frontend\controllers;
 
-use frontend\models\Entity\LogUserAuthEntity;
 use frontend\models\Form\UserChangeAccountForm;
-use frontend\models\Repository\UserConfigRepository;
 use frontend\services\IdentityService;
+use frontend\services\CabinetService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
@@ -162,14 +161,10 @@ class CabinetController extends BaseController
      */
     public function actionSecurity(): string
     {
-        $user = \Yii::$app->getUser()->getIdentity();
-        $userConfig['two_factor_auth'] = UserConfigRepository::getTwoFactorAuth(['two_factor_auth'], (int)$user->getId());
-        $userAuthHistoryList = LogUserAuthEntity::findAll(['user_id' => \Yii::$app->user->getIdentity()->id]);
+        $cabinetService = new CabinetService();
+        $data = $cabinetService->userSecurity();
 
-        return $this->render('security', [
-            'userConfig' => $userConfig,
-            'userAuthHistoryList' => $userAuthHistoryList,
-        ]);
+        return $this->render('security', $data);
     }
 
     /**

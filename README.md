@@ -10,9 +10,9 @@ INSTALL Proxy app
 - configure ./frontend/config/db.php
 - `composer install`
 - `./yii migrate --migrationPath=@yii/log/migrations/
-   ./yii migrate --migrationPath=@yii/rbac/migrations/ \
-   && ./yii rbac/init \
-   &&./yii migrate/up`
+   && ./yii migrate --migrationPath=@yii/rbac/migrations/
+   && ./yii rbac/init
+   && ./yii migrate/up`
 - Go to in terminal `cd ./frontend/web` and run `npm install --only-dev`
 - Run gulpfile.js `node ./node_modules/gulp/bin/gulp.js --color --gulpfile ./gulpfile.js`
 

@@ -20,17 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- Settings :: Start-->
 <div class="settings">
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Alerts -->
-        <!-- ============================================================== -->
-        <div class="alert-block">
-            <?php if (count(Yii::$app->session->getAllFlashes())) {
-                echo \frontend\widgets\AlertWidget::widget() . '<br/>';
-            } ?>
-        </div>
-        <!-- ============================================================== -->
-        <!-- END Alerts -->
-        <!-- ============================================================== -->
+
+        <?php require_once __DIR__ . '/../layouts/alert.php'; ?>
 
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->

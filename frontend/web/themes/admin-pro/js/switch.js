@@ -5,7 +5,8 @@ $(function() {
         $(el).on('change', (e) => {
             let data = {
                 ajax: true,
-                twoFactorAuth: +el.checked
+                name: el.name,
+                value: +el.checked
             };
 
             $.ajax({

@@ -9,7 +9,7 @@
 /**
  * @var View $this
  * @var LogUserAuthEntity[] $userAuthHistoryList
- * @var array $userConfig
+ * @var array $twoFactorAuth
  */
 
 use \frontend\models\Entity\LogUserAuthEntity;
@@ -105,7 +105,7 @@ $this->registerJsFile($this->theme->getBaseUrl() . '/js/switch.js', ['position' 
                                                         <div class="switch">
                                                             <label style="display: inline-flex;">
                                                                 <span class="text-danger">OFF</span>
-                                                                <input type="checkbox" data-type="switch-checkbox" data-url="<?= Url::to(['user-security/change-two-factor-auth']); ?>" id="security-two-factor-switch"<?= $userConfig['two_factor_auth'] ? ' checked' : ''; ?>>
+                                                                <input type="checkbox" data-type="switch-checkbox" data-url="<?= Url::to(['user-security/change-two-factor-auth']); ?>" id="security-two-factor-switch"<?= $twoFactorAuth ? ' checked' : ''; ?>>
                                                                 <span class="lever"></span>
                                                                 <span class="text-success">ON</span>
                                                             </label>

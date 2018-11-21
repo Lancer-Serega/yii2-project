@@ -20,25 +20,6 @@ use yii\db\Query;
 class UserConfigRepository extends BaseRepository
 {
     /**
-     * Get all records by condition.
-     *
-     * @param array $select
-     * @param array $where
-     * @return array
-     */
-    public static function getAll(array $select, array $where): array
-    {
-        $query = new Query();
-        $result = $query
-            ->select($select)
-            ->from(UserConfigEntity::tableName())
-            ->where($where)
-            ->all();
-
-        return $result;
-    }
-
-    /**
      * Check whether user two-factor authentication is enabled.
      *
      * @param array $select
@@ -76,7 +57,7 @@ class UserConfigRepository extends BaseRepository
      * @param bool $twoFactorAuth
      * @return bool
      */
-    public static function setTwoFactorAuth(int $userId, bool $twoFactorAuth): bool
+    public static function changeTwoFactorAuth(int $userId, bool $twoFactorAuth): bool
     {
         $userConfigId = self::getUserConfigId($userId);
         if (empty($userConfigId)) {

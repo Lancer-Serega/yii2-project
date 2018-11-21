@@ -7,6 +7,7 @@ $controllerList = implode('|', [
     'index',
     'cabinet',
     'user-security',
+    'user-settings',
     'language',
 ]);
 

@@ -17,6 +17,7 @@ use frontend\models\Form\SigninForm;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use frontend\models\Form\LoginForm;
@@ -188,7 +189,15 @@ class IdentityController extends BaseController
                         'user_id' => $user->id,
                         'user_email' => $user->email,
                     ];
-                    $this->jsonData['flash']['info'][] = Yii::t('form', 'To complete the registration, confirm your email. Check your email.');
+
+                    $confirmLink = Yii::$app->urlManager->createAbsoluteUrl(['/signin-confirm', 'token' => $user->email_confirm_token]); // FIXME: delete before deploy in production!
+                    $msg = 'To complete the registration, confirm your email ({email}). Check your email.';
+                    $flashMsg = Yii::t('form', $msg, ['email' => '<strong>' . $user->email . '</strong>']);
+                    $urlResendToken = Url::toRoute(['/resend-email', 'token' => $user->email_confirm_token]);
+                    $flashMsg .= '<br/>' . Html::a(Yii::t('form', 'Resend email'), $urlResendToken);
+                    $flashMsg .= '<br/> Или нажмите на ' . Html::a('эту временную ссылку', $confirmLink) . ' для активации =)'; // FIXME: delete before deploy in production!
+                    Yii::$app->session->setFlash('warning', $flashMsg);
+                    $this->jsonData['flash']['info'][] = $flashMsg;
                 } else {
                     $this->responseStatus = self::RESPONSE_STATUS_ERROR;
                     $this->jsonData['form'] = $signinForm->getErrors();
@@ -222,6 +231,7 @@ class IdentityController extends BaseController
         try {
             $identityService->confirmation($token);
             Yii::$app->session->setFlash('success', Yii::t('form', 'You have successfully confirmed your email.'));
+
         } catch (\Exception $e) {
             Yii::$app->errorHandler->logException($e);
             Yii::$app->session->setFlash('error', $e->getMessage());

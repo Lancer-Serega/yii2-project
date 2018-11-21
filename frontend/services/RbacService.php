@@ -9,7 +9,7 @@
 namespace frontend\services;
 
 
-class RbacService
+class RbacService extends BaseService
 {
     public const ROLE_ROOT = 'root';
     public const ROLE_ADMIN = 'admin';

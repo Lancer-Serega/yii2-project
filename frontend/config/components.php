@@ -9,7 +9,6 @@ use yii\swiftmailer\Mailer;
 use yii\caching\FileCache;
 use yii\web\AssetManager;
 use yii\rbac\DbManager;
-use yii\web\UrlManager;
 
 return [
     'assetManager' => [

@@ -17,7 +17,7 @@ use frontend\models\Form\SigninForm;
 use frontend\models\Entity\UserEntity;
 use yii\base\Exception;
 
-class IdentityService
+class IdentityService extends BaseService
 {
     /**
      * Create a new user in the database
@@ -139,6 +139,7 @@ class IdentityService
 
         $user = UserEntity::findOne(['email_confirm_token' => $token]);
         if (!$user) {
+            \Yii::error("[error] Is login UserEntity: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
             throw new \DomainException(Yii::t('error', 'UserEntity is not found.'));
         }
 
@@ -146,12 +147,16 @@ class IdentityService
         $user->status = UserEntity::STATUS_ACTIVE;
         $user->email_status = UserEntity::EMAIL_CONFIRMED;
         if (!$user->save()) {
+            \Yii::error("[error] Is login UserEntity: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
             throw new \RuntimeException(Yii::t('error', 'Saving error.'));
         }
 
         if (!Yii::$app->getUser()->login($user)){
+            \Yii::error("[error] Is login UserEntity: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
             throw new \RuntimeException(Yii::t('error', 'Error authentication.'));
         }
+
+        \Yii::info("[success] Is login UserEntity: [id:{$user->getId()}, email:" . $user->email . ']', 'user.auth');
     }
 
     /**

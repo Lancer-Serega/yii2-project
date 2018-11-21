@@ -12,7 +12,7 @@ namespace frontend\models\Repository;
  * Class NotificationRepository
  * @package frontend\models\Repository
  */
-class NotificationRepository
+class NotificationRepository extends BaseRepository
 {
 
 }

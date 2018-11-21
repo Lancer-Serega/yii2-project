@@ -1,4 +1,5 @@
 <?php
+
 namespace console\controllers;
 
 use frontend\models\Entity\UserConfigEntity;

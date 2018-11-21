@@ -9,6 +9,7 @@
 namespace frontend\models\Repository;
 
 use yii\base\Model;
+use yii\db\Query;
 
 /**
  * Class BaseRepository
@@ -16,5 +17,23 @@ use yii\base\Model;
  */
 class BaseRepository extends Model
 {
+    /**
+     * Get all records by condition.
+     *
+     * @param string $table
+     * @param array $select
+     * @param array $where
+     * @return array
+     */
+    public static function getAll(string $table, array $select, array $where = []): array
+    {
+        $query = new Query();
+        $result = $query
+            ->select($select)
+            ->from($table)
+            ->where($where)
+            ->all();
 
+        return $result;
+    }
 }

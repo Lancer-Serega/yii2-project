@@ -47,7 +47,7 @@ class m181116_102612_create_table_user_security extends Migration
         $this->addForeignKey('user_security_fk1', '{{%user_security}}', 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
 
         // Insert in table
-        $userIds = UserRepository::getAll(['id']);
+        $userIds = UserRepository::getAll('{{%user}}', ['id']);
         foreach ($userIds as $userId) {
             $user = UserEntity::findIdentity($userId);
             if ($user) {
