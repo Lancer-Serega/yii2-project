@@ -7,10 +7,15 @@ use yii\console\ExitCode;
 use yii\helpers\Console;
 
 /**
- * UserEntity controller
+ * User manipulations
  */
 class UserController extends Controller
 {
+    /**
+     * Add user admin
+     * @return int
+     * @throws \yii\base\Exception
+     */
     public function actionAddAdmin() {
         $message = '';
         $tab = '    ';

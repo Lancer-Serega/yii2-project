@@ -17,11 +17,7 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "^2.0@dev",
-        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
-        "loveorigami/yii2-bootstrap-toggle": "*",
-        "borales/yii2-phone-input": "dev-master",
-        "doctrine/orm": "^3.0@dev",
-        "symfony/yaml": "^4.2@dev"
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
