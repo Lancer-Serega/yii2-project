@@ -91,7 +91,7 @@ use \yii\helpers\Url;
                                 </label>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green fz-20']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

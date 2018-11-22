@@ -23,6 +23,10 @@ class IndexController extends BaseController
      */
     public function beforeAction($action): bool
     {
+        if (\Yii::$app->user->getIdentity()) {
+            $this->redirect('cabinet/account');
+        }
+
         $this->enableCsrfValidation = false;
         return parent::beforeAction($action);
     }

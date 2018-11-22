@@ -6,6 +6,7 @@ use frontend\models\Entity\UserConfigEntity;
 $db = require __DIR__ . '/db.php';
 $log = require __DIR__ . '/log.php';
 $urlManager = require __DIR__ . '/url_manager.php';
+$view = require __DIR__ . '/view.php';
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',

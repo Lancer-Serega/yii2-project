@@ -7,7 +7,7 @@ use frontend\models\Entity\UserEntity;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
+use yii\base\Theme;
 
 /**
  * Base controller.

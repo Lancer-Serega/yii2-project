@@ -16,30 +16,30 @@ use yii\bootstrap\BootstrapPluginAsset;
  */
 class AdminProThemeAsset extends AssetBundle
 {
-    public $basePath = '@webroot/themes/admin-pro';
-    public $baseUrl = '@web/themes/admin-pro';
+    public $basePath = '@webroot/themes/admin-pro/';
+    public $baseUrl = '@web/themes/admin-pro/';
 
     public $css = [
-        '/themes/admin-pro/assets/plugins/bootstrap/css/bootstrap.min.css',
-        '/themes/admin-pro/assets/plugins/bootstrap-switch/bootstrap-switch.min.css',
-        '/themes/admin-pro/assets/plugins/prism/prism.css',
-        '/themes/admin-pro/css/pages/floating-label.css',
-        '/themes/admin-pro/css/colors/blue.css',
-        '/themes/admin-pro/css/style.css',
+        'assets/plugins/bootstrap/css/bootstrap.min.css',
+        'assets/plugins/bootstrap-switch/bootstrap-switch.min.css',
+        'assets/plugins/prism/prism.css',
+        'css/pages/floating-label.css',
+        'css/colors/blue.css',
+        'css/style.css',
     ];
 
     public $js = [
-        '/themes/admin-pro/assets/plugins/bootstrap/js/popper.min.js',
-        '/themes/admin-pro/assets/plugins/bootstrap/js/bootstrap.min.js',
-        '/themes/admin-pro/assets/plugins/bootstrap-switch/bootstrap-switch.min.js',
-        '/themes/admin-pro/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
-        '/themes/admin-pro/assets/plugins/sparkline/jquery.sparkline.min.js',
-        '/themes/admin-pro/assets/plugins/styleswitcher/jQuery.style.switcher.js',
-        '/themes/admin-pro/js/perfect-scrollbar.jquery.min.js',
-        '/themes/admin-pro/js/waves.js',
-        '/themes/admin-pro/js/sidebarmenu.js',
-        '/themes/admin-pro/js/custom.min.js',
-        '/themes/admin-pro/js/app.js',
+        'assets/plugins/bootstrap/js/popper.min.js',
+        'assets/plugins/bootstrap/js/bootstrap.min.js',
+        'assets/plugins/bootstrap-switch/bootstrap-switch.min.js',
+        'assets/plugins/sticky-kit-master/dist/sticky-kit.min.js',
+        'assets/plugins/sparkline/jquery.sparkline.min.js',
+        'assets/plugins/styleswitcher/jQuery.style.switcher.js',
+        'js/perfect-scrollbar.jquery.min.js',
+        'js/waves.js',
+        'js/sidebarmenu.js',
+        'js/custom.min.js',
+        'js/app.js',
     ];
 
     public $depends = [

@@ -1,6 +1,5 @@
 <?php
 
-use frontend\components\View;
 use frontend\models\Entity\UserEntity;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -95,17 +94,5 @@ return [
 
     'urlManager' => $urlManager,
 
-    'view' => [
-        'class' => View::class,
-        'theme' => [
-            'basePath' => '@app/themes/admin-pro',
-            'baseUrl' => '@web/themes/admin-pro',
-            'pathMap' => [
-                '@app/views' => [
-                    '@app/views/themes/admin-pro',
-                    '@app/views/themes/basic',
-                ],
-            ],
-        ],
-    ],
+    'view' => $view,
 ];

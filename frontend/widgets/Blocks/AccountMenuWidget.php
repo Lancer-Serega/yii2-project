@@ -16,7 +16,7 @@ class AccountMenuWidget extends Widget
      */
     public function run(): string
     {
-        return $this->render('account/view', [
+        return $this->render('/themes/basic/widget/account/view', [
             'user' => $this->user,
         ]);
     }

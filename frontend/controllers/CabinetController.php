@@ -24,6 +24,16 @@ use yii\web\ForbiddenHttpException;
 class CabinetController extends BaseController
 {
     /**
+     * Initialize controller
+     */
+    public function init(): void
+    {
+        // Set theme
+        $this->view->theme->active = 'admin-pro';
+        $this->layout = '../themes/admin-pro/layouts/main';
+    }
+
+    /**
      * @return array
      */
     public function behaviors(): array
@@ -47,6 +57,7 @@ class CabinetController extends BaseController
      */
     public function beforeAction($action): bool
     {
+        $this->view->theme->active = 'admin-pro';
         $this->jsonData = [
             'status' => 'success',
             'errors' => [],
@@ -69,7 +80,7 @@ class CabinetController extends BaseController
      */
     public function actionIndex(): string
     {
-        return $this->render('index', [
+        return $this->render('@app/views/themes/admin-pro/cabinet/settings', [
             'response' => __METHOD__,
         ]);
     }
@@ -81,7 +92,7 @@ class CabinetController extends BaseController
      */
     public function actionAccount(): string
     {
-        return $this->render('account', [
+        return $this->render('@app/views/themes/admin-pro/cabinet/account', [
             'response' => __METHOD__,
         ]);
     }

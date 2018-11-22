@@ -40,7 +40,7 @@ use \yii\helpers\Html;
                                     'action' => $formUrl,
                                     'options' => [
                                         'id' => 'popup-signin',
-                                        'class' => 'form-popup-signin js-validate',
+                                        'class' => 'form-popup-signin js-validate fz-20',
                                         'data-type' => 'JSON',
                                         'data-content-type' => 'application/json',
                                     ],

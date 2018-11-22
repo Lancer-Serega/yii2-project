@@ -5841,7 +5841,11 @@ body {
 .nav {
   -ms-flex: 1;
   flex: 1;
-  width: 100%; }
+  width: 100%;
+  transition: height 250ms; }
+
+.is-sticky .header .nav {
+  height: 100px; }
 
 .nav__btn {
   display: none; }
@@ -6266,3 +6270,6 @@ body {
   display: flex;
   -ms-flex-pack: center;
   justify-content: center; }
+
+.fz-20 {
+  font-size: 20px; }
