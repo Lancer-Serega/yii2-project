@@ -71,7 +71,7 @@ use \yii\helpers\Html;
                                 <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options)->label(Yii::t('form', 'Password repeat')); ?>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('form', 'Create account'), ['class' => 'btn btn--block btn--green']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Create account'), ['class' => 'btn btn--block btn--green fz-20']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

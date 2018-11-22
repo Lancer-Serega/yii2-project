@@ -2,9 +2,9 @@
 namespace frontend\widgets\Blocks;
 
 use frontend\models\Entity\UserEntity;
-use yii\bootstrap\Widget;
+use frontend\widgets\BaseWidget;
 
-class AccountMenuWidget extends Widget
+class AccountMenuWidget extends BaseWidget
 {
     /**
      * @var UserEntity
@@ -16,7 +16,7 @@ class AccountMenuWidget extends Widget
      */
     public function run(): string
     {
-        return $this->render('/themes/basic/widget/account/view', [
+        return $this->render('/account/view', [
             'user' => $this->user,
         ]);
     }

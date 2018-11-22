@@ -2,14 +2,10 @@
 
 namespace frontend\assets;
 
-use lo\widgets\ToggleAsset as BootstrapToggleAsset;
 use yii\bootstrap\BootstrapAsset;
-use yii\bootstrap\BootstrapThemeAsset;
 use yii\web\AssetBundle;
-use yii\web\JqueryAsset;
 use yii\web\View;
 use yii\web\YiiAsset;
-use yii\bootstrap\BootstrapPluginAsset;
 
 /**
  * Main frontend application asset bundle.
