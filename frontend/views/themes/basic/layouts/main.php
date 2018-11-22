@@ -48,7 +48,7 @@ BasicThemeAsset::register($this);
                 </a>
             </div>
             <?= HeaderMenuWidget::widget(['route' => $this->context->route]); ?>
-            <?= LanguageWidget::widget(['app' => Yii::$app]); ?>
+            <?= LanguageWidget::widget(); ?>
             <?= AccountMenuWidget::widget(['user' => Yii::$app->getUser()->getIdentity()]); ?>
         </div>
     </header>

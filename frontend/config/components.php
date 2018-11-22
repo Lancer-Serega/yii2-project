@@ -105,6 +105,7 @@ return [
                     '@app/views/themes/admin-pro',
                     '@app/views/themes/basic',
                 ],
+                '@app/widgets' => '@app/views/themes/admin-pro/widget',
             ],
         ],
     ],

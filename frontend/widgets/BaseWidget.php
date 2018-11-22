@@ -13,9 +13,15 @@ use yii\bootstrap\Widget;
 
 class BaseWidget extends Widget
 {
-    public function render($view, $option = [])
+    /**
+     * @param string $view
+     * @param array $option
+     * @return string
+     */
+    public function render($view, $option = []): string
     {
-        $view = \Yii::$app->view->theme->getBaseUrl() . '/widget' . $view;
+        $baseUrl = \Yii::$app->view->theme->getBaseUrl();
+        $view = $baseUrl . '/widget' . $view;
         return parent::render($view, $option);
     }
 }

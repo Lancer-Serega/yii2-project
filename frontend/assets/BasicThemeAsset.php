@@ -18,19 +18,19 @@ use yii\bootstrap\BootstrapPluginAsset;
  */
 class BasicThemeAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
+    public $basePath = '@webroot/themes/basic/';
 
-    public $baseUrl = '@web';
+    public $baseUrl = '@web/themes/basic/';
 
     public $css = [
-        'themes/basic/css/critical.min.css',
-        'themes/basic/css/theme.css',
-        'themes/basic/css/app.min.css',
+        'css/critical.min.css',
+        'css/theme.css',
+        'css/app.min.css',
     ];
 
     public $js = [
-        'themes/basic/js/plugins.min.js',
-        'themes/basic/js/app.min.js',
+        'js/plugins.min.js',
+        'js/app.min.js',
     ];
 
     public $depends = [

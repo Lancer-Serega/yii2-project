@@ -7,7 +7,6 @@ use frontend\models\Entity\UserEntity;
 use Yii;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 
 /**
  * Base controller.
@@ -45,6 +44,23 @@ class BaseController extends Controller
         $this->initLanguage();
 
         return $this->initAccess($action);
+    }
+
+    public function init(): void
+    {
+        $theme = Yii::$app->user->isGuest ? 'basic' : 'admin-pro';
+
+        Yii::$app->layout = "@app/views/themes/$theme/layouts/main";
+        Yii::$app->view->theme->basePath = "@app/views/themes/$theme";
+        Yii::$app->view->theme->baseUrl = "@web/themes/$theme";
+        Yii::$app->view->theme->pathMap = [
+            '@app/views' => [
+                "@app/views/themes/$theme",
+            ],
+            '@app/widgets' => "@app/views/themes/$theme/widget",
+        ];
+
+        parent::init();
     }
 
     /**

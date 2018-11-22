@@ -17,8 +17,7 @@ use yii\helpers\Html;
  * @var LanguageEntity[] $langs
  */
 
-$request = \Yii::$app->getRequest();
-$langUrl = $request->getLangUrl();
+
 ?>
 <div class="language">
     <button class="language__btn">
@@ -31,7 +30,7 @@ $langUrl = $request->getLangUrl();
     <div class="language__select">
         <?php foreach ($langs as $lang): ?>
             <?php $text = '<span class="icon-language-' . $lang->url . '"></span>' . $lang->name; ?>
-            <?= Html::a($text, "/{$lang->url}{$langUrl}", ['class' => 'language__option']); ?>
+<!--            --><?//= Html::a($text, "/{$lang->url}{$langUrl}", ['class' => 'language__option']); ?>
         <?php endforeach; ?>
     </div>
 </div>
