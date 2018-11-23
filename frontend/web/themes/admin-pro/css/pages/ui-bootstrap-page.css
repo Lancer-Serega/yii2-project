@@ -48,3 +48,6 @@ ul.two-part {
 /*Accordion*/
 html body .accordion .card {
   margin-bottom: 0px; }
+
+.jumbotron {
+  background-color: #323840; }

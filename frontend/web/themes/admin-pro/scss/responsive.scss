@@ -20,18 +20,10 @@ File: scss
     .website-visitor{
         height:445px; 
     }
-    .auto-height{
-        max-height:315px;   
-    }
 }
-@media(max-width:1600px) {
-    .website-visitor{
-        height:333px; 
-    }
-    .auto-height{
-        min-height:240px;   
-    }
-}
+
+
+
 /*============================================================== 
  For Laptop & above all (1370px) 
  ============================================================== */
@@ -41,10 +33,7 @@ File: scss
         column-count: 2;
     }
     .website-visitor{
-        height:353px; 
-    }
-    .auto-height{
-        min-height:186px;   
+        height:370px; 
     }
 }
 

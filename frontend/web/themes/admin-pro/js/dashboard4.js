@@ -65,9 +65,10 @@ $(function() {
                 return (value);
             },
             showGrid: true
-        }, plugins: [
-        	Chartist.plugins.tooltip()
-      	],
+        },
+        plugins: [
+            Chartist.plugins.tooltip()
+        ],
     }).on('draw', function(data) {
         if (data.type === 'bar') {
             data.element.attr({
@@ -80,15 +81,15 @@ $(function() {
     // ==============================================================
     jQuery('#visitfromworld').vectorMap({
         map: 'world_mill_en',
-        backgroundColor: '#fff',
-        borderColor: '#000',
+        backgroundColor: 'transparent',
+        borderColor: '#ccc',
         borderOpacity: 0.9,
         borderWidth: 1,
         zoomOnScroll: false,
         color: '#ddd',
         regionStyle: {
             initial: {
-                fill: '#fff',
+                fill: 'transparent',
                 'stroke-width': 1,
                 'stroke': '#a6b7bf'
             }

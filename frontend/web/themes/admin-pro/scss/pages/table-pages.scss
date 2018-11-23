@@ -7,9 +7,6 @@ File: scss
 
 @import '../variable';
 
-
-
-
 /*******************
 Table Cell
 *******************/
@@ -60,8 +57,6 @@ Table Cell
         vertical-align: middle;
     }
 }
-
-
 
 
 /*******************
@@ -369,8 +364,6 @@ Table-Layout
 }
 
 
-
-
 /*******************
 Table-Data Table
 ******************/
@@ -404,7 +397,7 @@ Table-Data Table
     margin-top: 10px;
     select {
         border: 0;
-        background-image: linear-gradient($themecolor, $themecolor), linear-gradient($form-brd, $form-brd);
+        background-image: linear-gradient($themecolor, $themecolor), linear-gradient($border, $border);
         background-size: 0 2px, 100% 1px;
         background-repeat: no-repeat;
         background-position: center bottom, center calc(100% - 1px);
@@ -413,7 +406,7 @@ Table-Data Table
         padding-bottom: 5px;
         &:focus {
             outline: none;
-            background-image: linear-gradient($themecolor, $themecolor), linear-gradient($form-brd, $form-brd);
+            background-image: linear-gradient($themecolor, $themecolor), linear-gradient($border, $border);
             background-size: 100% 2px, 100% 1px;
             box-shadow: none;
             transition-duration: 0.3s;
@@ -426,7 +419,7 @@ Table-Data Table
     margin-top: 10px;
     input {
         border: 0;
-        background-image: linear-gradient($themecolor, $themecolor), linear-gradient($form-brd, $form-brd);
+        background-image: linear-gradient($themecolor, $themecolor), linear-gradient($border, $border);
         background-size: 0 2px, 100% 1px;
         background-repeat: no-repeat;
         background-position: center bottom, center calc(100% - 1px);
@@ -438,7 +431,7 @@ Table-Data Table
         margin-left: 10px;
         &:focus {
             outline: none;
-            background-image: linear-gradient($themecolor, $themecolor), linear-gradient($form-brd, $form-brd);
+            background-image: linear-gradient($themecolor, $themecolor), linear-gradient($border, $border);
             background-size: 100% 2px, 100% 1px;
             box-shadow: none;
             transition-duration: 0.3s;
@@ -506,9 +499,6 @@ table.dataTable thead .sorting_desc_disabled {
 }
 
 
-
-
-
 /*******************
 Table- responsive
 ******************/
@@ -516,8 +506,6 @@ Table- responsive
 .tablesaw-bar .btn-group label {
     color: $bodytext!important;
 }
-
-
 
 
 /*******************
@@ -532,7 +520,7 @@ Table- editable table
     .pagination {
         .paginate_button {
             padding: 0px;
-            background: $white;
+            background: $dark;
             &:hover {
                 background: $white;
             }
@@ -548,11 +536,13 @@ Table- editable table
         }
     }
 }
+
 .stylish-table {
-    tbody tr{
-        border-left:3px solid transparent;
-        &:hover, &.active{
-            border-color:$themecolor;
+    tbody tr {
+        border-left: 3px solid transparent;
+        &:hover,
+        &.active {
+            border-color: $themecolor;
         }
     }
 }
@@ -565,6 +555,7 @@ Table- editable table
         opacity: 1; 
     }
 }
+
 
 /*******************
 Table-Jsgrid table
@@ -581,8 +572,8 @@ Table-Jsgrid table
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color: #67757c;
-    border: 1px solid #ddd;
+    color: $bodytext;
+    border: 1px solid $border;
 }
 
 .jsgrid-pager-page a:hover,
@@ -603,6 +594,10 @@ Table-Jsgrid table
 
 .jsgrid-pager-page.jsgrid-pager-current-page {
     padding: 0.5em 1em !important;
+}
+
+.fixed-table-container tbody td {
+    border-left: 1px solid $border;
 }
 
 /*******************

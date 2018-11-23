@@ -6,6 +6,7 @@ File: scss
 */
 
 @import '../variable';
+
 /*============================================================== 
 Breadcrumb
  ============================================================== */
@@ -25,4 +26,5 @@ Breadcrumb
 
 .breadcrumb {
     margin-bottom: 0px;
+    background: $light;
 }

@@ -5,7 +5,8 @@ Email: niravjoshi87@gmail.com
 File: scss
 */
 
-@import '../variable'; 
+@import '../variable';
+
 /*============================================================== 
  Ui-bootstrap
  ============================================================== */
@@ -52,4 +53,8 @@ html body .accordion {
     .card {
         margin-bottom: 0px;
     }
+}
+
+.jumbotron {
+    background-color: $light;
 }

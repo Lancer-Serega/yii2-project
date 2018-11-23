@@ -29,4 +29,5 @@ Breadcrumb
   color: rgba(255, 255, 255, 0.4); }
 
 .breadcrumb {
-  margin-bottom: 0px; }
+  margin-bottom: 0px;
+  background: #323840; }

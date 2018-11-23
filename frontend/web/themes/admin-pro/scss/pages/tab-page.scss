@@ -7,9 +7,6 @@ File: scss
 
 @import '../variable';
 
-
-
-
 /*******************
 Vertical tabs
 ******************/
@@ -23,7 +20,7 @@ Vertical tabs
         display: table-cell;
         vertical-align: top;
         li .nav-link {
-            color: $dark;
+            color: $bodytext;
             margin-bottom: 10px;
             border: 0px;
             border-radius: $radius 0 0 $radius;
@@ -45,14 +42,11 @@ Vertical tabs
 }
 
 
-
-
 /*Custom vertical tab*/
 
 .customvtab .tabs-vertical li .nav-link.active,
 .customvtab .tabs-vertical li .nav-link:hover,
 .customvtab .tabs-vertical li .nav-link:focus {
-    background: $white;
     border: 0px;
     border-right: 2px solid $themecolor;
     margin-right: -1px;
@@ -60,7 +54,7 @@ Vertical tabs
 }
 
 .tabcontent-border {
-    border: 1px solid #ddd;
+    border: 1px solid $border;
     border-top: 0px;
 }
 

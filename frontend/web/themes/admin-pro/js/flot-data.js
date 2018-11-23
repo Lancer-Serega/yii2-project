@@ -5,19 +5,18 @@ Email: niravjoshi87@gmail.com
 File: js
 */
 // Real Time chart
-var data = []
-    , totalPoints = 300;
+var data = [],
+    totalPoints = 300;
 
 function getRandomData() {
     if (data.length > 0) data = data.slice(1);
     // Do a random walk
     while (data.length < totalPoints) {
-        var prev = data.length > 0 ? data[data.length - 1] : 50
-            , y = prev + Math.random() * 10 - 5;
+        var prev = data.length > 0 ? data[data.length - 1] : 50,
+            y = prev + Math.random() * 10 - 5;
         if (y < 0) {
             y = 0;
-        }
-        else if (y > 100) {
+        } else if (y > 100) {
             y = 100;
         }
         data.push(y);
@@ -31,14 +30,13 @@ function getRandomData() {
 }
 // Set up the control widget
 var updateInterval = 30;
-$("#updateInterval").val(updateInterval).change(function () {
+$("#updateInterval").val(updateInterval).change(function() {
     var v = $(this).val();
     if (v && !isNaN(+v)) {
         updateInterval = +v;
         if (updateInterval < 1) {
             updateInterval = 1;
-        }
-        else if (updateInterval > 3000) {
+        } else if (updateInterval > 3000) {
             updateInterval = 3000;
         }
         $(this).val("" + updateInterval);
@@ -47,25 +45,25 @@ $("#updateInterval").val(updateInterval).change(function () {
 var plot = $.plot("#placeholder", [getRandomData()], {
     series: {
         shadowSize: 0 // Drawing is faster without shadows
-    }
-    , yaxis: {
-        min: 0
-        , max: 100
-    }
-    , xaxis: {
+    },
+    yaxis: {
+        min: 0,
+        max: 100
+    },
+    xaxis: {
         show: false
-    }
-    , colors: ["#26c6da"]
-    , grid: {
-        color: "#AFAFAF"
-        , hoverable: true
-        , borderWidth: 0
-        , backgroundColor: '#FFF'
-    }
-    , tooltip: true
-    , tooltipOpts: {
-        content: "Y: %y"
-        , defaultTheme: false
+    },
+    colors: ["#26c6da"],
+    grid: {
+        color: "#AFAFAF",
+        hoverable: true,
+        borderWidth: 0,
+        backgroundColor: 'transparent'
+    },
+    tooltip: true,
+    tooltipOpts: {
+        content: "Y: %y",
+        defaultTheme: false
     }
 });
 
@@ -77,14 +75,14 @@ function update() {
 }
 update();
 //Flot Line Chart
-$(document).ready(function () {
+$(document).ready(function() {
     console.log("document ready");
     var offset = 0;
     plot();
 
     function plot() {
-        var sin = []
-            , cos = [];
+        var sin = [],
+            cos = [];
         for (var i = 0; i < 12; i += 0.2) {
             sin.push([i, Math.sin(i + offset)]);
             cos.push([i, Math.cos(i + offset)]);
@@ -93,86 +91,86 @@ $(document).ready(function () {
             series: {
                 lines: {
                     show: true
-                }
-                , points: {
+                },
+                points: {
                     show: true
                 }
-            }
-            , grid: {
+            },
+            grid: {
                 hoverable: true //IMPORTANT! this is needed for tooltip to work
-            }
-            , yaxis: {
-                min: -1.2
-                , max: 1.2
-            }
-            , colors: ["#009efb", "#26c6da"]
-            , grid: {
-                color: "#AFAFAF"
-                , hoverable: true
-                , borderWidth: 0
-                , backgroundColor: '#FFF'
-            }
-            , tooltip: true
-            , tooltipOpts: {
-                content: "'%s' of %x.1 is %y.4"
-                , shifts: {
-                    x: -60
-                    , y: 25
+            },
+            yaxis: {
+                min: -1.2,
+                max: 1.2
+            },
+            colors: ["#009efb", "#26c6da"],
+            grid: {
+                color: "#AFAFAF",
+                hoverable: true,
+                borderWidth: 0,
+                backgroundColor: 'transparent'
+            },
+            tooltip: true,
+            tooltipOpts: {
+                content: "'%s' of %x.1 is %y.4",
+                shifts: {
+                    x: -60,
+                    y: 25
                 }
             }
         };
         var plotObj = $.plot($("#flot-line-chart"), [{
-            data: sin
-            , label: "sin(x)"
-        , }, {
-            data: cos
-            , label: "cos(x)"
-            }], options);
+            data: sin,
+            label: "sin(x)",
+        }, {
+            data: cos,
+            label: "cos(x)"
+        }], options);
     }
 });
 //Flot Pie Chart
-$(function () {
+$(function() {
     var data = [{
-        label: "Series 0"
-        , data: 10
-        , color: "#4f5467"
-    , }, {
-        label: "Series 1"
-        , data: 1
-        , color: "#26c6da"
-    , }, {
-        label: "Series 2"
-        , data: 3
-        , color: "#009efb"
-    , }, {
-        label: "Series 3"
-        , data: 1
-        , color: "#7460ee"
-    , }];
+        label: "Series 0",
+        data: 10,
+        color: "#4f5467",
+    }, {
+        label: "Series 1",
+        data: 1,
+        color: "#26c6da",
+    }, {
+        label: "Series 2",
+        data: 3,
+        color: "#009efb",
+    }, {
+        label: "Series 3",
+        data: 1,
+        color: "#7460ee",
+    }];
     var plotObj = $.plot($("#flot-pie-chart"), data, {
         series: {
             pie: {
-                innerRadius: 0.5
-                , show: true
+                innerRadius: 0.5,
+                show: true
             }
-        }
-        , grid: {
+        },
+        grid: {
             hoverable: true
-        }
-        , color: null
-        , tooltip: true
-        , tooltipOpts: {
+        },
+        color: null,
+        tooltip: true,
+        tooltipOpts: {
             content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
             shifts: {
-                x: 20
-                , y: 0
-            }
-            , defaultTheme: false
+                x: 20,
+                y: 0
+            },
+            defaultTheme: false
         }
     });
 });
 //Flot Moving Line Chart
-$(function () {
+$(function() {
     var container = $("#flot-line-chart-moving");
     // Determine how many data points to keep based on the placeholder's initial size;
     // this gives us a nice high-res plot while avoiding more than one point per pixel.
@@ -198,51 +196,49 @@ $(function () {
     }
     //
     series = [{
-        data: getRandomData()
-        , lines: {
+        data: getRandomData(),
+        lines: {
             fill: true
         }
     }];
     //
     var plot = $.plot(container, series, {
-        colors: ["#26c6da"]
-        , grid: {
-            borderWidth: 0
-            , minBorderMargin: 20
-            , labelMargin: 10
-            , backgroundColor: {
-                colors: ["#fff", "#fff"]
-            }
-            , margin: {
-                top: 8
-                , bottom: 20
-                , left: 20
-            }
-            , markings: function (axes) {
+        colors: ["#26c6da"],
+        grid: {
+            borderWidth: 0,
+            minBorderMargin: 20,
+            labelMargin: 10,
+            backgroundColor: 'transparent',
+            margin: {
+                top: 8,
+                bottom: 20,
+                left: 20
+            },
+            markings: function(axes) {
                 var markings = [];
                 var xaxis = axes.xaxis;
                 for (var x = Math.floor(xaxis.min); x < xaxis.max; x += xaxis.tickSize * 1) {
                     markings.push({
                         xaxis: {
-                            from: x
-                            , to: x + xaxis.tickSize
-                        }
-                        , color: "#fff"
+                            from: x,
+                            to: x + xaxis.tickSize
+                        },
+                        color: "#fff"
                     });
                 }
                 return markings;
             }
-        }
-        , xaxis: {
-            tickFormatter: function () {
+        },
+        xaxis: {
+            tickFormatter: function() {
                 return "";
             }
-        }
-        , yaxis: {
-            min: 0
-            , max: 110
-        }
-        , legend: {
+        },
+        yaxis: {
+            min: 0,
+            max: 110
+        },
+        legend: {
             show: true
         }
     });
@@ -254,52 +250,52 @@ $(function () {
     }, 40);
 });
 //Flot Bar Chart
-$(function () {
+$(function() {
     var barOptions = {
         series: {
             bars: {
-                show: true
-                , barWidth: 43200000
+                show: true,
+                barWidth: 43200000
             }
-        }
-        , xaxis: {
-            mode: "time"
-            , timeformat: "%m/%d"
-            , minTickSize: [2, "day"]
-        }
-        , grid: {
+        },
+        xaxis: {
+            mode: "time",
+            timeformat: "%m/%d",
+            minTickSize: [2, "day"]
+        },
+        grid: {
             hoverable: true
-        }
-        , legend: {
+        },
+        legend: {
             show: false
-        }
-        , grid: {
-            color: "#AFAFAF"
-            , hoverable: true
-            , borderWidth: 0
-            , backgroundColor: '#FFF'
-        }
-        , tooltip: true
-        , tooltipOpts: {
+        },
+        grid: {
+            color: "#AFAFAF",
+            hoverable: true,
+            borderWidth: 0,
+            backgroundColor: 'transparent'
+        },
+        tooltip: true,
+        tooltipOpts: {
             content: "x: %x, y: %y"
         }
     };
     var barData = {
-        label: "bar"
-        , color: "#009efb"
-        , data: [
-            [1354521600000, 1000]
-            , [1355040000000, 2000]
-            , [1355223600000, 3000]
-            , [1355306400000, 4000]
-            , [1355487300000, 5000]
-            , [1355571900000, 6000]
+        label: "bar",
+        color: "#009efb",
+        data: [
+            [1354521600000, 1000],
+            [1355040000000, 2000],
+            [1355223600000, 3000],
+            [1355306400000, 4000],
+            [1355487300000, 5000],
+            [1355571900000, 6000]
         ]
     };
     $.plot($("#flot-bar-chart"), [barData], barOptions);
 });
 // sales bar chart
-$(function () {
+$(function() {
     //some data
     var d1 = [];
     for (var i = 0; i <= 10; i += 1) d1.push([i, parseInt(Math.random() * 60)]);
@@ -309,83 +305,83 @@ $(function () {
     for (var i = 0; i <= 10; i += 1) d3.push([i, parseInt(Math.random() * 25)]);
     var ds = new Array();
     ds.push({
-        label: "Data One"
-        , data: d1
-        , bars: {
+        label: "Data One",
+        data: d1,
+        bars: {
             order: 1
         }
     });
     ds.push({
-        label: "Data Two"
-        , data: d2
-        , bars: {
+        label: "Data Two",
+        data: d2,
+        bars: {
             order: 2
         }
     });
     ds.push({
-        label: "Data Three"
-        , data: d3
-        , bars: {
+        label: "Data Three",
+        data: d3,
+        bars: {
             order: 3
         }
     });
-    var stack = 0
-        , bars = true
-        , lines = true
-        , steps = true;
+    var stack = 0,
+        bars = true,
+        lines = true,
+        steps = true;
     var options = {
         bars: {
-            show: true
-            , barWidth: 0.2
-            , fill: 1
-        }
-        , grid: {
-            show: true
-            , aboveData: false
-            , labelMargin: 5
-            , axisMargin: 0
-            , borderWidth: 1
-            , minBorderMargin: 5
-            , clickable: true
-            , hoverable: true
-            , autoHighlight: false
-            , mouseActiveRadius: 20
-            , borderColor: '#f5f5f5'
-        }
-        , series: {
+            show: true,
+            barWidth: 0.2,
+            fill: 1
+        },
+        grid: {
+            show: true,
+            aboveData: false,
+            labelMargin: 5,
+            axisMargin: 0,
+            borderWidth: 1,
+            minBorderMargin: 5,
+            clickable: true,
+            hoverable: true,
+            autoHighlight: false,
+            mouseActiveRadius: 20,
+            borderColor: '#f5f5f5'
+        },
+        series: {
             stack: stack
-        }
-        , legend: {
-            position: "ne"
-            , margin: [0, 0]
-            , noColumns: 0
-            , labelBoxBorderColor: null
-            , labelFormatter: function (label, series) {
+        },
+        legend: {
+            position: "ne",
+            margin: [0, 0],
+            noColumns: 0,
+            labelBoxBorderColor: null,
+            labelFormatter: function(label, series) {
                 // just add some space to labes
                 return '' + label + '&nbsp;&nbsp;';
-            }
-            , width: 30
-            , height: 5
-        }
-        , yaxis: {
-            tickColor: '#f5f5f5'
-            , font: {
+            },
+            width: 30,
+            height: 5
+        },
+        yaxis: {
+            tickColor: '#f5f5f5',
+            font: {
                 color: '#bdbdbd'
             }
-        }
-        , xaxis: {
-            tickColor: '#f5f5f5'
-            , font: {
+        },
+        xaxis: {
+            tickColor: '#f5f5f5',
+            font: {
                 color: '#bdbdbd'
             }
-        }
-        , colors: ["#4F5467", "#009efb", "#26c6da"]
-        , tooltip: true, //activate tooltip
+        },
+        colors: ["#4F5467", "#009efb", "#26c6da"],
+        tooltip: true, //activate tooltip
         tooltipOpts: {
-            content: "%s : %y.0"
-            , shifts: {
-                x: -30
-                , y: -50
+            content: "%s : %y.0",
+            shifts: {
+                x: -30,
+                y: -50
             }
         }
     };

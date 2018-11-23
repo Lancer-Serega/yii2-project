@@ -81,17 +81,23 @@ use \yii\helpers\Url;
 
                             <div class="ui-field">
                                 <label class="ui-check">
-                                    <?php $options = ['class' => 'ui-check__input form-control']; ?>
-                                    <?= $form->field($loginFormModel, 'remember')->checkbox($options)->label(Yii::t('form', 'Remember me')); ?>
-                                    <span class="ui-check__checkbox">
-                                        <svg class="icon-check">
-                                            <use xlink:href="<?= Url::to($this->theme->getUrl('/sprites/sprite.svg#icon-check'), true); ?>"></use>
-                                        </svg>
-                                    </span>
+                                    <label class="control-label" for="loginform-remember">Remember me</label>
+                                    <input type="hidden" name="LoginForm[remember]" value="0">
+                                    <label>
+                                        <input type="checkbox" id="loginform-remember"
+                                               class="ui-check__input form-control" name="LoginForm[remember]"
+                                               value="1" checked="" aria-invalid="false">
+                                        <span class="ui-check__checkbox">
+                                            <svg class="icon-check">
+                                                <use xlink:href="http://socksforce.local/themes/basic/sprites/sprite.svg#icon-check"></use>
+                                            </svg>
+                                        </span>
+                                    </label>
+                                    <div class="help-block"></div>
                                 </label>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green fz-20']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green btn--36']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

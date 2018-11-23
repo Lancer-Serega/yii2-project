@@ -41,7 +41,7 @@ AdminProThemeAsset::register($this);
 </head>
 
 
-<body class="single-column fix-header card-no-border">
+<body class="single-column fix-header fix-sidebar card-no-border">
 
 <?php $this->beginBody() ?>
 
@@ -53,6 +53,8 @@ AdminProThemeAsset::register($this);
     <div id="main-wrapper">
 
         <?php require_once __DIR__ . '/header.php'; ?>
+
+        <?php require_once __DIR__ . '/left-sidebar.php'; ?>
 
         <?php require_once __DIR__ . '/sidebar.php'; ?>
 

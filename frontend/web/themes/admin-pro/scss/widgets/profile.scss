@@ -1,14 +1,10 @@
-
 /*******************/
 /*social-profile-first*/ 
 /*******************/
 
 .social-profile-first {
     text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    padding-top: 22%;
     margin-bottom: 96px;
     &.bg-over {
         background: rgba(56, 83, 161, 0.7);
@@ -25,10 +21,10 @@
     position: relative;
     padding-left: 40px;
     margin-right: 10px;
-    border-left: 1px solid $border;
+    border-left:1px solid $border;
     margin-left:30px;
     .sl-left {
-        float: $lft;
+        float: left;
         margin-left: -60px;
         z-index: 1;
         margin-right: 15px;

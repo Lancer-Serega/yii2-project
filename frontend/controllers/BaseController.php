@@ -47,12 +47,12 @@ class BaseController extends Controller
 
     public function init(): void
     {
-        $theme = Yii::$app->user->isGuest ? 'basic' : 'admin-pro';
+        $theme = \Yii::$app->user->isGuest ? 'basic' : 'admin-pro';
 
-        Yii::$app->layout = "@app/views/themes/$theme/layouts/main";
-        Yii::$app->view->theme->basePath = "@app/views/themes/$theme";
-        Yii::$app->view->theme->baseUrl = "@web/themes/$theme";
-        Yii::$app->view->theme->pathMap = [
+        \Yii::$app->layout = "@app/views/themes/$theme/layouts/main";
+        \Yii::$app->view->theme->basePath = "@app/views/themes/$theme";
+        \Yii::$app->view->theme->baseUrl = "@web/themes/$theme";
+        \Yii::$app->view->theme->pathMap = [
             '@app/views' => [
                 "@app/views/themes/$theme",
             ],

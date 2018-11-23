@@ -25,7 +25,7 @@ Email inbox Page
   .inbox-panel .list-group .list-group-item a {
     color: #67757c; }
   .inbox-panel .list-group .list-group-item.active, .inbox-panel .list-group .list-group-item:hover {
-    background: #e9edf2;
+    background: #323840;
     border-left: 3px solid #398bf7; }
 
 .inbox-center .unread td {

@@ -18,13 +18,19 @@ File: scss
 /*******************
 FAQs Page
 ******************/
-.minimal-faq .card {
+.minimal-faq .card,
+#accordion1 .card {
   border: 0px; }
-  .minimal-faq .card .card-header {
-    background: #ffffff;
-    padding: 20px 0;
+  .minimal-faq .card .card-header,
+  #accordion1 .card .card-header {
+    background: #323840;
+    padding: 20px;
     margin-top: 10px; }
-  .minimal-faq .card .card-body {
+    .minimal-faq .card .card-header h5 a.link,
+    #accordion1 .card .card-header h5 a.link {
+      color: #67757c; }
+  .minimal-faq .card .card-body,
+  #accordion1 .card .card-body {
     padding: 15px 0px; }
 
 /*******************
@@ -51,8 +57,7 @@ Seach listing Page
 Gridstack Dragable portlet
 ******************/
 .grid-stack-item-content {
-  background: #fff;
-  color: #2b2b2b;
+  color: #ffffff;
   text-align: center;
   font-size: 20px; }
 
@@ -69,8 +74,8 @@ Grid page
 .show-grid [class^=col-] {
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid #b1b8bb;
-  background-color: #e9edf2; }
+  border: 1px solid #d9d9d9;
+  background-color: #323840; }
 
 /*******************
 Date paginator page
@@ -113,7 +118,7 @@ Notification page Jquery toaster
 list and media
 ******************/
 .list-group a.list-group-item:hover {
-  background: #e9edf2; }
+  background: #323840; }
 
 .list-group-item.active,
 .list-group .list-group-item.active:hover {
@@ -122,7 +127,7 @@ list and media
 
 .list-group-item.disabled {
   color: #99abb4;
-  background: #e9edf2; }
+  background: #323840; }
 
 .media {
   border: 1px solid rgba(120, 130, 140, 0.13);

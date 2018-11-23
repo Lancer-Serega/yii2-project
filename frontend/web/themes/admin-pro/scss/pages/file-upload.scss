@@ -34,8 +34,9 @@ File upload
     .input-group-addon {
         border: none;
         border-bottom: 1px solid $border;
-        background: $white;
+        background: transparent;
         margin-bottom: 1px;
+        color: $bodytext;
     }
 }
 

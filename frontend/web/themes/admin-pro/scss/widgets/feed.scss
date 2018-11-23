@@ -1,5 +1,9 @@
 /*******************/
+
+
 /*Feed widget*/
+
+
 /*******************/
 
 .feeds {
@@ -10,9 +14,9 @@
         padding: 10px;
         display: block;
         &:hover {
-            background: $extra-light;
+            background: $light;
         }
-        > div {
+        >div {
             width: 40px;
             height: 40px;
             margin-right: 5px;
@@ -31,5 +35,3 @@
         }
     }
 }
-
-

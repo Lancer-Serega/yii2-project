@@ -40,7 +40,7 @@ use \yii\helpers\Html;
                                     'action' => $formUrl,
                                     'options' => [
                                         'id' => 'popup-signin',
-                                        'class' => 'form-popup-signin js-validate fz-20',
+                                        'class' => 'form-popup-signin js-validate btn--36',
                                         'data-type' => 'JSON',
                                         'data-content-type' => 'application/json',
                                     ],
@@ -71,7 +71,7 @@ use \yii\helpers\Html;
                                 <?= $form->field($signinFormModel, 'password_repeat')->passwordInput($options)->label(Yii::t('form', 'Password repeat')); ?>
                             </div>
 
-                            <?= Html::submitButton(Yii::t('form', 'Create account'), ['class' => 'btn btn--block btn--green fz-20']); ?>
+                            <?= Html::submitButton(Yii::t('form', 'Create account'), ['class' => 'btn btn--block btn--green btn--36']); ?>
                             <?php ActiveForm::end(); ?>
                         </div>
                     </div>

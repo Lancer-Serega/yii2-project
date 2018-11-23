@@ -74,7 +74,7 @@ class IdentityController extends BaseController
                         return $this->asJson($this->jsonData);
                     }
 
-                    return $this->render('@app/views/themes/admin-pro/index/index');
+                    return $this->render('cabinet/settings');
                 }
                 $loginForm->password = null;
                 $msg = \Yii::t('form', 'Incorrect username or password.');
@@ -90,7 +90,7 @@ class IdentityController extends BaseController
                     return $this->asJson($this->jsonData);
                 }
 
-                return $this->render('@app/views/themes/admin-pro/index/index');
+                return $this->render('cabinet/settings');
             }
         }
 
@@ -98,7 +98,7 @@ class IdentityController extends BaseController
             return $this->asJson($this->jsonData);
         }
 
-        return $this->render('@app/views/themes/admin-pro/index/index', ['loginForm' => $loginForm]);
+        return $this->render('cabinet/settings', ['loginForm' => $loginForm]);
     }
 
     /**
@@ -150,7 +150,7 @@ class IdentityController extends BaseController
         if ($userId && $userConfigForm->load(Yii::$app->request->get())) {
             $service = new IdentityService();
             if ($service->checkTwoFactorAuthKey($userId, $userConfigForm->twoFactorAuthKey)) {
-                return $this->redirect(Url::to('cabinet/account'));
+                return $this->redirect(Url::to('cabinet/settings'));
             }
         }
 

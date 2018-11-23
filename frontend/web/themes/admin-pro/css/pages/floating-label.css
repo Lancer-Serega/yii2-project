@@ -24,10 +24,11 @@ File: scss
 .floating-labels .form-control {
   padding: 10px 10px 10px 0;
   display: block;
+  background: transparent;
   border: none;
   font-family: "Montserrat", sans-serif;
   border-radius: 0px;
-  border-bottom: 1px solid #e9edf2; }
+  border-bottom: 1px solid #323840; }
   .floating-labels .form-control:focus {
     -webkit-box-shadow: none;
     box-shadow: none; }
@@ -59,9 +60,9 @@ File: scss
   -webkit-transition: 0.2s ease all; }
 
 .floating-labels .focused label {
-  top: 0;
+  top: -20px;
   font-size: 12px;
-  color: #263238; }
+  color: #67757c; }
 
 .floating-labels .bar {
   position: relative;
@@ -134,10 +135,14 @@ File: scss
 .has-feedback label ~ .t-0 {
   top: 0; }
 
-.form-group.error input, .form-group.error select, .form-group.error textarea {
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
   border: 1px solid #ef5350; }
 
-.form-group.validate input, .form-group.validate select, .form-group.validate textarea {
+.form-group.validate input,
+.form-group.validate select,
+.form-group.validate textarea {
   border: 1px solid #06d79c; }
 
 .form-group.error .help-block ul {
