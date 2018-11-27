@@ -310,4 +310,12 @@ class IdentityController extends BaseController
             'model' => $model,
         ]);
     }
+
+    /**
+     * @param string $token
+     */
+    public function actionSaveNewPassword(string $token): void
+    {
+
+    }
 }

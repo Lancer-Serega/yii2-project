@@ -81,7 +81,9 @@ use \yii\helpers\Url;
 
                             <div class="ui-field">
                                 <label class="ui-check">
-                                    <label class="control-label" for="loginform-remember">Remember me</label>
+                                    <label class="control-label" for="loginform-remember">
+                                        <?= Yii::t('form', 'Remember me'); ?>
+                                    </label>
                                     <input type="hidden" name="LoginForm[remember]" value="0">
                                     <label>
                                         <input type="checkbox" id="loginform-remember"
@@ -95,6 +97,9 @@ use \yii\helpers\Url;
                                     </label>
                                     <div class="help-block"></div>
                                 </label>
+                                <span class="float-right">
+                                    <a href="<?= Url::to('identity/request-password-reset')?>"><?= Yii::t('form', 'Restore password');?></a>
+                                </span>
                             </div>
 
                             <?= Html::submitButton(Yii::t('form', 'Login account'), ['class' => 'btn btn--block btn--green btn--36']); ?>

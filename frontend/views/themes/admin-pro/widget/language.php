@@ -12,8 +12,8 @@ use \yii\helpers\Html;
 
 /**
  * @var LangRequest $request
- * @var LanguageEntity $currentLang
- * @var LanguageEntity[] $langs
+ * @var LanguageEntity $currentLanguage
+ * @var LanguageEntity[] $languageList
  */
 
 $request = \Yii::$app->getRequest();
@@ -24,13 +24,13 @@ $request = \Yii::$app->getRequest();
 <!-- ============================================================== -->
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="flag-icon flag-icon-<?= $currentLang->url === 'en' ? 'us' : $currentLang->url; ?>"></i>
+        <i class="flag-icon flag-icon-<?= $currentLanguage->url === 'en' ? 'us' : $currentLanguage->url; ?>"></i>
     </a>
     <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
-        <?php foreach ($langs as $lang): ?>
-            <?php $code = $lang->url === 'en' ? 'us' : $lang->url; ?>
-            <?php $text = '<i class="flag-icon flag-icon-' . $code . '"></i>' . $lang->name; ?>
-            <?= Html::a($text, "/language/switch/{$lang->url}", ['class' => 'dropdown-item']); ?>
+        <?php foreach ($languageList as $language): ?>
+            <?php $code = $language->url === 'en' ? 'us' : $language->url; ?>
+            <?php $text = '<i class="flag-icon flag-icon-' . $code . '"></i>' . $language->name; ?>
+            <?= Html::a($text, "/language/switch/{$language->url}", ['class' => 'dropdown-item']); ?>
         <?php endforeach; ?>
     </div>
 </li>

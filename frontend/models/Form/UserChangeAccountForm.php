@@ -103,4 +103,15 @@ class UserChangeAccountForm extends BaseForm
             [['skype', 'telegram'], 'match', 'pattern'=>'/^[\w_\d]+$/', 'message' => $msg['pattern']],
         ];
     }
+
+    public function saveNewPassword(string $token)
+    {
+        if ($this->new_password !== $this->password_repeat) {
+            return false;
+        }
+
+
+
+        return true;
+    }
 }

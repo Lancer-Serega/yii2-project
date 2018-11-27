@@ -13,24 +13,25 @@ $this->title = Yii::t('form', 'Request password reset');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title); ?></h1>
 
-    <p>
-        <?= Yii::t('form', 'Please fill out your email.'); ?>
-        <?= Yii::t('form', 'A link to reset password will be sent there.'); ?>
-    </p>
+<div class="container-fluid">
+    <div class="site-request-password-reset">
+        <h1><?= Html::encode($this->title); ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
+        <p><?= Yii::t('form', 'Please fill out your email.'); ?></p>
+        <p><?= Yii::t('form', 'A link to reset password will be sent there.'); ?></p>
 
-            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
-            <?= $form->field($model, 'email')->textInput(['autofocus' => true]); ?>
-            <div class="form-group">
-                <?= Html::submitButton(Yii::t('form', 'Send'), ['class' => 'btn btn-primary']); ?>
+        <div class="row">
+            <div class="col-lg-5">
+
+                <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+                <?= $form->field($model, 'email')->textInput(['autofocus' => true]); ?>
+                <div class="form-group">
+                    <?= Html::submitButton(Yii::t('form', 'Send'), ['class' => 'btn btn-primary btn--36']); ?>
+                </div>
+                <?php ActiveForm::end(); ?>
+
             </div>
-            <?php ActiveForm::end(); ?>
-
         </div>
     </div>
 </div>

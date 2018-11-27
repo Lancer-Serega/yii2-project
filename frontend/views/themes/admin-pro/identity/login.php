@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($loginForm, 'remember')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    <?= \Yii::t('form', '<?= \Yii::t('form', 'If you forgot your password you can'); ?>'); ?> <?= Html::a(Yii::t('form', 'reset it'), ['site/request-password-reset']) ?>.
+                    <?= \Yii::t('form', \Yii::t('form', 'If you forgot your password you can')); ?><?= Html::a(Yii::t('form', 'reset it'), ['site/request-password-reset']) ?>.
                 </div>
 
                 <div class="form-group">

@@ -217,13 +217,12 @@ class UserEntity extends BaseEntity implements IdentityInterface
     /**
      * Check password reset token for validity
      *
-     * @param string $token
+     * @param string|null $token
      * @return bool
      */
-    public static function isPasswordResetTokenValid(string $token): bool
+    public static function isPasswordResetTokenValid(?string $token): bool
     {
-
-        if (empty($token)) {
+        if ($token === null) {
             return false;
         }
 

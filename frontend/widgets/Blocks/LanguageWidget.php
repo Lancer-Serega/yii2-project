@@ -19,11 +19,13 @@ class LanguageWidget extends BaseWidget
      */
     public function run(): string
     {
+        $currentLanguageId = LangModel::getCurrent()->id;
+        $placeholders = [':current_id' => $currentLanguageId];
+        $languageList = LangModel::find()->where('id != :current_id', $placeholders)->all();
+
         return $this->render('/language', [
-            'currentLang' => LangModel::getCurrent(),
-            'langs' => LangModel::find()
-                ->where('id != :current_id', [':current_id' => LangModel::getCurrent()->id])
-                ->all()
+            'currentLanguage' => LangModel::getCurrent(),
+            'languageList' => $languageList
         ]);
     }
 }
