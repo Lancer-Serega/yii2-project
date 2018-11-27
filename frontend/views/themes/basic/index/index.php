@@ -84,7 +84,7 @@ $theme = $this->theme;
                         <div class="hero__item-desc">
                             <h2 class="hero__item-title">Протестируйте наши <br>сервера бесплатно</h2>
                             <p class="hero__item-text">Мы предоставляем возможность проверить наши сервера, чтобы вы
-                                могли убедиться в их качестве</p><a class="btn btn--57 btn--green" href="#">Начать
+                                могли убедиться в их качестве</p><a class="btn btn--57 btn--green btn--36" href="#">Начать
                                 сейчас</a>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ $theme = $this->theme;
                             </label>
                         </div>
                         <div class="tariff__item-control">
-                            <button class="btn btn--blue-empty">Купить</button>
+                            <button class="btn btn--blue-empty btn--36">Купить</button>
                         </div>
                     </div>
                 </div>
@@ -187,7 +187,7 @@ $theme = $this->theme;
                             </label>
                         </div>
                         <div class="tariff__item-control">
-                            <button class="btn btn--blue-empty">Купить</button>
+                            <button class="btn btn--blue-empty btn--36">Купить</button>
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ $theme = $this->theme;
                             </label>
                         </div>
                         <div class="tariff__item-control">
-                            <button class="btn btn--blue-empty">Купить</button>
+                            <button class="btn btn--blue-empty btn--36">Купить</button>
                         </div>
                     </div>
                 </div>
@@ -231,7 +231,7 @@ $theme = $this->theme;
                             </label>
                         </div>
                         <div class="tariff__item-control">
-                            <button class="btn btn--green">Получить</button>
+                            <button class="btn btn--green btn--36">Получить</button>
                         </div>
                     </div>
                 </div>
